@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#f7f1e8"/>
+<rect x="28" y="28" width="1144" height="574" fill="none" stroke="#9d7b3f" stroke-width="2"/>
+<rect x="42" y="42" width="1116" height="546" fill="none" stroke="#d8c8ae" stroke-width="1"/>
+<text x="600" y="150" text-anchor="middle" fill="#9d7b3f" font-family="Georgia" font-size="24" letter-spacing="6">WEDDING INVITATION</text>
+<text x="600" y="295" text-anchor="middle" fill="#33281f" font-family="Georgia" font-style="italic" font-size="92">Ayesha &amp; Hamza</text>
+<text x="600" y="380" text-anchor="middle" fill="#76685c" font-family="Arial" font-size="25">19 December 2026</text>
+<text x="600" y="465" text-anchor="middle" fill="#9d7b3f" font-family="Georgia" font-size="24">Tap to open the invitation &amp; RSVP</text>
+</svg>

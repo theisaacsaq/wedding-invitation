@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#efe5d6" />
+  <title>Ayesha & Hamza — Wedding Invitation</title>
+  <meta name="description" content="You are warmly invited to celebrate the wedding of Ayesha & Hamza." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ayesha & Hamza — Wedding Invitation" />
+  <meta property="og:description" content="With joy in our hearts, we invite you to celebrate with us." />
+  <meta property="og:image" content="https://YOUR-DOMAIN.netlify.app/og-preview.jpg" />
+  <meta property="og:url" content="https://YOUR-DOMAIN.netlify.app/" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="paper-grain"></div>
+  <div id="petalLayer" class="petal-layer" aria-hidden="true"></div>
+
+  <div id="welcome" class="welcome-screen">
+    <div class="welcome-glow"></div>
+    <div class="welcome-card">
+      <div class="mini-flourish">❦</div>
+      <p class="eyebrow">A celebration of love</p>
+      <h1>Ayesha <span>&</span> Hamza</h1>
+      <p class="welcome-date">19 • 12 • 2026</p>
+      <button id="openInvite" class="seal-btn" type="button">
+        <span class="seal-ring">AH</span>
+        <small>Open Invitation</small>
+      </button>
+      <p class="tap-note">Tap to open with music</p>
+    </div>
+  </div>
+
+  <button id="musicToggle" class="music-toggle" type="button" aria-label="Toggle background music" title="Music">♫</button>
+  <audio id="bgMusic" src="ambient-wedding-loop.wav" loop preload="auto"></audio>
+
+  <header class="hero section" id="home">
+    <div class="botanical botanical-left" aria-hidden="true">
+      <svg viewBox="0 0 220 520"><path d="M32 500C65 376 78 268 156 48"/><path d="M66 382c-53-27-55-80-48-118 42 13 73 48 48 118Z"/><path d="M100 296c42-30 46-73 37-109-37 14-65 49-37 109Z"/><path d="M128 201c-39-20-48-57-44-91 36 8 66 35 44 91Z"/><path d="M155 112c31-25 34-56 25-83-29 12-49 39-25 83Z"/><circle cx="66" cy="382" r="8"/><circle cx="102" cy="296" r="7"/></svg>
+    </div>
+    <div class="botanical botanical-right" aria-hidden="true">
+      <svg viewBox="0 0 220 520"><path d="M32 500C65 376 78 268 156 48"/><path d="M66 382c-53-27-55-80-48-118 42 13 73 48 48 118Z"/><path d="M100 296c42-30 46-73 37-109-37 14-65 49-37 109Z"/><path d="M128 201c-39-20-48-57-44-91 36 8 66 35 44 91Z"/><path d="M155 112c31-25 34-56 25-83-29 12-49 39-25 83Z"/></svg>
+    </div>
+
+    <div class="hero-inner">
+      <div class="ornament">❦</div>
+      <p class="eyebrow">Together with their families</p>
+      <h1><span>Ayesha</span><b>&</b><span>Hamza</span></h1>
+      <p class="invite-line">joyfully invite you to share in the celebration of their marriage</p>
+      <div class="gold-divider"><i></i><span>✦</span><i></i></div>
+      <div class="date-card"><span>Saturday</span><strong>19</strong><span>December 2026</span></div>
+      <div id="countdown" class="countdown" aria-label="Wedding countdown"></div>
+      <a class="btn primary" href="#rsvp">RSVP Now</a>
+      <div class="scroll-hint">Scroll to celebrate <span>⌄</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section intro reveal floral-section">
+      <div class="section-flower flower-a">✿</div><div class="section-flower flower-b">❀</div>
+      <p class="bismillah">بِسْمِ ٱللَّٰهِ</p>
+      <p class="eyebrow">In the name of Allah</p>
+      <h2>Our Celebration</h2>
+      <div class="gold-divider small"><i></i><span>❦</span><i></i></div>
+      <p class="lead">Two hearts, two families, one beautiful beginning. Your presence will make our celebration complete.</p>
+    </section>
+
+    <section class="section reveal events-section">
+      <p class="eyebrow">Save the moments</p><h2>Wedding Events</h2>
+      <div class="cards">
+        <article class="event-card"><div class="event-top">01</div><div class="icon">☘</div><h3>Mehndi</h3><p>Friday, 18 December 2026</p><p class="event-time">7:30 PM</p><p>Rose Garden Marquee</p><a class="btn ghost" target="_blank" rel="noopener" href="https://maps.google.com/?q=Rose+Garden+Marquee">Open Map</a></article>
+        <article class="event-card featured"><div class="event-top">02</div><div class="icon">◇</div><h3>Nikah & Baraat</h3><p>Saturday, 19 December 2026</p><p class="event-time">7:00 PM</p><p>Royal Palace Banquet</p><a class="btn ghost" target="_blank" rel="noopener" href="https://maps.google.com/?q=Royal+Palace+Banquet">Open Map</a></article>
+        <article class="event-card"><div class="event-top">03</div><div class="icon">✦</div><h3>Walima</h3><p>Sunday, 20 December 2026</p><p class="event-time">7:30 PM</p><p>Grand Regency Hall</p><a class="btn ghost" target="_blank" rel="noopener" href="https://maps.google.com/?q=Grand+Regency+Hall">Open Map</a></article>
+      </div>
+    </section>
+
+    <section class="quote-band reveal"><div><span>“</span><p>And He placed between you affection and mercy.</p><small>Qur'an 30:21</small></div></section>
+
+    <section id="rsvp" class="section reveal">
+      <div class="rsvp-shell">
+        <div class="rsvp-box">
+          <p class="eyebrow">Kindly respond</p><h2>RSVP</h2><div class="gold-divider small"><i></i><span>✦</span><i></i></div>
+          <p>Please tell us who will be joining the celebration.</p>
+          <form name="wedding-rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="rsvpForm">
+            <input type="hidden" name="form-name" value="wedding-rsvp" /><p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+            <label>Family / Guest Name<input required name="guestName" autocomplete="name" placeholder="e.g. Ahmed Khan Family" /></label>
+            <fieldset><legend>Will you attend?</legend><div class="choice-row"><label class="choice"><input required type="radio" name="attendance" value="Yes" /> Joyfully accept</label><label class="choice"><input type="radio" name="attendance" value="No" /> Regretfully decline</label></div></fieldset>
+            <div class="grid3"><label>Male<input min="0" max="20" type="number" name="maleCount" value="0" inputmode="numeric" /></label><label>Female<input min="0" max="20" type="number" name="femaleCount" value="0" inputmode="numeric" /></label><label>Children<input min="0" max="20" type="number" name="childrenCount" value="0" inputmode="numeric" /></label></div>
+            <fieldset><legend>Events attending</legend><div class="choice-row wrap"><label class="choice"><input type="checkbox" name="events" value="Mehndi" /> Mehndi</label><label class="choice"><input type="checkbox" name="events" value="Nikah & Baraat" /> Nikah & Baraat</label><label class="choice"><input type="checkbox" name="events" value="Walima" /> Walima</label></div></fieldset>
+            <label>Meal preference<select name="mealPreference"><option>No preference</option><option>Vegetarian</option><option>Non-vegetarian</option></select></label>
+            <label>Guest names / message<textarea name="notes" rows="4" placeholder="Names of attendees, dietary notes, or a message for the couple"></textarea></label>
+            <div class="total">Total guests: <strong id="guestTotal">0</strong></div>
+            <button class="btn primary full" type="submit">Send RSVP</button><button class="btn whatsapp full" id="whatsappBtn" type="button">Send RSVP on WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section closing reveal"><div class="ornament">❦</div><p class="eyebrow">With love and prayers</p><h2>We can’t wait to celebrate with you</h2><p>With love,<br><strong>The Families of Ayesha & Hamza</strong></p><button class="btn ghost" id="shareBtn" type="button">Share Invitation</button></section>
+  </main>
+  <footer>Made with love for Ayesha & Hamza <span>✦</span> 19 December 2026</footer>
+  <script src="script.js"></script>
+</body>
+</html>
