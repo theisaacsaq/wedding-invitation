@@ -12,7 +12,12 @@ const CONFIG = {
 
 const params = new URLSearchParams(location.search);
 const inviteType = params.get("invite") || "both"; // both | walima
-const guest = params.get("guest") || "معزز مہمان و اہلِ خانہ";
+const guest = params.get("guest") || "معزز مہمان";
+const withFamily = params.get("family") === "yes";
+
+const guestDisplay = withFamily
+  ? `${guest} و اہلِ خانہ`
+  : guest;
 const maxGuests = Math.max(1, Math.min(20, Number(params.get("max")) || CONFIG.maxGuests));
 const counts = { ladies: 0, gents: 0, children: 0 };
 const $ = id => document.getElementById(id);
@@ -21,7 +26,7 @@ const setText = (id, value) => { const el = $(id); if (el) el.textContent = valu
 function applyContent(){
   ["coverBride","brideName","footerBride"].forEach(id=>setText(id,CONFIG.bride));
   ["coverGroom","groomName","footerGroom"].forEach(id=>setText(id,CONFIG.groom));
-  ["coverGuest","guestName"].forEach(id=>setText(id,guest));
+  ["coverGuest", "guestName", "invitedGuest"].forEach(   id => setText(id, guestDisplay) );
   setText("hostName",CONFIG.host);
   setText("baratDate",CONFIG.barat.dateText); setText("baratTime",CONFIG.barat.timeText); setText("baratVenue",CONFIG.barat.venue);
   setText("walimaDate",CONFIG.walima.dateText); setText("walimaTime",CONFIG.walima.timeText); setText("walimaVenue",CONFIG.walima.venue);
