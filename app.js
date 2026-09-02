@@ -28,6 +28,7 @@ function applyContent(){
   [   "coverGroom",   "groomName",   "footerGroom",   "closingGroom" ].forEach(id=>setText(id,CONFIG.groom));
   ["coverGuest", "guestName", "invitedGuest"].forEach(   id => setText(id, guestDisplay) );
   setText("hostName",CONFIG.host);
+  setText("closingHost", CONFIG.host);
   setText("baratDate",CONFIG.barat.dateText); setText("baratTime",CONFIG.barat.timeText); setText("baratVenue",CONFIG.barat.venue);
   setText("walimaDate",CONFIG.walima.dateText); setText("walimaTime",CONFIG.walima.timeText); setText("walimaVenue",CONFIG.walima.venue);
   setText("guestLimit",`زیادہ سے زیادہ ${maxGuests} افراد`);
