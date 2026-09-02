@@ -63,8 +63,8 @@ function updateCounters(){ Object.keys(counts).forEach(k=>setText(`${k}Count`,co
 function updateLinks(){
   let accept;
   if(inviteType === "walima") accept=`السلام علیکم، ${guest} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی دعوتِ ولیمہ میں شرکت کریں گے۔ بہت شکریہ۔`;
-  else accept=`السلام علیکم، ${guest} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی تقریبِ بارات میں شرکت کریں گے۔\nخواتین: ${counts.ladies}\nحضرات: ${counts.gents}\nبچے: ${counts.children}\nکل افراد: ${total()}`;
-  const regret=`السلام علیکم، ${guest} معذرت کے ساتھ تقریب میں شرکت نہیں کر سکیں گے، مگر ہماری دعائیں ${CONFIG.bride} اور ${CONFIG.groom} کے ساتھ ہیں۔`;
+  else accept=`السلام علیکم، ${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی تقریبِ بارات میں شرکت کریں گے۔\nخواتین: ${counts.ladies}\nحضرات: ${counts.gents}\nبچے: ${counts.children}\nکل افراد: ${total()}`;
+  const regret=`السلام علیکم، ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں کر سکیں گے، مگر ہماری دعائیں ${CONFIG.bride} اور ${CONFIG.groom} کے ساتھ ہیں۔`;
   $("acceptBtn").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(accept)}`;
   $("regretBtn").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(regret)}`;
 }
