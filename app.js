@@ -24,8 +24,8 @@ const $ = id => document.getElementById(id);
 const setText = (id, value) => { const el = $(id); if (el) el.textContent = value; };
 
 function applyContent(){
-  ["coverBride","brideName","footerBride"].forEach(id=>setText(id,CONFIG.bride));
-  ["coverGroom","groomName","footerGroom"].forEach(id=>setText(id,CONFIG.groom));
+  [   "coverBride",   "brideName",   "footerBride",   "closingBride" ].forEach(id=>setText(id,CONFIG.bride));
+  [   "coverGroom",   "groomName",   "footerGroom",   "closingGroom" ].forEach(id=>setText(id,CONFIG.groom));
   ["coverGuest", "guestName", "invitedGuest"].forEach(   id => setText(id, guestDisplay) );
   setText("hostName",CONFIG.host);
   setText("baratDate",CONFIG.barat.dateText); setText("baratTime",CONFIG.barat.timeText); setText("baratVenue",CONFIG.barat.venue);
