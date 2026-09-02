@@ -3,39 +3,65 @@
 @media(max-width:600px){.section{padding:72px 18px}.frame{padding:55px 18px}.envelope-card{min-height:90vh;padding:50px 18px}.event-number{font-size:2.6rem}.event-card dl div{grid-template-columns:75px 1fr}.actions{flex-direction:column}.actions a{text-align:center}.music-toggle{bottom:14px;left:14px}.countdown{gap:7px}.time-box{min-width:65px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}.petal-layer{display:none}}
 .creator-credit {
-  width: min(420px, 100%);
-  margin: 50px auto 0;
-  padding-top: 24px;
-  border-top: 1px solid rgba(203, 168, 90, 0.25);
+  width: min(520px, 100%);
+  margin: 55px auto 0;
+  padding: 36px 20px 5px;
+  border-top: 1px solid rgba(203, 168, 90, 0.35);
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  direction: rtl;
 }
 
-.creator-credit span {
-  color: #b6a98a;
-  font-size: 0.75rem;
+.credit-heading {
+  color: #d4bd7b;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
 }
 
-.creator-credit a {
+.brand-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  direction: ltr;
+  transition: transform 0.3s ease;
+}
+
+.brand-link strong {
   color: #f0d48a;
   font-family: "Playfair Display", serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
-  text-decoration: none;
-  transition: color 0.25s ease;
+  font-size: clamp(1.35rem, 4vw, 2rem);
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-shadow: 0 0 20px rgba(240, 212, 138, 0.2);
 }
 
-.creator-credit a:hover {
+.brand-link span {
+  color: #cba85a;
+  font-family: Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  margin-top: 2px;
+}
+
+.brand-link:hover {
+  transform: translateY(-3px);
+}
+
+.brand-link:hover strong {
   color: #ffffff;
 }
 
-.creator-credit small {
-  color: #786f5c;
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  direction: ltr;
+.credit-love {
+  color: #f0d48a;
+  font-size: 1.15rem;
+  margin: 18px 0 2px;
+}
+
+.credit-description {
+  color: #8f846d;
+  font-size: 0.75rem;
+  margin: 0;
 }
