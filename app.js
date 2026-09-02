@@ -3,7 +3,7 @@ const CONFIG = {
   bride: "عائشہ",
   groom: "حمزہ",
   host: "__________",
-  whatsapp: "923001234567",
+  whatsapp: "923080117630",
   maxGuests: 4,
   barat: { dateText: "بروز ہفتہ، ۱۲ دسمبر ۲۰۲۶", timeText: "شام ۷:۰۰ بجے", venue: "باراتی ہال، کراچی", mapQuery: "Karachi Pakistan", start: "20261212T140000Z", end: "20261212T180000Z" },
   walima: { dateText: "بروز اتوار، ۱۳ دسمبر ۲۰۲۶", timeText: "رات ۸:۰۰ بجے", venue: "پرل بینکوئٹ، کراچی", mapQuery: "Karachi Pakistan", start: "20261213T150000Z", end: "20261213T190000Z" },
@@ -60,20 +60,51 @@ function createPetals(){
 function calendarUrl(title,event){ return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${event.start}%2F${event.end}&location=${encodeURIComponent(event.venue)}`; }
 function total(){ return counts.ladies + counts.gents + counts.children; }
 function updateCounters(){ Object.keys(counts).forEach(k=>setText(`${k}Count`,counts[k])); updateLinks(); }
-function updateLinks(){
-  let accept;
-  if(inviteType === "walima") accept=`السلام علیکم، ${guest} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی دعوتِ ولیمہ میں شرکت کریں گے۔ بہت شکریہ۔`;
-  else accept=`السلام علیکم، ${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی تقریبِ بارات میں شرکت کریں گے۔\nخواتین: ${counts.ladies}\nحضرات: ${counts.gents}\nبچے: ${counts.children}\nکل افراد: ${total()}`;
-  const regret=`السلام علیکم، ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں کر سکیں گے، مگر ہماری دعائیں ${CONFIG.bride} اور ${CONFIG.groom} کے ساتھ ہیں۔`;
-  $("acceptBtn").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(accept)}`;
-  $("regretBtn").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(regret)}`;
-}
+function updateLinks() {
+  const selectedTotal =
+    counts.ladies +
+    counts.gents +
+    counts.children;
 
-document.querySelectorAll(".counter button").forEach(btn=>btn.addEventListener("click",()=>{
-  const key=btn.dataset.type;
-  if(btn.dataset.action==="plus" && total()<maxGuests) counts[key]++;
-  if(btn.dataset.action==="minus" && counts[key]>0) counts[key]--;
-  updateCounters();
+  let acceptMessage;
+
+  if (inviteType === "walima") {
+    acceptMessage =
+`السلام علیکم،
+
+${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی دعوتِ ولیمہ میں شرکت کریں گے۔
+
+بہت شکریہ۔`;
+  } else {
+    acceptMessage =
+`السلام علیکم،
+
+${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی تقریبِ بارات میں شرکت کریں گے۔
+
+شرکت کرنے والے افراد:
+خواتین: ${counts.ladies}
+حضرات: ${counts.gents}
+بچے: ${counts.children}
+
+کل افراد: ${selectedTotal}
+مقررہ حد: ${maxGuests}
+
+بہت شکریہ۔`;
+  }
+
+  const regretMessage =
+`السلام علیکم،
+
+${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں کر سکیں گے۔
+
+ہماری دعائیں ${CONFIG.bride} اور ${CONFIG.groom} کے ساتھ ہیں۔`;
+
+  $("acceptBtn").href =
+    `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(acceptMessage)}`;
+
+  $("regretBtn").href =
+    `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(regretMessage)}`;
+}
 }));
 
 let audioCtx, master, musicTimer, muted=false;
