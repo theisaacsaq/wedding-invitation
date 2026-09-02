@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090806" />
+  <meta name="description" content="شادی کی پُرخلوص دعوت — بارات و ولیمہ" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="دعوتِ شادی" />
+  <meta property="og:description" content="ہماری خوشیوں میں شریک ہو کر اس محفل کو یادگار بنائیے۔" />
+  <title>دعوتِ شادی</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="locked">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
+
+  <section class="envelope" id="envelope">
+    <div class="envelope-card">
+      <div class="corner corner-tr"></div><div class="corner corner-bl"></div>
+      <p class="eyebrow">دعوتِ شادی</p>
+      <p class="bismillah">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+      <h1><span id="coverBride">عائشہ</span><i>و</i><span id="coverGroom">حمزہ</span></h1>
+      <div class="guest-line">بخدمت <strong id="coverGuest">معزز مہمان و اہلِ خانہ</strong></div>
+      <p class="cover-date" id="coverDate">دسمبر ۲۰۲۶</p>
+      <button class="gold-button" id="openInvite">دعوت نامہ کھولیے <span>←</span></button>
+      <small>موسیقی آپ کے داخل ہونے پر شروع ہوگی</small>
+    </div>
+  </section>
+
+  <button class="music-toggle" id="musicToggle" aria-label="موسیقی بند کریں" title="موسیقی">♫</button>
+
+  <main id="mainContent">
+    <section class="hero section">
+      <div class="frame">
+        <p class="eyebrow">بصد مسرت و احترام</p>
+        <p class="quran">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا</p>
+        <p class="translation">اور اُس کی نشانیوں میں سے ہے کہ اُس نے تمہارے لیے تم ہی میں سے جوڑے بنائے تاکہ تم اُن سے سکون پاؤ۔</p>
+        <p class="hosts">جناب و محترمہ <span id="hostName">__________</span> اپنے عزیزان کے ہمراہ آپ کو اپنے فرزند/دختر کی تقریبِ شادی میں شرکت کی پُرخلوص دعوت دیتے ہیں</p>
+        <h2 class="couple"><span id="brideName">عائشہ</span><i>و</i><span id="groomName">حمزہ</span></h2>
+        <p class="addressed">خصوصی دعوت برائے</p>
+        <div class="guest-name" id="guestName">معزز مہمان و اہلِ خانہ</div>
+        <p>آپ کی شرکت ہماری خوشیوں کو دوبالا کرے گی</p>
+        <div class="countdown" id="countdown" aria-label="تقریب تک باقی وقت"></div>
+      </div>
+    </section>
+
+    <section class="quote section reveal">
+      <p class="eyebrow">دعا و محبت کے ساتھ</p>
+      <blockquote>”دو دل، دو خاندان، اور ایک خوبصورت سفر کا آغاز“</blockquote>
+    </section>
+
+    <section class="events section reveal" id="events">
+      <p class="eyebrow">تقریبات</p>
+      <h2>آپ کی آمد کے منتظر</h2>
+
+      <article class="event-card" id="baratCard">
+        <span class="event-number">۰۱</span>
+        <h3>تقریبِ بارات</h3>
+        <p class="event-date" id="baratDate">بروز ہفتہ، ۱۲ دسمبر ۲۰۲۶</p>
+        <dl><div><dt>وقت</dt><dd id="baratTime">شام ۷:۰۰ بجے</dd></div><div><dt>مقام</dt><dd id="baratVenue">باراتی ہال، کراچی</dd></div></dl>
+        <div class="actions"><a id="baratMap" target="_blank" rel="noopener">گوگل نقشہ</a><a id="baratCalendar" target="_blank" rel="noopener">کیلنڈر میں شامل کریں</a></div>
+      </article>
+
+      <article class="event-card" id="walimaCard">
+        <span class="event-number">۰۲</span>
+        <h3>دعوتِ ولیمہ</h3>
+        <p class="event-date" id="walimaDate">بروز اتوار، ۱۳ دسمبر ۲۰۲۶</p>
+        <dl><div><dt>وقت</dt><dd id="walimaTime">رات ۸:۰۰ بجے</dd></div><div><dt>مقام</dt><dd id="walimaVenue">پرل بینکوئٹ، کراچی</dd></div></dl>
+        <div class="actions"><a id="walimaMap" target="_blank" rel="noopener">گوگل نقشہ</a><a id="walimaCalendar" target="_blank" rel="noopener">کیلنڈر میں شامل کریں</a></div>
+      </article>
+    </section>
+
+    <section class="rsvp section reveal" id="rsvp">
+      <p class="eyebrow">تصدیقِ شرکت</p>
+      <h2 id="rsvpHeading">بارات میں شرکت</h2>
+      <p id="rsvpIntro">براہِ کرم افراد کی تعداد منتخب کرکے واٹس ایپ پر اپنی شرکت کی تصدیق فرمائیں۔</p>
+
+      <div class="attendance" id="baratAttendance">
+        <div class="counter-row"><span>خواتین</span><div class="counter"><button data-action="minus" data-type="ladies">−</button><output id="ladiesCount">0</output><button data-action="plus" data-type="ladies">+</button></div></div>
+        <div class="counter-row"><span>حضرات</span><div class="counter"><button data-action="minus" data-type="gents">−</button><output id="gentsCount">0</output><button data-action="plus" data-type="gents">+</button></div></div>
+        <div class="counter-row"><span>بچے</span><div class="counter"><button data-action="minus" data-type="children">−</button><output id="childrenCount">0</output><button data-action="plus" data-type="children">+</button></div></div>
+        <p class="limit" id="guestLimit">زیادہ سے زیادہ ۴ افراد</p>
+      </div>
+
+      <div class="rsvp-actions">
+        <a class="whatsapp accept" id="acceptBtn" target="_blank" rel="noopener">واٹس ایپ پر شرکت کی تصدیق</a>
+        <a class="whatsapp regret" id="regretBtn" target="_blank" rel="noopener">معذرت کا پیغام بھیجیں</a>
+      </div>
+    </section>
+
+    <footer class="section reveal">
+      <p class="eyebrow">دعا کے طلب گار</p>
+      <h2><span id="footerBride">عائشہ</span> <i>و</i> <span id="footerGroom">حمزہ</span></h2>
+      <p>ہماری خوشیوں میں شریک ہونے کا شکریہ</p>
+      <div class="ornament">◆</div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
