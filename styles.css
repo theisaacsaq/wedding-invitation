@@ -822,3 +822,220 @@
   font-weight:400;
   margin:0 0 22px;
 }
+/* =========================================
+   FAMILY ROSTER — CHASHM-E-RAH / AL-DAI
+========================================= */
+
+.family-roster{
+  width:min(900px,90%);
+  margin:0 auto;
+  padding:80px 20px 70px;
+  text-align:center;
+  direction:rtl;
+}
+
+.family-roster-kicker{
+  margin:0 0 16px;
+  color:#cba85a;
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:.95rem;
+}
+
+.family-roster-title{
+  margin:0 auto 28px;
+  color:#f3d77d;
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:clamp(1.5rem,3vw,2.25rem);
+  font-weight:400;
+  line-height:2;
+}
+
+
+/* GOLD DIVIDER */
+
+.family-roster-divider{
+  width:min(520px,85%);
+  margin:0 auto 45px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+
+.family-roster-divider span{
+  height:1px;
+  flex:1;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(203,168,90,.7)
+  );
+}
+
+.family-roster-divider span:last-child{
+  background:linear-gradient(
+    90deg,
+    rgba(203,168,90,.7),
+    transparent
+  );
+}
+
+.family-roster-divider i{
+  color:#dcb650;
+  font-size:10px;
+  font-style:normal;
+}
+
+
+/* TWO COLUMNS */
+
+.family-roster-columns{
+  display:grid;
+  grid-template-columns:1fr 1px 1fr;
+  gap:45px;
+
+  max-width:800px;
+  margin:0 auto;
+  align-items:start;
+}
+
+.family-center-line{
+  width:1px;
+  min-height:250px;
+
+  background:linear-gradient(
+    to bottom,
+    transparent,
+    rgba(203,168,90,.5),
+    rgba(203,168,90,.5),
+    transparent
+  );
+}
+
+
+/* HEADINGS */
+
+.family-roster-column h3{
+  display:inline-block;
+
+  margin:0 0 24px;
+  padding:5px 28px 8px;
+
+  color:#090806;
+  background:linear-gradient(
+    110deg,
+    #9a6b1c,
+    #e2b950,
+    #f7df8b,
+    #b98220
+  );
+
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:1.35rem;
+  font-weight:700;
+
+  border-radius:30px;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.3),
+    0 0 15px rgba(203,168,90,.12);
+}
+
+
+/* NAMES */
+
+.family-names{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.family-names p{
+  position:relative;
+
+  margin:0;
+  padding:8px 8px 10px;
+
+  color:#f5ecd2;
+
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:1rem;
+  line-height:1.8;
+
+  border-bottom:1px solid rgba(203,168,90,.11);
+
+  transition:
+    color .25s ease,
+    transform .25s ease;
+}
+
+.family-names p:hover{
+  color:#f0d48a;
+  transform:translateY(-2px);
+}
+
+
+/* BOTTOM MESSAGE */
+
+.family-roster-footer{
+  margin:45px auto 0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+
+  color:#cba85a;
+}
+
+.family-roster-footer p{
+  margin:0;
+
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:1rem;
+  color:#d9c99e;
+}
+
+.family-roster-footer span{
+  color:#e0b84f;
+  font-size:10px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+  .family-roster{
+    padding:60px 16px;
+  }
+
+  .family-roster-columns{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .family-center-line{
+    width:70%;
+    height:1px;
+    min-height:1px;
+    margin:auto;
+
+    background:linear-gradient(
+      90deg,
+      transparent,
+      rgba(203,168,90,.5),
+      transparent
+    );
+  }
+
+  .family-roster-column h3{
+    font-size:1.15rem;
+  }
+
+  .family-names p{
+    font-size:.92rem;
+  }
+}
