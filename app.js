@@ -40,6 +40,32 @@ function applyContent(){
     $("baratCard").classList.add("hidden"); $("baratAttendance").classList.add("hidden");
     setText("rsvpHeading","ولیمہ میں شرکت"); setText("rsvpIntro","براہِ کرم واٹس ایپ پر اپنی شرکت کی تصدیق فرمائیں۔");
   }
+  const simpleRsvp = $("simpleRsvp");
+const attendanceSection = document.querySelector(".attendance");
+
+if(inviteType === "both"){
+
+  // Barat + Walima
+  if(simpleRsvp){
+    simpleRsvp.classList.add("hidden");
+  }
+
+  if(attendanceSection){
+    attendanceSection.classList.remove("hidden");
+  }
+
+}else{
+
+  // Walima Only / Barat Only
+  if(simpleRsvp){
+    simpleRsvp.classList.remove("hidden");
+  }
+
+  if(attendanceSection){
+    attendanceSection.classList.add("hidden");
+  }
+
+}
   updateLinks();
 }
 
