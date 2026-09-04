@@ -482,3 +482,76 @@
 .gold-button:active{
   transform:scale(.96);
 }
+/* Urdu message on royal ribbon */
+
+.ribbon-message{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  z-index:6;
+
+  width:270px;
+  text-align:center;
+  white-space:nowrap;
+
+  font-family:"Noto Nastaliq Urdu", serif;
+  font-size:17px;
+  font-weight:700;
+  line-height:1.8;
+
+  color:#201503;
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.35),
+    0 -1px 0 rgba(91,57,5,.15);
+
+  pointer-events:none;
+
+  transition:
+    opacity .35s ease,
+    transform .65s ease,
+    filter .4s ease;
+}
+
+/* Seal ko message ke side me elegant badge bana dein */
+
+.ribbon-seal{
+  position:absolute;
+  right:-3px;
+  top:50%;
+  transform:translateY(-50%);
+
+  width:52px;
+  height:52px;
+
+  z-index:8;
+}
+
+.ribbon-seal span{
+  font-family:serif;
+  font-size:20px;
+  line-height:1;
+  color:#281803;
+}
+
+/* Click hone par message pehle fade/zoom ho */
+
+.envelope.ribbon-opening .ribbon-message{
+  opacity:0;
+  filter:blur(3px);
+  transform:
+    translate(-50%, -50%)
+    scale(1.12);
+}
+
+/* Seal bhi ribbon ke saath fly out */
+
+.envelope.ribbon-opening .ribbon-seal{
+  opacity:0;
+  transform:
+    translateY(-50%)
+    translateX(70px)
+    rotate(180deg)
+    scale(.3);
+}
