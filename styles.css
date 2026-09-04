@@ -1238,3 +1238,62 @@
     font-size:18px;
   }
 }
+/* =========================================
+   OPENING CARD CLEANUP PATCH
+   Paste this at the VERY END of styles.css
+========================================= */
+
+/* Remove the old automatic stars from top / bottom of card */
+.envelope-card::before,
+.envelope-card::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* Keep opening card balanced, not poster-like */
+.envelope{
+  padding:18px !important;
+}
+
+.envelope-card{
+  width:min(620px, 96vw) !important;
+  min-height:auto !important;
+  height:auto !important;
+  max-height:94vh !important;
+  padding:38px 28px 32px !important;
+  overflow:auto !important;
+}
+
+/* Compact spacing without shrinking the design */
+.envelope-card h1{
+  margin:4px 0 8px !important;
+}
+
+.envelope-card .guest-line{
+  margin:5px 0 !important;
+}
+
+.envelope-card .cover-date{
+  margin:8px 0 10px !important;
+}
+
+.envelope-card .royal-invite-mark{
+  margin:12px auto 2px !important;
+}
+
+.envelope-card .royal-invite-text{
+  margin:6px auto 8px !important;
+}
+
+/* Mobile */
+@media(max-width:600px){
+  .envelope{
+    padding:10px !important;
+  }
+
+  .envelope-card{
+    width:96vw !important;
+    max-height:96vh !important;
+    padding:26px 16px 22px !important;
+  }
+}
