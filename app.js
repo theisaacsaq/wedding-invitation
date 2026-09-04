@@ -3,32 +3,15 @@
 ========================================= */
 
 const CONFIG = {
-  bride: "عائشہ",
-  groom: "حمزہ",
-  host: "__________",
-  father: "چوہدری علی",
-  whatsapp: "923080117630",
-  maxGuests: 4,
-
-  barat: {
-    dateText: "بروز ہفتہ، ۱۲ دسمبر ۲۰۲۶",
-    timeText: "شام ۷:۰۰ بجے",
-    venue: "باراتی ہال، کراچی",
-    mapQuery: "Karachi Pakistan",
-    start: "20261212T140000Z",
-    end: "20261212T180000Z"
-  },
-
-  walima: {
-    dateText: "بروز اتوار، ۱۳ دسمبر ۲۰۲۶",
-    timeText: "رات ۸:۰۰ بجے",
-    venue: "پرل بینکوئٹ، کراچی",
-    mapQuery: "Karachi Pakistan",
-    start: "20261213T150000Z",
-    end: "20261213T190000Z"
-  },
-
-  countdownTo: "2026-12-12T19:00:00+05:00"
+  bride: CLIENT.bride,
+  groom: CLIENT.groom,
+  host: CLIENT.host,
+  father: CLIENT.father,
+  whatsapp: CLIENT.whatsapp,
+  maxGuests: CLIENT.maxGuests,
+  barat: CLIENT.barat,
+  walima: CLIENT.walima,
+  countdownTo: CLIENT.countdownTo
 };
 
 
