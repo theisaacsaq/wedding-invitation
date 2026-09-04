@@ -42,10 +42,15 @@ function applyContent(){
   }
   const simpleRsvp = $("simpleRsvp");
 const attendanceSection = document.querySelector(".attendance");
+  const fullRsvpActions = $("fullRsvpActions");
 
 if(inviteType === "both"){
 
-  // Barat + Walima
+  // BARAT + WALIMA
+  // Count section show
+  // Simple RSVP hide
+  // Original WhatsApp buttons show
+
   if(simpleRsvp){
     simpleRsvp.classList.add("hidden");
   }
@@ -54,9 +59,17 @@ if(inviteType === "both"){
     attendanceSection.classList.remove("hidden");
   }
 
+  if(fullRsvpActions){
+    fullRsvpActions.classList.remove("hidden");
+  }
+
 }else{
 
-  // Walima Only / Barat Only
+  // WALIMA ONLY
+  // Count section hide
+  // Simple Accept / Regret show
+  // Original buttons hide
+
   if(simpleRsvp){
     simpleRsvp.classList.remove("hidden");
   }
@@ -65,6 +78,11 @@ if(inviteType === "both"){
     attendanceSection.classList.add("hidden");
   }
 
+  if(fullRsvpActions){
+    fullRsvpActions.classList.add("hidden");
+  }
+
+}
 }
   updateLinks();
 }
