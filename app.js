@@ -113,8 +113,64 @@ function playTone(freq,when,duration,volume){ const osc=audioCtx.createOscillato
 function musicPhrase(){ if(!audioCtx) return; const now=audioCtx.currentTime; [261.63,329.63,392,493.88].forEach((f,i)=>playTone(f,now+i*1.8,5,.035)); }
 function startMusic(){ try{ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); master=audioCtx.createGain(); master.gain.value=.8; master.connect(audioCtx.destination); musicPhrase(); musicTimer=setInterval(musicPhrase,7200); }catch(e){ $("musicToggle").classList.add("hidden"); } }
 $("musicToggle").addEventListener("click",()=>{ if(!audioCtx)return; muted=!muted; master.gain.setTargetAtTime(muted?0:.8,audioCtx.currentTime,.15); $("musicToggle").classList.toggle("muted",muted); $("musicToggle").textContent=muted?"♩":"♫"; });
-$("openInvite").addEventListener("click",()=>{ $("envelope").classList.add("opened"); document.body.classList.remove("locked"); startMusic(); setTimeout(()=>$("mainContent").scrollIntoView(),500); });
+const envelope = $("envelope");
+const openInvite = $("openInvite");
+const sparkBurst = $("sparkBurst");
 
-function tick(){ const diff=Math.max(0,new Date(CONFIG.countdownTo)-new Date()); const units=[["دن",86400000],["گھنٹے",3600000],["منٹ",60000],["سیکنڈ",1000]]; let rest=diff; $("countdown").innerHTML=units.map(([label,ms])=>{const n=Math.floor(rest/ms);rest%=ms;return `<div class="time-box"><strong>${String(n).padStart(2,"0")}</strong><span>${label}</span></div>`}).join(""); }
+function createRoyalSparks(){
+  if(!sparkBurst) return;
+
+  sparkBurst.innerHTML = "";
+
+  for(let i = 0; i < 28; i++){
+    const spark = document.createElement("span");
+    spark.className = "spark";
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 70 + Math.random() * 170;
+
+    spark.style.setProperty(
+      "--spark-x",
+      `${Math.cos(angle) * distance}px`
+    );
+
+    spark.style.setProperty(
+      "--spark-y",
+      `${Math.sin(angle) * distance}px`
+    );
+
+    spark.style.animationDelay =
+      `${Math.random() * 0.16}s`;
+
+    sparkBurst.appendChild(spark);
+  }
+}
+
+openInvite.addEventListener("click", () => {
+
+  openInvite.disabled = true;
+
+  envelope.classList.add("ribbon-opening");
+  createRoyalSparks();
+
+  // music start
+  if(!audioCtx){
+    startMusic();
+  }
+
+  setTimeout(() => {
+
+    envelope.classList.add("opened");
+    document.body.classList.remove("locked");
+
+    setTimeout(() => {
+      $("mainContent").scrollIntoView({
+        behavior: "smooth"
+      });
+    }, 150);
+
+  }, 1250);
+
+});function tick(){ const diff=Math.max(0,new Date(CONFIG.countdownTo)-new Date()); const units=[["دن",86400000],["گھنٹے",3600000],["منٹ",60000],["سیکنڈ",1000]]; let rest=diff; $("countdown").innerHTML=units.map(([label,ms])=>{const n=Math.floor(rest/ms);rest%=ms;return `<div class="time-box"><strong>${String(n).padStart(2,"0")}</strong><span>${label}</span></div>`}).join(""); }
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible")}),{threshold:.12}); document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 createPetals(); applyContent(); tick(); setInterval(tick,1000);
