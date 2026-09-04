@@ -105,6 +105,36 @@ function createPetals(){
 function calendarUrl(title,event){ return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${event.start}%2F${event.end}&location=${encodeURIComponent(event.venue)}`; }
 function total(){ return counts.ladies + counts.gents + counts.children; }
 function updateCounters(){ Object.keys(counts).forEach(k=>setText(`${k}Count`,counts[k])); updateLinks(); }
+document.querySelectorAll(".counter button").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const type = button.dataset.type;
+    const action = button.dataset.action;
+
+    if(!counts.hasOwnProperty(type)) return;
+
+    if(action === "plus"){
+
+      // Total maxGuests se zyada na ho
+      if(total() < maxGuests){
+        counts[type]++;
+      }
+
+    }else if(action === "minus"){
+
+      // Zero se neeche na jaye
+      if(counts[type] > 0){
+        counts[type]--;
+      }
+
+    }
+
+    updateCounters();
+
+  });
+
+});
 function updateLinks() {
   const selectedTotal =
     counts.ladies +
