@@ -5,7 +5,8 @@
 const CONFIG = {
   bride: "عائشہ",
   groom: "حمزہ",
-  host: "چوہدری علی",
+  host: "__________",
+  father: "چوہدری علی",
   whatsapp: "923080117630",
   maxGuests: 4,
 
