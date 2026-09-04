@@ -131,6 +131,29 @@ ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں ک�
 
   $("regretBtn").href =
     `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(regretMessage)}`;
+  const simpleAcceptBtn = $("simpleAcceptBtn");
+const simpleRegretBtn = $("simpleRegretBtn");
+
+const eventName =
+  CONFIG.invite === "walima"
+    ? "دعوت ولیمہ"
+    : "تقریب بارات";
+
+const simpleAcceptMessage =
+  `السلام علیکم، میں ${CONFIG.guest}، ${eventName} میں شرکت کی تصدیق کرتا/کرتی ہوں۔`;
+
+const simpleRegretMessage =
+  `السلام علیکم، میں ${CONFIG.guest}، ${eventName} میں شرکت نہیں کر سکوں گا/گی۔ معذرت۔`;
+
+if(simpleAcceptBtn){
+  simpleAcceptBtn.href =
+    `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(simpleAcceptMessage)}`;
+}
+
+if(simpleRegretBtn){
+  simpleRegretBtn.href =
+    `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(simpleRegretMessage)}`;
+}
 }
 
 
