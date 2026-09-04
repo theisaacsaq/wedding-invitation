@@ -151,6 +151,8 @@ function applyContent(){
     CONFIG.host
   );
    setText("closingFather", CONFIG.father);
+   renderNameList("eldersList", CLIENT.elders);
+renderNameList("cousinsList", CLIENT.cousins);
 
 
   /* BARAT */
