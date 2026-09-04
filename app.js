@@ -1,19 +1,29 @@
 /* =========================================
-   WEDDING INVITATION CONFIG
+   WEDDING INVITATION
+   DATA SOURCE: client-data.js
 ========================================= */
 
-const SHEET_API_URL =
-  "https://script.google.com/macros/s/AKfycbxNQsVBn9e-qU5W3RDyUj_9f53m6EYONcL59ZFE3_jTJBiF5i0t_dCqztz7OUPBklJUDQ/exec";
+
+/* =========================================
+   CONFIG
+========================================= */
 
 const CONFIG = {
   bride: CLIENT.bride,
   groom: CLIENT.groom,
-  host: CLIENT.host,
   father: CLIENT.father,
+  host: CLIENT.host,
   whatsapp: CLIENT.whatsapp,
   maxGuests: CLIENT.maxGuests,
-  barat: CLIENT.barat,
-  walima: CLIENT.walima,
+
+  barat: {
+    ...CLIENT.barat
+  },
+
+  walima: {
+    ...CLIENT.walima
+  },
+
   countdownTo: CLIENT.countdownTo
 };
 
@@ -22,7 +32,8 @@ const CONFIG = {
    URL PARAMETERS
 ========================================= */
 
-const params = new URLSearchParams(location.search);
+const params =
+  new URLSearchParams(window.location.search);
 
 const inviteType =
   params.get("invite") || "both";
@@ -34,23 +45,26 @@ const guest =
 const withFamily =
   params.get("family") === "yes";
 
-const guestDisplay = withFamily
-  ? `${guest} و اہلِ خانہ`
-  : guest;
 
-let maxGuests = 1;
+const guestDisplay =
+  withFamily
+    ? `${guest} و اہلِ خانہ`
+    : guest;
 
-function calculateMaxGuests(){
-  maxGuests = Math.max(
-    1,
-    Math.min(
-      20,
-      Number(params.get("max")) ||
-      Number(CONFIG.maxGuests) ||
-      1
-    )
-  );
-}
+
+/* =========================================
+   MAX GUESTS
+========================================= */
+
+const maxGuests = Math.max(
+  1,
+  Math.min(
+    20,
+    Number(params.get("max")) ||
+    Number(CONFIG.maxGuests) ||
+    1
+  )
+);
 
 
 /* =========================================
@@ -63,12 +77,14 @@ const counts = {
   children: 0
 };
 
+
 /* =========================================
    HELPERS
 ========================================= */
 
 const $ = id =>
   document.getElementById(id);
+
 
 const setText = (id, value) => {
 
@@ -79,19 +95,30 @@ const setText = (id, value) => {
   }
 
 };
+
+
+/* =========================================
+   FAMILY LIST
+========================================= */
+
 function renderNameList(id, names){
 
   const container = $(id);
 
-  if(!container) return;
+  if(!container){
+    return;
+  }
 
   container.innerHTML = "";
 
   (names || []).forEach(name => {
 
-    if(!name) return;
+    if(!name){
+      return;
+    }
 
-    const p = document.createElement("p");
+    const p =
+      document.createElement("p");
 
     p.textContent = name;
 
@@ -100,216 +127,99 @@ function renderNameList(id, names){
   });
 
 }
+
+
 /* =========================================
-   HELPERS
+   CALENDAR
 ========================================= */
 
-function loadClientDataFromSheet(){
+function calendarUrl(title, event){
 
-  return new Promise((resolve) => {
+  if(
+    !event ||
+    !event.start ||
+    !event.end
+  ){
+    return "#";
+  }
 
-    const callbackName = "handleWeddingSheetData";
-
-    window[callbackName] = function(data){
-
-      try{
-
-        if(!data || !data.success){
-          throw new Error(
-            data?.error || "Sheet data nahi mila"
-          );
-        }
-
-        CLIENT.bride =
-          data.bride || CLIENT.bride;
-
-        CLIENT.groom =
-          data.groom || CLIENT.groom;
-
-        CLIENT.father =
-          data.father || CLIENT.father;
-
-        CLIENT.host =
-          data.host || CLIENT.host;
-
-        CLIENT.whatsapp =
-          data.whatsapp || CLIENT.whatsapp;
-
-        if(data.maxGuests){
-          CLIENT.maxGuests =
-            Number(data.maxGuests);
-        }
-
-        if(data.barat){
-          CLIENT.barat = {
-            ...CLIENT.barat,
-            ...data.barat
-          };
-        }
-
-        if(data.walima){
-          CLIENT.walima = {
-            ...CLIENT.walima,
-            ...data.walima
-          };
-        }
-
-        CLIENT.countdownTo =
-          data.countdownTo ||
-          CLIENT.countdownTo;
-
-        if(Array.isArray(data.elders)){
-          CLIENT.elders =
-            data.elders;
-        }
-
-        if(Array.isArray(data.cousins)){
-          CLIENT.cousins =
-            data.cousins;
-        }
-
-        CONFIG.bride =
-          CLIENT.bride;
-
-        CONFIG.groom =
-          CLIENT.groom;
-
-        CONFIG.father =
-          CLIENT.father;
-
-        CONFIG.host =
-          CLIENT.host;
-
-        CONFIG.whatsapp =
-          CLIENT.whatsapp;
-
-        CONFIG.maxGuests =
-          CLIENT.maxGuests;
-
-        CONFIG.barat =
-          CLIENT.barat;
-
-        CONFIG.walima =
-          CLIENT.walima;
-
-        CONFIG.countdownTo =
-          CLIENT.countdownTo;
-
-        calculateMaxGuests();
-
-        console.log(
-          "✅ Wedding card data loaded from Google Sheet"
-        );
-
-        resolve(true);
-
-      }catch(error){
-
-        console.error(
-          "Sheet processing error:",
-          error
-        );
-
-        calculateMaxGuests();
-
-        resolve(false);
-
-      }
-
-    };
-
-    const script =
-      document.createElement("script");
-
-    script.src =
-      SHEET_API_URL +
-      "?callback=" +
-      callbackName +
-      "&t=" +
-      Date.now();
-
-    script.onload = function(){
-
-      setTimeout(() => {
-        script.remove();
-      }, 100);
-
-    };
-
-    script.onerror = function(){
-
-      console.error(
-        "❌ Google Sheet JSONP load failed"
-      );
-
-      calculateMaxGuests();
-
-      resolve(false);
-
-    };
-
-    document.head.appendChild(script);
-
-  });
+  return (
+    `https://calendar.google.com/calendar/render` +
+    `?action=TEMPLATE` +
+    `&text=${encodeURIComponent(title)}` +
+    `&dates=${event.start}%2F${event.end}` +
+    `&location=${encodeURIComponent(event.venue || "")}`
+  );
 
 }
 
+
 /* =========================================
-   APPLY CONTENT
+   APPLY CLIENT DATA
 ========================================= */
 
 function applyContent(){
+
+
+  /* BRIDE */
 
   [
     "coverBride",
     "brideName",
     "footerBride"
-  ].forEach(
-    id =>
-      setText(
-        id,
-        CONFIG.bride
-      )
-  );
+  ].forEach(id => {
 
+    setText(
+      id,
+      CONFIG.bride
+    );
+
+  });
+
+
+  /* GROOM */
 
   [
     "coverGroom",
     "groomName",
     "footerGroom"
-  ].forEach(
-    id =>
-      setText(
-        id,
-        CONFIG.groom
-      )
-  );
+  ].forEach(id => {
 
+    setText(
+      id,
+      CONFIG.groom
+    );
+
+  });
+
+
+  /* GUEST */
 
   [
     "coverGuest",
     "guestName",
     "invitedGuest"
-  ].forEach(
-    id =>
-      setText(
-        id,
-        guestDisplay
-      )
-  );
+  ].forEach(id => {
 
+    setText(
+      id,
+      guestDisplay
+    );
+
+  });
+
+
+  /* FAMILY / HOST */
 
   setText(
     "hostName",
     CONFIG.host
   );
 
-
   setText(
     "closingHost",
     CONFIG.host
   );
-
 
   setText(
     "closingFather",
@@ -317,11 +227,12 @@ function applyContent(){
   );
 
 
+  /* FAMILY ROSTER */
+
   renderNameList(
     "eldersList",
     CLIENT.elders
   );
-
 
   renderNameList(
     "cousinsList",
@@ -329,19 +240,19 @@ function applyContent(){
   );
 
 
-  /* BARAT */
+  /* =====================================
+     BARAT DATA
+  ===================================== */
 
   setText(
     "baratDate",
     CONFIG.barat.dateText
   );
 
-
   setText(
     "baratTime",
     CONFIG.barat.timeText
   );
-
 
   setText(
     "baratVenue",
@@ -349,19 +260,19 @@ function applyContent(){
   );
 
 
-  /* WALIMA */
+  /* =====================================
+     WALIMA DATA
+  ===================================== */
 
   setText(
     "walimaDate",
     CONFIG.walima.dateText
   );
 
-
   setText(
     "walimaTime",
     CONFIG.walima.timeText
   );
-
 
   setText(
     "walimaVenue",
@@ -369,7 +280,9 @@ function applyContent(){
   );
 
 
-  /* GUEST LIMIT */
+  /* =====================================
+     GUEST LIMIT
+  ===================================== */
 
   setText(
     "guestLimit",
@@ -377,18 +290,19 @@ function applyContent(){
   );
 
 
-  /* MAPS */
+  /* =====================================
+     GOOGLE MAPS
+  ===================================== */
 
   const baratMap =
     $("baratMap");
-
 
   if(baratMap){
 
     baratMap.href =
       `https://www.google.com/maps/search/?api=1&query=` +
       encodeURIComponent(
-        CONFIG.barat.mapQuery
+        CONFIG.barat.mapQuery || CONFIG.barat.venue || ""
       );
 
   }
@@ -397,23 +311,23 @@ function applyContent(){
   const walimaMap =
     $("walimaMap");
 
-
   if(walimaMap){
 
     walimaMap.href =
       `https://www.google.com/maps/search/?api=1&query=` +
       encodeURIComponent(
-        CONFIG.walima.mapQuery
+        CONFIG.walima.mapQuery || CONFIG.walima.venue || ""
       );
 
   }
 
 
-  /* CALENDAR */
+  /* =====================================
+     CALENDAR LINKS
+  ===================================== */
 
   const baratCalendar =
     $("baratCalendar");
-
 
   if(baratCalendar){
 
@@ -429,7 +343,6 @@ function applyContent(){
   const walimaCalendar =
     $("walimaCalendar");
 
-
   if(walimaCalendar){
 
     walimaCalendar.href =
@@ -442,60 +355,76 @@ function applyContent(){
 
 
   /* =====================================
-     INVITATION TYPE
+     ELEMENTS
   ===================================== */
 
   const baratCard =
     $("baratCard");
 
-
   const walimaCard =
     $("walimaCard");
-
 
   const baratAttendance =
     $("baratAttendance");
 
-
   const simpleRsvp =
     $("simpleRsvp");
 
-
   const attendanceSection =
-    document.querySelector(
-      ".attendance"
-    );
-
+    document.querySelector(".attendance");
 
   const fullRsvpActions =
     $("fullRsvpActions");
 
 
-  /* WALIMA ONLY */
+  /* =====================================
+     OPTIONAL ENABLE / DISABLE
+  ===================================== */
 
   if(
-    inviteType ===
-    "walima"
+    CONFIG.barat.enabled === false &&
+    baratCard
   ){
+
+    baratCard.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if(
+    CONFIG.walima.enabled === false &&
+    walimaCard
+  ){
+
+    walimaCard.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  /* =====================================
+     WALIMA ONLY
+  ===================================== */
+
+  if(inviteType === "walima"){
 
     if(baratCard){
 
-      baratCard
-        .classList
-        .add(
-          "hidden"
-        );
+      baratCard.classList.add(
+        "hidden"
+      );
 
     }
 
 
     if(baratAttendance){
 
-      baratAttendance
-        .classList
-        .add(
-          "hidden"
-        );
+      baratAttendance.classList.add(
+        "hidden"
+      );
 
     }
 
@@ -514,20 +443,17 @@ function applyContent(){
   }
 
 
-  /* BARAT ONLY */
+  /* =====================================
+     BARAT ONLY
+  ===================================== */
 
-  if(
-    inviteType ===
-    "barat"
-  ){
+  if(inviteType === "barat"){
 
     if(walimaCard){
 
-      walimaCard
-        .classList
-        .add(
-          "hidden"
-        );
+      walimaCard.classList.add(
+        "hidden"
+      );
 
     }
 
@@ -547,78 +473,81 @@ function applyContent(){
 
 
   /* =====================================
-     BOTH = COUNTER
-     SINGLE EVENT = DIRECT WHATSAPP
+     BARAT + WALIMA
   ===================================== */
 
-  if(
-    inviteType ===
-    "both"
-  ){
+  if(inviteType === "both"){
+
+    /* Simple RSVP hide */
 
     if(simpleRsvp){
 
-      simpleRsvp
-        .classList
-        .add(
-          "hidden"
-        );
+      simpleRsvp.classList.add(
+        "hidden"
+      );
 
     }
 
+
+    /* Counter show */
 
     if(attendanceSection){
 
-      attendanceSection
-        .classList
-        .remove(
-          "hidden"
-        );
+      attendanceSection.classList.remove(
+        "hidden"
+      );
 
     }
 
+
+    /* Main WhatsApp buttons show */
 
     if(fullRsvpActions){
 
-      fullRsvpActions
-        .classList
-        .remove(
-          "hidden"
-        );
+      fullRsvpActions.classList.remove(
+        "hidden"
+      );
 
     }
 
-  }else{
+  }
+
+
+  /* =====================================
+     SINGLE EVENT
+  ===================================== */
+
+  else{
+
+    /* Simple RSVP show */
 
     if(simpleRsvp){
 
-      simpleRsvp
-        .classList
-        .remove(
-          "hidden"
-        );
+      simpleRsvp.classList.remove(
+        "hidden"
+      );
 
     }
 
+
+    /* Counter hide */
 
     if(attendanceSection){
 
-      attendanceSection
-        .classList
-        .add(
-          "hidden"
-        );
+      attendanceSection.classList.add(
+        "hidden"
+      );
 
     }
 
 
+    /* Duplicate old WhatsApp buttons hide */
+
     if(fullRsvpActions){
 
-      fullRsvpActions
-        .classList
-        .add(
-          "hidden"
-        );
+      fullRsvpActions.classList.add(
+        "hidden"
+      );
 
     }
 
@@ -639,8 +568,9 @@ function createPetals(){
   const layer =
     $("petalLayer");
 
-
-  if(!layer) return;
+  if(!layer){
+    return;
+  }
 
 
   const count =
@@ -656,9 +586,7 @@ function createPetals(){
   ){
 
     const petal =
-      document.createElement(
-        "i"
-      );
+      document.createElement("i");
 
 
     petal.className =
@@ -677,7 +605,7 @@ function createPetals(){
 
     petal.style.setProperty(
       "--opacity",
-      `${.28 + Math.random() * .48}`
+      `${0.28 + Math.random() * 0.48}`
     );
 
 
@@ -703,7 +631,7 @@ function createPetals(){
 
 
 /* =========================================
-   COUNTER LOGIC
+   COUNTER
 ========================================= */
 
 function total(){
@@ -719,19 +647,15 @@ function total(){
 
 function updateCounters(){
 
-  Object.keys(
-    counts
-  )
-  .forEach(
-    key => {
+  Object.keys(counts)
+    .forEach(key => {
 
       setText(
         `${key}Count`,
         counts[key]
       );
 
-    }
-  );
+    });
 
 
   updateLinks();
@@ -739,91 +663,77 @@ function updateCounters(){
 }
 
 
-/* PLUS / MINUS */
+/* =========================================
+   PLUS / MINUS BUTTONS
+========================================= */
 
 document
-  .querySelectorAll(
-    ".counter button"
-  )
-  .forEach(
-    button => {
+  .querySelectorAll(".counter button")
+  .forEach(button => {
 
-      button
-        .addEventListener(
-          "click",
-          () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-            const type =
-              button
-                .dataset
-                .type;
+        const type =
+          button.dataset.type;
+
+        const action =
+          button.dataset.action;
 
 
-            const action =
-              button
-                .dataset
-                .action;
+        if(
+          !Object.prototype
+            .hasOwnProperty
+            .call(
+              counts,
+              type
+            )
+        ){
+
+          return;
+
+        }
 
 
-            if(
-              !Object.prototype
-                .hasOwnProperty
-                .call(
-                  counts,
-                  type
-                )
-            ){
+        /* PLUS */
 
-              return;
+        if(action === "plus"){
 
-            }
+          if(
+            total() <
+            maxGuests
+          ){
 
-
-            /* PLUS */
-
-            if(
-              action ===
-              "plus"
-            ){
-
-              if(
-                total() <
-                maxGuests
-              ){
-
-                counts[type]++;
-
-              }
-
-            }
-
-
-            /* MINUS */
-
-            if(
-              action ===
-              "minus"
-            ){
-
-              if(
-                counts[type] >
-                0
-              ){
-
-                counts[type]--;
-
-              }
-
-            }
-
-
-            updateCounters();
+            counts[type]++;
 
           }
-        );
 
-    }
-  );
+        }
+
+
+        /* MINUS */
+
+        if(action === "minus"){
+
+          if(
+            counts[type] >
+            0
+          ){
+
+            counts[type]--;
+
+          }
+
+        }
+
+
+        updateCounters();
+
+      }
+    );
+
+  });
 
 
 /* =========================================
@@ -839,12 +749,11 @@ function updateLinks(){
   let acceptMessage;
 
 
-  /* BOTH */
+  /* =====================================
+     BOTH
+  ===================================== */
 
-  if(
-    inviteType ===
-    "both"
-  ){
+  if(inviteType === "both"){
 
     acceptMessage =
 `السلام علیکم،
@@ -867,26 +776,25 @@ ${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی
   }
 
 
-  /* WALIMA ONLY */
+  /* =====================================
+     WALIMA ONLY
+  ===================================== */
 
-  else if(
-    inviteType ===
-    "walima"
-  ){
+  else if(inviteType === "walima"){
 
     acceptMessage =
 `السلام علیکم،
 
 ${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی دعوتِ ولیمہ میں شرکت کریں گے۔
 
-براہِ کرم ہماری شرکت کی تصدیق فرما دیجیے۔
-
 بہت شکریہ۔`;
 
   }
 
 
-  /* BARAT ONLY */
+  /* =====================================
+     BARAT ONLY
+  ===================================== */
 
   else{
 
@@ -895,12 +803,14 @@ ${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی
 
 ${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی تقریبِ بارات میں شرکت کریں گے۔
 
-براہِ کرم ہماری شرکت کی تصدیق فرما دیجیے۔
-
 بہت شکریہ۔`;
 
   }
 
+
+  /* =====================================
+     REGRET MESSAGE
+  ===================================== */
 
   const regretMessage =
 `السلام علیکم،
@@ -910,11 +820,12 @@ ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں ک�
 ہماری دعائیں ${CONFIG.bride} اور ${CONFIG.groom} کے ساتھ ہیں۔`;
 
 
-  /* MAIN RSVP */
+  /* =====================================
+     MAIN RSVP BUTTONS
+  ===================================== */
 
   const acceptBtn =
     $("acceptBtn");
-
 
   const regretBtn =
     $("regretBtn");
@@ -942,11 +853,12 @@ ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں ک�
   }
 
 
-  /* SIMPLE RSVP */
+  /* =====================================
+     SIMPLE RSVP
+  ===================================== */
 
   const simpleAcceptBtn =
     $("simpleAcceptBtn");
-
 
   const simpleRegretBtn =
     $("simpleRegretBtn");
@@ -955,10 +867,7 @@ ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں ک�
   let eventName;
 
 
-  if(
-    inviteType ===
-    "walima"
-  ){
+  if(inviteType === "walima"){
 
     eventName =
       "دعوتِ ولیمہ";
@@ -1018,8 +927,7 @@ ${guestDisplay} معذرت کے ساتھ ${eventName} میں شرکت نہیں �
 let audioCtx;
 let master;
 let musicTimer;
-let muted =
-  false;
+let muted = false;
 
 
 function playTone(
@@ -1030,51 +938,40 @@ function playTone(
 ){
 
   const osc =
-    audioCtx
-      .createOscillator();
-
+    audioCtx.createOscillator();
 
   const gain =
-    audioCtx
-      .createGain();
+    audioCtx.createGain();
 
 
   osc.type =
     "sine";
 
-
   osc.frequency.value =
     freq;
 
 
-  gain.gain
-    .setValueAtTime(
-      0,
-      when
-    );
+  gain.gain.setValueAtTime(
+    0,
+    when
+  );
 
 
-  gain.gain
-    .linearRampToValueAtTime(
-      volume,
-      when + .7
-    );
+  gain.gain.linearRampToValueAtTime(
+    volume,
+    when + 0.7
+  );
 
 
-  gain.gain
-    .exponentialRampToValueAtTime(
-      .0001,
-      when + duration
-    );
+  gain.gain.exponentialRampToValueAtTime(
+    0.0001,
+    when + duration
+  );
 
 
   osc
-    .connect(
-      gain
-    )
-    .connect(
-      master
-    );
+    .connect(gain)
+    .connect(master);
 
 
   osc.start(
@@ -1083,23 +980,25 @@ function playTone(
 
 
   osc.stop(
-    when +
-    duration
+    when + duration
   );
 
 }
 
 
-/* MUSIC PHRASE */
+/* =========================================
+   MUSIC PHRASE
+========================================= */
 
 function musicPhrase(){
 
-  if(!audioCtx) return;
+  if(!audioCtx){
+    return;
+  }
 
 
   const now =
-    audioCtx
-      .currentTime;
+    audioCtx.currentTime;
 
 
   [
@@ -1107,20 +1006,14 @@ function musicPhrase(){
     329.63,
     392,
     493.88
-  ]
-  .forEach(
-    (
-      freq,
-      index
-    ) => {
+  ].forEach(
+    (freq, index) => {
 
       playTone(
         freq,
-        now +
-        index *
-        1.8,
+        now + index * 1.8,
         5,
-        .035
+        0.035
       );
 
     }
@@ -1129,7 +1022,9 @@ function musicPhrase(){
 }
 
 
-/* START MUSIC */
+/* =========================================
+   START MUSIC
+========================================= */
 
 function startMusic(){
 
@@ -1143,19 +1038,15 @@ function startMusic(){
 
 
     master =
-      audioCtx
-        .createGain();
+      audioCtx.createGain();
 
 
-    master
-      .gain
-      .value =
-      .8;
+    master.gain.value =
+      0.8;
 
 
     master.connect(
-      audioCtx
-        .destination
+      audioCtx.destination
     );
 
 
@@ -1176,11 +1067,9 @@ function startMusic(){
 
     if(toggle){
 
-      toggle
-        .classList
-        .add(
-          "hidden"
-        );
+      toggle.classList.add(
+        "hidden"
+      );
 
     }
 
@@ -1189,7 +1078,9 @@ function startMusic(){
 }
 
 
-/* MUSIC BUTTON */
+/* =========================================
+   MUSIC BUTTON
+========================================= */
 
 const musicToggle =
   $("musicToggle");
@@ -1197,45 +1088,41 @@ const musicToggle =
 
 if(musicToggle){
 
-  musicToggle
-    .addEventListener(
-      "click",
-      () => {
+  musicToggle.addEventListener(
+    "click",
+    () => {
 
-        if(!audioCtx) return;
-
-
-        muted =
-          !muted;
-
-
-        master
-          .gain
-          .setTargetAtTime(
-            muted
-              ? 0
-              : .8,
-            audioCtx
-              .currentTime,
-            .15
-          );
-
-
-        musicToggle
-          .classList
-          .toggle(
-            "muted",
-            muted
-          );
-
-
-        musicToggle.textContent =
-          muted
-            ? "♩"
-            : "♫";
-
+      if(!audioCtx){
+        return;
       }
-    );
+
+
+      muted =
+        !muted;
+
+
+      master.gain.setTargetAtTime(
+        muted
+          ? 0
+          : 0.8,
+        audioCtx.currentTime,
+        0.15
+      );
+
+
+      musicToggle.classList.toggle(
+        "muted",
+        muted
+      );
+
+
+      musicToggle.textContent =
+        muted
+          ? "♩"
+          : "♫";
+
+    }
+  );
 
 }
 
@@ -1247,18 +1134,22 @@ if(musicToggle){
 const envelope =
   $("envelope");
 
-
 const openInvite =
   $("openInvite");
-
 
 const sparkBurst =
   $("sparkBurst");
 
 
+/* =========================================
+   GOLD SPARK BURST
+========================================= */
+
 function createRoyalSparks(){
 
-  if(!sparkBurst) return;
+  if(!sparkBurst){
+    return;
+  }
 
 
   sparkBurst.innerHTML =
@@ -1272,10 +1163,9 @@ function createRoyalSparks(){
   ){
 
     const spark =
-      document
-        .createElement(
-          "span"
-        );
+      document.createElement(
+        "span"
+      );
 
 
     spark.className =
@@ -1294,39 +1184,31 @@ function createRoyalSparks(){
       180;
 
 
-    spark.style
-      .setProperty(
-        "--spark-x",
-        `${
-          Math.cos(
-            angle
-          ) *
-          distance
-        }px`
-      );
+    spark.style.setProperty(
+      "--spark-x",
+      `${
+        Math.cos(angle) *
+        distance
+      }px`
+    );
 
 
-    spark.style
-      .setProperty(
-        "--spark-y",
-        `${
-          Math.sin(
-            angle
-          ) *
-          distance
-        }px`
-      );
+    spark.style.setProperty(
+      "--spark-y",
+      `${
+        Math.sin(angle) *
+        distance
+      }px`
+    );
 
 
-    spark.style
-      .animationDelay =
-      `${Math.random() * .12}s`;
+    spark.style.animationDelay =
+      `${Math.random() * 0.12}s`;
 
 
-    sparkBurst
-      .appendChild(
-        spark
-      );
+    sparkBurst.appendChild(
+      spark
+    );
 
   }
 
@@ -1344,86 +1226,80 @@ function createRoyalSparks(){
 }
 
 
-/* OPEN BUTTON */
+/* =========================================
+   OPEN INVITATION
+========================================= */
 
 if(
   openInvite &&
   envelope
 ){
 
-  openInvite
-    .addEventListener(
-      "click",
-      () => {
+  openInvite.addEventListener(
+    "click",
+    () => {
 
-        openInvite.disabled =
-          true;
+      openInvite.disabled =
+        true;
 
 
-        envelope
-          .classList
-          .add(
-            "ribbon-opening"
+      envelope.classList.add(
+        "ribbon-opening"
+      );
+
+
+      createRoyalSparks();
+
+
+      /* Start music after user interaction */
+
+      if(!audioCtx){
+
+        startMusic();
+
+      }
+
+
+      setTimeout(
+        () => {
+
+          envelope.classList.add(
+            "opened"
           );
 
 
-        createRoyalSparks();
-
-
-        if(!audioCtx){
-
-          startMusic();
-
-        }
-
-
-        setTimeout(
-          () => {
-
-            envelope
-              .classList
-              .add(
-                "opened"
-              );
-
-
-            document
-              .body
-              .classList
-              .remove(
-                "locked"
-              );
-
-
-            setTimeout(
-              () => {
-
-                const mainContent =
-                  $("mainContent");
-
-
-                if(
-                  mainContent
-                ){
-
-                  mainContent
-                    .scrollIntoView({
-                      behavior:
-                        "smooth"
-                    });
-
-                }
-
-              },
-              150
+          document.body
+            .classList
+            .remove(
+              "locked"
             );
 
-          },
-          1250
-        );
 
-      }
-    );
+          setTimeout(
+            () => {
+
+              const mainContent =
+                $("mainContent");
+
+
+              if(mainContent){
+
+                mainContent.scrollIntoView({
+                  behavior: "smooth"
+                });
+
+              }
+
+            },
+            150
+          );
+
+        },
+        1250
+      );
+
+    }
+  );
 
 }
 
@@ -1434,33 +1310,42 @@ if(
 
 function tick(){
 
+  const target =
+    new Date(
+      CONFIG.countdownTo
+    );
+
+
   const diff =
     Math.max(
       0,
-      new Date(
-        CONFIG.countdownTo
-      ) -
+      target -
       new Date()
     );
 
 
   const units = [
+
     [
       "دن",
       86400000
     ],
+
     [
       "گھنٹے",
       3600000
     ],
+
     [
       "منٹ",
       60000
     ],
+
     [
       "سیکنڈ",
       1000
     ]
+
   ];
 
 
@@ -1472,29 +1357,19 @@ function tick(){
     $("countdown");
 
 
-  if(
-    !countdown
-  ){
-
+  if(!countdown){
     return;
-
   }
 
 
   countdown.innerHTML =
     units
       .map(
-        (
-          [
-            label,
-            ms
-          ]
-        ) => {
+        ([label, ms]) => {
 
           const number =
             Math.floor(
-              rest /
-              ms
+              rest / ms
             );
 
 
@@ -1506,7 +1381,7 @@ function tick(){
             <div class="time-box">
 
               <strong>
-                ${String(number).padStart(2,"0")}
+                ${String(number).padStart(2, "0")}
               </strong>
 
               <span>
@@ -1551,8 +1426,7 @@ const observer =
 
     },
     {
-      threshold:
-        .12
+      threshold: 0.12
     }
   );
 
@@ -1573,32 +1447,18 @@ document
 
 
 /* =========================================
-   START
+   START APP
 ========================================= */
 
-async function startApp(){
+createPetals();
 
-  createPetals();
+applyContent();
 
+updateCounters();
 
-  await loadClientDataFromSheet();
+tick();
 
-
-  applyContent();
-
-
-  updateCounters();
-
-
-  tick();
-
-
-  setInterval(
-    tick,
-    1000
-  );
-
-}
-
-
-startApp();
+setInterval(
+  tick,
+  1000
+);
