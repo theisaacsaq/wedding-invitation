@@ -6,6 +6,7 @@ const CONFIG = {
   bride: "عائشہ",
   groom: "حمزہ",
   host: "چوہدری علی",
+  father: "چوہدری علی",
   whatsapp: "923080117630",
   maxGuests: 4,
 
@@ -114,7 +115,6 @@ function applyContent(){
     "coverBride",
     "brideName",
     "footerBride",
-    "closingBride"
   ].forEach(id =>
     setText(id, CONFIG.bride)
   );
@@ -124,7 +124,6 @@ function applyContent(){
     "coverGroom",
     "groomName",
     "footerGroom",
-    "closingGroom"
   ].forEach(id =>
     setText(id, CONFIG.groom)
   );
@@ -148,6 +147,7 @@ function applyContent(){
     "closingHost",
     CONFIG.host
   );
+   setText("closingFather", CONFIG.father);
 
 
   /* BARAT */
