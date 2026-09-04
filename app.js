@@ -69,7 +69,27 @@ const setText = (id, value) => {
     el.textContent = value;
   }
 };
+function renderNameList(id, names){
 
+  const container = $(id);
+
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  (names || []).forEach(name => {
+
+    if(!name) return;
+
+    const p = document.createElement("p");
+
+    p.textContent = name;
+
+    container.appendChild(p);
+
+  });
+
+}
 
 /* =========================================
    CALENDAR
