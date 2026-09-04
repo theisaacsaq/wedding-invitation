@@ -555,3 +555,55 @@
     rotate(180deg)
     scale(.3);
 }
+/* ===== FIX RIBBON TEXT ===== */
+
+.royal-ribbon{
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.ribbon-left,
+.ribbon-right{
+  z-index: 2 !important;
+}
+
+/* Urdu text ribbon ke UPAR */
+.ribbon-message{
+  position: absolute !important;
+
+  left: 50% !important;
+  top: 50% !important;
+
+  transform: translate(-50%, -50%) !important;
+
+  z-index: 20 !important;
+
+  width: 240px !important;
+
+  text-align: center !important;
+  white-space: nowrap !important;
+
+  font-family: "Noto Nastaliq Urdu", serif !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+
+  color: #241704 !important;
+
+  line-height: 1 !important;
+
+  pointer-events: none;
+}
+
+/* Seal ko left side */
+.ribbon-seal{
+  position: absolute !important;
+
+  left: 18px !important;
+  right: auto !important;
+
+  top: 50% !important;
+
+  transform: translateY(-50%) !important;
+
+  z-index: 30 !important;
+}
