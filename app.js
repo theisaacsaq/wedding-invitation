@@ -80,174 +80,196 @@ const setText = (id, value) => {
 };
 
 
-/* =========================================
-   GOOGLE SHEET LOADER
-========================================= */
+function loadClientDataFromSheet() {
 
-async function loadClientDataFromSheet() {
+  return new Promise((resolve) => {
 
-  try {
+    const callbackName =
+      "weddingSheetCallback_" + Date.now();
 
-    const response = await fetch(
-      `${SHEET_API_URL}?t=${Date.now()}`,
-      {
-        cache: "no-store"
+    const script =
+      document.createElement("script");
+
+
+    // Google Sheet se data receive hoga
+    window[callbackName] = function(data) {
+
+      try {
+
+        if (!data || !data.success) {
+          throw new Error(
+            data?.error ||
+            "Sheet data nahi mila"
+          );
+        }
+
+
+        CLIENT.bride =
+          data.bride ||
+          CLIENT.bride;
+
+        CLIENT.groom =
+          data.groom ||
+          CLIENT.groom;
+
+        CLIENT.father =
+          data.father ||
+          CLIENT.father;
+
+        CLIENT.host =
+          data.host ||
+          CLIENT.host;
+
+        CLIENT.whatsapp =
+          data.whatsapp ||
+          CLIENT.whatsapp;
+
+
+        if (data.maxGuests) {
+
+          CLIENT.maxGuests =
+            Number(data.maxGuests);
+
+        }
+
+
+        if (data.barat) {
+
+          CLIENT.barat = {
+            ...CLIENT.barat,
+            ...data.barat
+          };
+
+        }
+
+
+        if (data.walima) {
+
+          CLIENT.walima = {
+            ...CLIENT.walima,
+            ...data.walima
+          };
+
+        }
+
+
+        CLIENT.countdownTo =
+          data.countdownTo ||
+          CLIENT.countdownTo;
+
+
+        if (
+          Array.isArray(data.elders)
+        ) {
+
+          CLIENT.elders =
+            data.elders;
+
+        }
+
+
+        if (
+          Array.isArray(data.cousins)
+        ) {
+
+          CLIENT.cousins =
+            data.cousins;
+
+        }
+
+
+        // CONFIG update
+        CONFIG.bride =
+          CLIENT.bride;
+
+        CONFIG.groom =
+          CLIENT.groom;
+
+        CONFIG.father =
+          CLIENT.father;
+
+        CONFIG.host =
+          CLIENT.host;
+
+        CONFIG.whatsapp =
+          CLIENT.whatsapp;
+
+        CONFIG.maxGuests =
+          CLIENT.maxGuests;
+
+        CONFIG.barat =
+          CLIENT.barat;
+
+        CONFIG.walima =
+          CLIENT.walima;
+
+        CONFIG.countdownTo =
+          CLIENT.countdownTo;
+
+
+        calculateMaxGuests();
+
+
+        console.log(
+          "Wedding card data loaded from Google Sheet"
+        );
+
+
+        resolve(true);
+
+      } catch (error) {
+
+        console.error(
+          "Sheet data processing error:",
+          error
+        );
+
+        calculateMaxGuests();
+
+        resolve(false);
+
+      } finally {
+
+        delete window[callbackName];
+
+        script.remove();
+
       }
-    );
 
-    if (!response.ok) {
-      throw new Error(
-        "Google Sheet API load nahi hui"
+    };
+
+
+    // Agar Google script load hi na ho
+    script.onerror = function() {
+
+      console.error(
+        "Google Sheet JSONP load failed"
       );
-    }
 
-    const data =
-      await response.json();
+      delete window[callbackName];
 
-    if (!data.success) {
-      throw new Error(
-        data.error ||
-        "Sheet data nahi mila"
-      );
-    }
+      script.remove();
 
+      calculateMaxGuests();
 
-    /* Sheet data CLIENT me daalo */
+      resolve(false);
 
-    CLIENT.bride =
-      data.bride ||
-      CLIENT.bride;
-
-    CLIENT.groom =
-      data.groom ||
-      CLIENT.groom;
-
-    CLIENT.father =
-      data.father ||
-      CLIENT.father;
-
-    CLIENT.host =
-      data.host ||
-      CLIENT.host;
-
-    CLIENT.whatsapp =
-      data.whatsapp ||
-      CLIENT.whatsapp;
+    };
 
 
-    if (data.maxGuests) {
-      CLIENT.maxGuests =
-        Number(data.maxGuests);
-    }
+    script.src =
+      `${SHEET_API_URL}` +
+      `?callback=${callbackName}` +
+      `&t=${Date.now()}`;
 
 
-    if (data.barat) {
-
-      CLIENT.barat = {
-        ...CLIENT.barat,
-        ...data.barat
-      };
-
-    }
-
-
-    if (data.walima) {
-
-      CLIENT.walima = {
-        ...CLIENT.walima,
-        ...data.walima
-      };
-
-    }
-
-
-    CLIENT.countdownTo =
-      data.countdownTo ||
-      CLIENT.countdownTo;
-
-
-    if (
-      Array.isArray(
-        data.elders
-      )
-    ) {
-
-      CLIENT.elders =
-        data.elders;
-
-    }
-
-
-    if (
-      Array.isArray(
-        data.cousins
-      )
-    ) {
-
-      CLIENT.cousins =
-        data.cousins;
-
-    }
-
-
-    /* Updated CLIENT ko CONFIG me copy */
-
-    CONFIG.bride =
-      CLIENT.bride;
-
-    CONFIG.groom =
-      CLIENT.groom;
-
-    CONFIG.father =
-      CLIENT.father;
-
-    CONFIG.host =
-      CLIENT.host;
-
-    CONFIG.whatsapp =
-      CLIENT.whatsapp;
-
-    CONFIG.maxGuests =
-      CLIENT.maxGuests;
-
-    CONFIG.barat =
-      CLIENT.barat;
-
-    CONFIG.walima =
-      CLIENT.walima;
-
-    CONFIG.countdownTo =
-      CLIENT.countdownTo;
-
-
-    calculateMaxGuests();
-
-
-    console.log(
-      "Wedding card data loaded from Google Sheet"
+    document.body.appendChild(
+      script
     );
 
-
-    return true;
-
-  } catch (error) {
-
-    console.error(
-      "Google Sheet load nahi hui. client-data.js use ho rahi hai:",
-      error
-    );
-
-
-    calculateMaxGuests();
-
-
-    return false;
-
-  }
+  });
 
 }
-
-
 /* =========================================
    FAMILY NAME LIST
 ========================================= */
