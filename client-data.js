@@ -6,11 +6,11 @@
 const CLIENT = {
 
   // Bride / Groom
-  bride: "عائشہ",
-  groom: "حمزہ",
+  bride: "فاطمہ",
+  groom: "علی",
 
   // Family / Closing section
-  father: "چوہدری علی",
+  father: "چوہدری احمد",
   host: "جناب و محترمہ __________",
 
   // RSVP WhatsApp number
