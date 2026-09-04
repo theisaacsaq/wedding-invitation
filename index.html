@@ -9,293 +9,483 @@
   <meta property="og:title" content="دعوتِ شادی" />
   <meta property="og:description" content="ہماری خوشیوں میں شریک ہو کر اس محفل کو یادگار بنائیے۔" />
   <title>دعوتِ شادی</title>
+
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body class="locked">
+
   <div class="grain" aria-hidden="true"></div>
   <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
 
+  <!-- =========================
+       OPENING CARD
+  ========================== -->
   <section class="envelope" id="envelope">
-  <div class="envelope-card">
+    <div class="envelope-card">
 
-    <div class="corner corner-tr"></div>
-    <div class="corner corner-bl"></div>
+      <div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div>
 
-    <h1>
-      <span id="coverBride">عائشہ</span>
-      <i>و</i>
-      <span id="coverGroom">حمزہ</span>
-    </h1>
-      <div class="guest-line">بخدمت <strong id="coverGuest">معزز مہمان و اہلِ خانہ</strong></div>
+      <h1>
+        <span id="coverBride">عائشہ</span>
+        <i>و</i>
+        <span id="coverGroom">حمزہ</span>
+      </h1>
+
+      <div class="guest-line">
+        بخدمت
+        <strong id="coverGuest">معزز مہمان و اہلِ خانہ</strong>
+      </div>
+
       <p class="cover-date" id="coverDate">دسمبر ۲۰۲۶</p>
+
       <div class="royal-invite-mark" id="royalInviteMark">
+        <div class="ornament-line ornament-left"></div>
 
-  <div class="ornament-line ornament-left"></div>
+        <div class="royal-seal">
+          <span>✦</span>
+        </div>
 
-  <div class="royal-seal">
-    <span>✦</span>
-  </div>
+        <div class="ornament-line ornament-right"></div>
+      </div>
 
-  <div class="ornament-line ornament-right"></div>
+      <div class="royal-invite-text">
+        دعوتِ محبت قبول کیجیے
+      </div>
 
-</div>
+      <!-- Only ONE spark container -->
+      <div class="spark-burst" id="sparkBurst" aria-hidden="true"></div>
 
-<div class="royal-invite-text">
-  دعوتِ محبت قبول کیجیے
-</div>
+      <button class="gold-button" id="openInvite" type="button">
+        دعوت نامہ کھولیے <span>←</span>
+      </button>
 
-<div class="spark-burst" id="sparkBurst" aria-hidden="true"></div>
-<div class="spark-burst" id="sparkBurst" aria-hidden="true"></div>
-      <button class="gold-button" id="openInvite">دعوت نامہ کھولیے <span>←</span></button>
-      <small>موسیقی آپ کے داخل ہونے پر شروع ہوگی</small>
     </div>
   </section>
 
-  <button class="music-toggle" id="musicToggle" aria-label="موسیقی بند کریں" title="موسیقی">♫</button>
+  <!-- Music control remains functional, only the explanatory text was removed -->
+  <button
+    class="music-toggle"
+    id="musicToggle"
+    aria-label="موسیقی بند کریں"
+    title="موسیقی"
+    type="button"
+  >♫</button>
+
 
   <main id="mainContent">
+
+    <!-- =========================
+         HERO
+    ========================== -->
     <section class="hero section">
       <div class="frame">
+
         <p class="eyebrow">بصد مسرت و احترام</p>
-        <p class="quran">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا</p>
-        <p class="translation">اور اُس کی نشانیوں میں سے ہے کہ اُس نے تمہارے لیے تم ہی میں سے جوڑے بنائے تاکہ تم اُن سے سکون پاؤ۔</p>
+
+        <p class="quran">
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا
+        </p>
+
+        <p class="translation">
+          اور اُس کی نشانیوں میں سے ہے کہ اُس نے تمہارے لیے تم ہی میں سے جوڑے بنائے تاکہ تم اُن سے سکون پاؤ۔
+        </p>
+
         <p class="hosts">
-  محترم
-  <span id="invitedGuest">معزز مہمان</span>
-  آپ کو تقریبِ شادی میں شرکت کی پُرخلوص دعوت دی جاتی ہے
-</p> اپنے عزیزان کے ہمراہ آپ کو اپنے فرزند/دختر کی تقریبِ شادی میں شرکت کی پُرخلوص دعوت دیتے ہیں</p>
-        <h2 class="couple"><span id="brideName">عائشہ</span><i>و</i><span id="groomName">حمزہ</span></h2>
+          محترم
+          <span id="invitedGuest">معزز مہمان</span>
+          آپ کو اپنے عزیزان کے ہمراہ تقریبِ شادی میں شرکت کی پُرخلوص دعوت دی جاتی ہے۔
+        </p>
+
+        <h2 class="couple">
+          <span id="brideName">عائشہ</span>
+          <i>و</i>
+          <span id="groomName">حمزہ</span>
+        </h2>
+
         <p class="addressed">خصوصی دعوت برائے</p>
-        <div class="guest-name" id="guestName">معزز مہمان و اہلِ خانہ</div>
+
+        <div class="guest-name" id="guestName">
+          معزز مہمان و اہلِ خانہ
+        </div>
+
         <p>آپ کی شرکت ہماری خوشیوں کو دوبالا کرے گی</p>
-        <div class="countdown" id="countdown" aria-label="تقریب تک باقی وقت"></div>
+
+        <div
+          class="countdown"
+          id="countdown"
+          aria-label="تقریب تک باقی وقت"
+        ></div>
+
       </div>
     </section>
 
+
+    <!-- =========================
+         QUOTE
+    ========================== -->
     <section class="quote section reveal">
       <p class="eyebrow">دعا و محبت کے ساتھ</p>
-      <blockquote>”دو دل، دو خاندان، اور ایک خوبصورت سفر کا آغاز“</blockquote>
+      <blockquote>
+        ”دو دل، دو خاندان، اور ایک خوبصورت سفر کا آغاز“
+      </blockquote>
     </section>
 
+
+    <!-- =========================
+         EVENTS
+    ========================== -->
     <section class="events section reveal" id="events">
+
       <p class="eyebrow">تقریبات</p>
       <h2>آپ کی آمد کے منتظر</h2>
 
       <article class="event-card" id="baratCard">
+
         <span class="event-number">۰۱</span>
+
         <h3>تقریبِ بارات</h3>
-        <p class="event-date" id="baratDate">بروز ہفتہ، ۱۲ دسمبر ۲۰۲۶</p>
-        <dl><div><dt>وقت</dt><dd id="baratTime">شام ۷:۰۰ بجے</dd></div><div><dt>مقام</dt><dd id="baratVenue">باراتی ہال، کراچی</dd></div></dl>
-        <div class="actions"><a id="baratMap" target="_blank" rel="noopener">گوگل نقشہ</a><a id="baratCalendar" target="_blank" rel="noopener">کیلنڈر میں شامل کریں</a></div>
+
+        <p class="event-date" id="baratDate">
+          بروز ہفتہ، ۱۲ دسمبر ۲۰۲۶
+        </p>
+
+        <dl>
+          <div>
+            <dt>وقت</dt>
+            <dd id="baratTime">شام ۷:۰۰ بجے</dd>
+          </div>
+
+          <div>
+            <dt>مقام</dt>
+            <dd id="baratVenue">باراتی ہال، کراچی</dd>
+          </div>
+        </dl>
+
+        <div class="actions">
+          <a id="baratMap" target="_blank" rel="noopener">گوگل نقشہ</a>
+          <a id="baratCalendar" target="_blank" rel="noopener">کیلنڈر میں شامل کریں</a>
+        </div>
+
       </article>
+
 
       <article class="event-card" id="walimaCard">
+
         <span class="event-number">۰۲</span>
+
         <h3>دعوتِ ولیمہ</h3>
-        <p class="event-date" id="walimaDate">بروز اتوار، ۱۳ دسمبر ۲۰۲۶</p>
-        <dl><div><dt>وقت</dt><dd id="walimaTime">رات ۸:۰۰ بجے</dd></div><div><dt>مقام</dt><dd id="walimaVenue">پرل بینکوئٹ، کراچی</dd></div></dl>
-        <div class="actions"><a id="walimaMap" target="_blank" rel="noopener">گوگل نقشہ</a><a id="walimaCalendar" target="_blank" rel="noopener">کیلنڈر میں شامل کریں</a></div>
+
+        <p class="event-date" id="walimaDate">
+          بروز اتوار، ۱۳ دسمبر ۲۰۲۶
+        </p>
+
+        <dl>
+          <div>
+            <dt>وقت</dt>
+            <dd id="walimaTime">رات ۸:۰۰ بجے</dd>
+          </div>
+
+          <div>
+            <dt>مقام</dt>
+            <dd id="walimaVenue">پرل بینکوئٹ، کراچی</dd>
+          </div>
+        </dl>
+
+        <div class="actions">
+          <a id="walimaMap" target="_blank" rel="noopener">گوگل نقشہ</a>
+          <a id="walimaCalendar" target="_blank" rel="noopener">کیلنڈر میں شامل کریں</a>
+        </div>
+
       </article>
+
     </section>
 
+
+    <!-- =========================
+         RSVP
+    ========================== -->
     <section class="rsvp section reveal" id="rsvp">
+
       <p class="eyebrow">تصدیقِ شرکت</p>
+
       <h2 id="rsvpHeading">بارات میں شرکت</h2>
-      <p id="rsvpIntro">براہِ کرم افراد کی تعداد منتخب کرکے واٹس ایپ پر اپنی شرکت کی تصدیق فرمائیں۔</p>
+
+      <p id="rsvpIntro">
+        براہِ کرم افراد کی تعداد منتخب کرکے واٹس ایپ پر اپنی شرکت کی تصدیق فرمائیں۔
+      </p>
+
+
+      <!-- Single-event RSVP -->
       <div class="simple-rsvp hidden" id="simpleRsvp">
 
-  <h3>اپنی شرکت کی تصدیق کیجیے</h3>
+        <h3>اپنی شرکت کی تصدیق کیجیے</h3>
 
-  <div class="rsvp-actions">
+        <div class="rsvp-actions">
 
-    <a
-      href="#"
-      class="whatsapp accept"
-      id="simpleAcceptBtn"
-      target="_blank"
-    >
-      ✓ شرکت کی تصدیق کریں
-    </a>
+          <a
+            href="#"
+            class="whatsapp accept"
+            id="simpleAcceptBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            ✓ شرکت کی تصدیق کریں
+          </a>
 
-    <a
-      href="#"
-      class="whatsapp regret"
-      id="simpleRegretBtn"
-      target="_blank"
-    >
-      معذرت
-    </a>
+          <a
+            href="#"
+            class="whatsapp regret"
+            id="simpleRegretBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            معذرت
+          </a>
 
-  </div>
+        </div>
+      </div>
 
-</div>
 
+      <!-- Barat + Walima counter -->
       <div class="attendance" id="baratAttendance">
-        <div class="counter-row"><span>خواتین</span><div class="counter"><button data-action="minus" data-type="ladies">−</button><output id="ladiesCount">0</output><button data-action="plus" data-type="ladies">+</button></div></div>
-        <div class="counter-row"><span>حضرات</span><div class="counter"><button data-action="minus" data-type="gents">−</button><output id="gentsCount">0</output><button data-action="plus" data-type="gents">+</button></div></div>
-        <div class="counter-row"><span>بچے</span><div class="counter"><button data-action="minus" data-type="children">−</button><output id="childrenCount">0</output><button data-action="plus" data-type="children">+</button></div></div>
-        <p class="limit" id="guestLimit">زیادہ سے زیادہ ۴ افراد</p>
+
+        <div class="counter-row">
+          <span>خواتین</span>
+
+          <div class="counter">
+            <button type="button" data-action="minus" data-type="ladies">−</button>
+            <output id="ladiesCount">0</output>
+            <button type="button" data-action="plus" data-type="ladies">+</button>
+          </div>
+        </div>
+
+        <div class="counter-row">
+          <span>حضرات</span>
+
+          <div class="counter">
+            <button type="button" data-action="minus" data-type="gents">−</button>
+            <output id="gentsCount">0</output>
+            <button type="button" data-action="plus" data-type="gents">+</button>
+          </div>
+        </div>
+
+        <div class="counter-row">
+          <span>بچے</span>
+
+          <div class="counter">
+            <button type="button" data-action="minus" data-type="children">−</button>
+            <output id="childrenCount">0</output>
+            <button type="button" data-action="plus" data-type="children">+</button>
+          </div>
+        </div>
+
+        <p class="limit" id="guestLimit">
+          زیادہ سے زیادہ ۴ افراد
+        </p>
+
       </div>
 
-     <div id="fullRsvpActions">
 
-  <div class="rsvp-actions">
+      <div id="fullRsvpActions">
+        <div class="rsvp-actions">
 
-    <a class="whatsapp accept"
-       id="acceptBtn"
-       target="_blank"
-       rel="noopener">
-      واٹس ایپ پر شرکت کی تصدیق
-    </a>
+          <a
+            class="whatsapp accept"
+            id="acceptBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            واٹس ایپ پر شرکت کی تصدیق
+          </a>
 
-    <a class="whatsapp regret"
-       id="regretBtn"
-       target="_blank"
-       rel="noopener">
-      معذرت کا پیغام بھیجیں
-    </a>
+          <a
+            class="whatsapp regret"
+            id="regretBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            معذرت کا پیغام بھیجیں
+          </a>
 
-  </div>
+        </div>
+      </div>
 
-</div>
     </section>
-<section class="closing-section section">
-  <div class="closing-content">
 
-    <p class="eyebrow">تشکر و دعاؤں کے ساتھ</p>
 
-    <h2>
-      آپ کی شرکت ہماری خوشیوں کو
-      <span>یادگار بنائے گی</span>
-    </h2>
+    <!-- =========================
+         CLOSING
+    ========================== -->
+    <section class="closing-section section">
 
-    <p class="closing-message">
-      ہماری خوشیوں میں شریک ہونے اور اپنی دعاؤں میں یاد رکھنے
-      کے لیے ہم دل کی گہرائیوں سے آپ کے شکر گزار ہیں۔
-    </p>
+      <div class="closing-content">
 
-  <div class="closing-card">
-  <p class="closing-label">دعاؤں کے طلبگار</p>
+        <p class="eyebrow">تشکر و دعاؤں کے ساتھ</p>
 
-  <p class="closing-relation">والدِ محترم</p>
+        <h2>
+          آپ کی شرکت ہماری خوشیوں کو
+          <span>یادگار بنائے گی</span>
+        </h2>
 
-  <div class="closing-couple">
-    <span id="closingFather">چوہدری علی</span>
-  </div>
-      <p class="together-with">بمع اہلِ خانہ</p>
+        <p class="closing-message">
+          ہماری خوشیوں میں شریک ہونے اور اپنی دعاؤں میں یاد رکھنے
+          کے لیے ہم دل کی گہرائیوں سے آپ کے شکر گزار ہیں۔
+        </p>
 
-      <p class="closing-host" id="closingHost">
-        جناب و محترمہ __________
+        <div class="closing-card">
+
+          <p class="closing-label">دعاؤں کے طلبگار</p>
+
+          <p class="closing-relation">والدِ محترم</p>
+
+          <div class="closing-couple">
+            <span id="closingFather">چوہدری علی</span>
+          </div>
+
+          <p class="together-with">بمع اہلِ خانہ</p>
+
+          <p class="closing-host" id="closingHost">
+            جناب و محترمہ __________
+          </p>
+
+        </div>
+
+        <div class="closing-ornament">
+          <span></span>
+          <b>◆</b>
+          <i>◇</i>
+          <b>◆</b>
+          <span></span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAMILY ROSTER
+    ========================== -->
+    <section class="family-roster reveal">
+
+      <p class="family-roster-kicker">
+        دعاؤں کے طلبگار
       </p>
-    </div>
 
-    <div class="closing-ornament">
-      <span></span>
-      <b>◆</b>
-      <i>◇</i>
-      <b>◆</b>
-      <span></span>
-    </div>
+      <div class="family-head">
 
-  </div>
-</section>
+        <span class="family-head-label">
+          والدِ محترم
+        </span>
 
-<div class="family-roster reveal">
+        <h2 class="family-father-name">
+          جناب __________ صاحب
+        </h2>
 
-  <p class="family-roster-kicker">دعاؤں کے طلبگار</p>
-
-  <!-- WALID SAHAB -->
-  <div class="family-head">
-
-    <span class="family-head-label">والدِ محترم</span>
-
-    <h2 class="family-father-name">
-      جناب __________ صاحب
-    </h2>
-
-  </div>
-
-  <div class="family-roster-divider">
-    <span></span>
-    <i>◆</i>
-    <span></span>
-  </div>
-
-
-  <!-- NEECHAY 2 COLUMNS -->
-  <div class="family-roster-columns">
-
-    <!-- TAYA / ELDERS -->
-    <div class="family-roster-column">
-
-      <h3>بزرگانِ خاندان</h3>
-
-      <div class="family-names">
-        <p>جناب __________ صاحب</p>
-        <p>جناب __________ صاحب</p>
-        <p>جناب __________ صاحب</p>
       </div>
 
-    </div>
-
-
-    <div class="family-center-line"></div>
-
-
-    <!-- COUSINS -->
-    <div class="family-roster-column">
-
-      <h3>عزیزانِ خاندان</h3>
-
-      <div class="family-names">
-        <p>__________</p>
-        <p>__________</p>
-        <p>__________</p>
-        <p>__________</p>
+      <div class="family-roster-divider">
+        <span></span>
+        <i>◆</i>
+        <span></span>
       </div>
 
-    </div>
 
-  </div>
+      <div class="family-roster-columns">
+
+        <div class="family-roster-column">
+
+          <h3>بزرگانِ خاندان</h3>
+
+          <div class="family-names">
+            <p>جناب __________ صاحب</p>
+            <p>جناب __________ صاحب</p>
+            <p>جناب __________ صاحب</p>
+          </div>
+
+        </div>
 
 
-  <div class="family-roster-footer">
-    <span>✦</span>
-    <p>آپ کی آمد ہماری خوشیوں کو دوبالا کرے گی</p>
-    <span>✦</span>
-  </div>
+        <div class="family-center-line"></div>
 
-</div>
+
+        <div class="family-roster-column">
+
+          <h3>عزیزانِ خاندان</h3>
+
+          <div class="family-names">
+            <p>__________</p>
+            <p>__________</p>
+            <p>__________</p>
+            <p>__________</p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="family-roster-footer">
+        <span>✦</span>
+        <p>آپ کی آمد ہماری خوشیوں کو دوبالا کرے گی</p>
+        <span>✦</span>
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
     <footer class="section reveal">
+
       <p class="eyebrow">دعا کے طلب گار</p>
-      <h2><span id="footerBride">عائشہ</span> <i>و</i> <span id="footerGroom">حمزہ</span></h2>
+
+      <h2>
+        <span id="footerBride">عائشہ</span>
+        <i>و</i>
+        <span id="footerGroom">حمزہ</span>
+      </h2>
+
       <p>ہماری خوشیوں میں شریک ہونے کا شکریہ</p>
+
       <div class="ornament">◆</div>
+
       <div class="creator-credit">
-  <span class="credit-heading">تخلیق و پیشکش</span>
 
-  <a
-    class="brand-link"
-    href="https://wa.me/923116170174"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Visit Bin Shakoor"
-  >
-    <strong>BIN SHAKOOR</strong>
-    <span>GROUP OF COMPANIES</span>
-  </a>
+        <span class="credit-heading">
+          تخلیق و پیشکش
+        </span>
 
-  <p class="credit-love">محبت و خلوص کے ساتھ</p>
+        <a
+          class="brand-link"
+          href="https://wa.me/923116170174"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Bin Shakoor"
+        >
+          <strong>BIN SHAKOOR</strong>
+          <span>GROUP OF COMPANIES</span>
+        </a>
 
-  <p class="credit-description">
-    بن شکور گروپ آف کمپنیز کی جانب سے آپ کے لیے خصوصی طور پر پیش خدمت۔
-  </p>
-</div>
+        <p class="credit-love">
+          محبت و خلوص کے ساتھ
+        </p>
+
+        <p class="credit-description">
+          بن شکور گروپ آف کمپنیز کی جانب سے آپ کے لیے خصوصی طور پر پیش خدمت۔
+        </p>
+
+      </div>
+
     </footer>
+
   </main>
 
   <script src="app.js"></script>
