@@ -63,7 +63,22 @@ const counts = {
   children: 0
 };
 
+/* =========================================
+   HELPERS
+========================================= */
 
+const $ = id =>
+  document.getElementById(id);
+
+const setText = (id, value) => {
+
+  const el = $(id);
+
+  if(el){
+    el.textContent = value;
+  }
+
+};
 /* =========================================
    HELPERS
 ========================================= */
