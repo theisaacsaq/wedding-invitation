@@ -106,7 +106,7 @@ ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں ک�
   $("regretBtn").href =
     `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(regretMessage)}`;
 }
-}));
+
 
 let audioCtx, master, musicTimer, muted=false;
 function playTone(freq,when,duration,volume){ const osc=audioCtx.createOscillator(), gain=audioCtx.createGain(); osc.type="sine"; osc.frequency.value=freq; gain.gain.setValueAtTime(0,when); gain.gain.linearRampToValueAtTime(volume,when+.7); gain.gain.exponentialRampToValueAtTime(.0001,when+duration); osc.connect(gain).connect(master); osc.start(when); osc.stop(when+duration); }
