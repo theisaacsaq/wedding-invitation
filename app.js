@@ -68,125 +68,69 @@ const counts = {
    HELPERS
 ========================================= */
 
-const $ = id =>
-  document.getElementById(id);
-
-const setText = (id, value) => {
-  const el = $(id);
-
-  if(el){
-    el.textContent = value;
-  }
-};
-
-
 function loadClientDataFromSheet(){
 
   return new Promise((resolve) => {
 
     const callbackName = "handleWeddingSheetData";
 
-    /* Purana loader agar ho to remove */
-    const oldScript =
-      document.getElementById("weddingSheetLoader");
-
-    if(oldScript){
-      oldScript.remove();
-    }
-
-
-    /* Google Sheet response yahan receive hoga */
     window[callbackName] = function(data){
 
       try{
 
         if(!data || !data.success){
-
           throw new Error(
-            data?.error ||
-            "Sheet data nahi mila"
+            data?.error || "Sheet data nahi mila"
           );
-
         }
-
-
-        /* =========================
-           CLIENT UPDATE
-        ========================= */
 
         CLIENT.bride =
-          data.bride ||
-          CLIENT.bride;
+          data.bride || CLIENT.bride;
 
         CLIENT.groom =
-          data.groom ||
-          CLIENT.groom;
+          data.groom || CLIENT.groom;
 
         CLIENT.father =
-          data.father ||
-          CLIENT.father;
+          data.father || CLIENT.father;
 
         CLIENT.host =
-          data.host ||
-          CLIENT.host;
+          data.host || CLIENT.host;
 
         CLIENT.whatsapp =
-          data.whatsapp ||
-          CLIENT.whatsapp;
-
+          data.whatsapp || CLIENT.whatsapp;
 
         if(data.maxGuests){
-
           CLIENT.maxGuests =
             Number(data.maxGuests);
-
         }
 
-
         if(data.barat){
-
           CLIENT.barat = {
             ...CLIENT.barat,
             ...data.barat
           };
-
         }
 
-
         if(data.walima){
-
           CLIENT.walima = {
             ...CLIENT.walima,
             ...data.walima
           };
-
         }
-
 
         CLIENT.countdownTo =
           data.countdownTo ||
           CLIENT.countdownTo;
 
-
         if(Array.isArray(data.elders)){
-
           CLIENT.elders =
             data.elders;
-
         }
-
 
         if(Array.isArray(data.cousins)){
-
           CLIENT.cousins =
             data.cousins;
-
         }
-
-
-        /* =========================
-           CONFIG UPDATE
-        ========================= */
 
         CONFIG.bride =
           CLIENT.bride;
@@ -215,21 +159,18 @@ function loadClientDataFromSheet(){
         CONFIG.countdownTo =
           CLIENT.countdownTo;
 
-
         calculateMaxGuests();
-
 
         console.log(
           "✅ Wedding card data loaded from Google Sheet"
         );
-
 
         resolve(true);
 
       }catch(error){
 
         console.error(
-          "Sheet data processing error:",
+          "Sheet processing error:",
           error
         );
 
@@ -237,39 +178,12 @@ function loadClientDataFromSheet(){
 
         resolve(false);
 
-      }finally{
-
-        setTimeout(() => {
-
-          const loader =
-            document.getElementById(
-              "weddingSheetLoader"
-            );
-
-          if(loader){
-            loader.remove();
-          }
-
-        }, 0);
-
       }
 
     };
 
-
-    /* =========================
-       GOOGLE SCRIPT TAG
-    ========================= */
-
     const script =
       document.createElement("script");
-
-    script.id =
-      "weddingSheetLoader";
-
-    script.async =
-      true;
-
 
     script.src =
       SHEET_API_URL +
@@ -278,11 +192,18 @@ function loadClientDataFromSheet(){
       "&t=" +
       Date.now();
 
+    script.onload = function(){
+
+      setTimeout(() => {
+        script.remove();
+      }, 100);
+
+    };
 
     script.onerror = function(){
 
       console.error(
-        "❌ Google Sheet JSONP script load failed"
+        "❌ Google Sheet JSONP load failed"
       );
 
       calculateMaxGuests();
@@ -291,76 +212,11 @@ function loadClientDataFromSheet(){
 
     };
 
-
-    document.head.appendChild(
-      script
-    );
+    document.head.appendChild(script);
 
   });
 
-}/* =========================================
-   FAMILY NAME LIST
-========================================= */
-
-function renderNameList(
-  id,
-  names
-){
-
-  const container =
-    $(id);
-
-  if(!container) return;
-
-
-  container.innerHTML =
-    "";
-
-
-  (names || [])
-    .forEach(name => {
-
-      if(!name) return;
-
-
-      const p =
-        document.createElement(
-          "p"
-        );
-
-
-      p.textContent =
-        name;
-
-
-      container.appendChild(
-        p
-      );
-
-    });
-
 }
-
-
-/* =========================================
-   CALENDAR
-========================================= */
-
-function calendarUrl(
-  title,
-  event
-){
-
-  return (
-    `https://calendar.google.com/calendar/render` +
-    `?action=TEMPLATE` +
-    `&text=${encodeURIComponent(title)}` +
-    `&dates=${event.start}%2F${event.end}` +
-    `&location=${encodeURIComponent(event.venue)}`
-  );
-
-}
-
 
 /* =========================================
    APPLY CONTENT
