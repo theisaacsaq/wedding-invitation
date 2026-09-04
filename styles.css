@@ -804,3 +804,21 @@
 .gold-button:active{
   transform:scale(.97);
 }
+
+.simple-rsvp{
+  max-width:520px;
+  margin:35px auto 0;
+  padding:28px 20px;
+
+  border-top:1px solid rgba(203,168,90,.35);
+  border-bottom:1px solid rgba(203,168,90,.35);
+
+  text-align:center;
+}
+
+.simple-rsvp h3{
+  color:#f0d48a;
+  font-size:1.25rem;
+  font-weight:400;
+  margin:0 0 22px;
+}
