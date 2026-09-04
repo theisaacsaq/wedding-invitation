@@ -2,6 +2,9 @@
    WEDDING INVITATION CONFIG
 ========================================= */
 
+const SHEET_API_URL =
+  "https://script.google.com/macros/s/AKfycbxNQsVBn9e-qU5W3RDyUj_9f53m6EYONcL59ZFE3_jTJBiF5i0t_dCqztz7OUPBklJUDQ/exec";
+
 const CONFIG = {
   bride: CLIENT.bride,
   groom: CLIENT.groom,
@@ -35,13 +38,19 @@ const guestDisplay = withFamily
   ? `${guest} و اہلِ خانہ`
   : guest;
 
-const maxGuests = Math.max(
-  1,
-  Math.min(
-    20,
-    Number(params.get("max")) || CONFIG.maxGuests
-  )
-);
+let maxGuests = 1;
+
+function calculateMaxGuests(){
+  maxGuests = Math.max(
+    1,
+    Math.min(
+      20,
+      Number(params.get("max")) ||
+      Number(CONFIG.maxGuests) ||
+      1
+    )
+  );
+}
 
 
 /* =========================================
@@ -69,33 +78,228 @@ const setText = (id, value) => {
     el.textContent = value;
   }
 };
-function renderNameList(id, names){
 
-  const container = $(id);
+
+/* =========================================
+   GOOGLE SHEET LOADER
+========================================= */
+
+async function loadClientDataFromSheet() {
+
+  try {
+
+    const response = await fetch(
+      `${SHEET_API_URL}?t=${Date.now()}`,
+      {
+        cache: "no-store"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        "Google Sheet API load nahi hui"
+      );
+    }
+
+    const data =
+      await response.json();
+
+    if (!data.success) {
+      throw new Error(
+        data.error ||
+        "Sheet data nahi mila"
+      );
+    }
+
+
+    /* Sheet data CLIENT me daalo */
+
+    CLIENT.bride =
+      data.bride ||
+      CLIENT.bride;
+
+    CLIENT.groom =
+      data.groom ||
+      CLIENT.groom;
+
+    CLIENT.father =
+      data.father ||
+      CLIENT.father;
+
+    CLIENT.host =
+      data.host ||
+      CLIENT.host;
+
+    CLIENT.whatsapp =
+      data.whatsapp ||
+      CLIENT.whatsapp;
+
+
+    if (data.maxGuests) {
+      CLIENT.maxGuests =
+        Number(data.maxGuests);
+    }
+
+
+    if (data.barat) {
+
+      CLIENT.barat = {
+        ...CLIENT.barat,
+        ...data.barat
+      };
+
+    }
+
+
+    if (data.walima) {
+
+      CLIENT.walima = {
+        ...CLIENT.walima,
+        ...data.walima
+      };
+
+    }
+
+
+    CLIENT.countdownTo =
+      data.countdownTo ||
+      CLIENT.countdownTo;
+
+
+    if (
+      Array.isArray(
+        data.elders
+      )
+    ) {
+
+      CLIENT.elders =
+        data.elders;
+
+    }
+
+
+    if (
+      Array.isArray(
+        data.cousins
+      )
+    ) {
+
+      CLIENT.cousins =
+        data.cousins;
+
+    }
+
+
+    /* Updated CLIENT ko CONFIG me copy */
+
+    CONFIG.bride =
+      CLIENT.bride;
+
+    CONFIG.groom =
+      CLIENT.groom;
+
+    CONFIG.father =
+      CLIENT.father;
+
+    CONFIG.host =
+      CLIENT.host;
+
+    CONFIG.whatsapp =
+      CLIENT.whatsapp;
+
+    CONFIG.maxGuests =
+      CLIENT.maxGuests;
+
+    CONFIG.barat =
+      CLIENT.barat;
+
+    CONFIG.walima =
+      CLIENT.walima;
+
+    CONFIG.countdownTo =
+      CLIENT.countdownTo;
+
+
+    calculateMaxGuests();
+
+
+    console.log(
+      "Wedding card data loaded from Google Sheet"
+    );
+
+
+    return true;
+
+  } catch (error) {
+
+    console.error(
+      "Google Sheet load nahi hui. client-data.js use ho rahi hai:",
+      error
+    );
+
+
+    calculateMaxGuests();
+
+
+    return false;
+
+  }
+
+}
+
+
+/* =========================================
+   FAMILY NAME LIST
+========================================= */
+
+function renderNameList(
+  id,
+  names
+){
+
+  const container =
+    $(id);
 
   if(!container) return;
 
-  container.innerHTML = "";
 
-  (names || []).forEach(name => {
+  container.innerHTML =
+    "";
 
-    if(!name) return;
 
-    const p = document.createElement("p");
+  (names || [])
+    .forEach(name => {
 
-    p.textContent = name;
+      if(!name) return;
 
-    container.appendChild(p);
 
-  });
+      const p =
+        document.createElement(
+          "p"
+        );
+
+
+      p.textContent =
+        name;
+
+
+      container.appendChild(
+        p
+      );
+
+    });
 
 }
+
 
 /* =========================================
    CALENDAR
 ========================================= */
 
-function calendarUrl(title, event){
+function calendarUrl(
+  title,
+  event
+){
 
   return (
     `https://calendar.google.com/calendar/render` +
@@ -117,18 +321,26 @@ function applyContent(){
   [
     "coverBride",
     "brideName",
-    "footerBride",
-  ].forEach(id =>
-    setText(id, CONFIG.bride)
+    "footerBride"
+  ].forEach(
+    id =>
+      setText(
+        id,
+        CONFIG.bride
+      )
   );
 
 
   [
     "coverGroom",
     "groomName",
-    "footerGroom",
-  ].forEach(id =>
-    setText(id, CONFIG.groom)
+    "footerGroom"
+  ].forEach(
+    id =>
+      setText(
+        id,
+        CONFIG.groom
+      )
   );
 
 
@@ -136,8 +348,12 @@ function applyContent(){
     "coverGuest",
     "guestName",
     "invitedGuest"
-  ].forEach(id =>
-    setText(id, guestDisplay)
+  ].forEach(
+    id =>
+      setText(
+        id,
+        guestDisplay
+      )
   );
 
 
@@ -146,13 +362,29 @@ function applyContent(){
     CONFIG.host
   );
 
+
   setText(
     "closingHost",
     CONFIG.host
   );
-   setText("closingFather", CONFIG.father);
-   renderNameList("eldersList", CLIENT.elders);
-renderNameList("cousinsList", CLIENT.cousins);
+
+
+  setText(
+    "closingFather",
+    CONFIG.father
+  );
+
+
+  renderNameList(
+    "eldersList",
+    CLIENT.elders
+  );
+
+
+  renderNameList(
+    "cousinsList",
+    CLIENT.cousins
+  );
 
 
   /* BARAT */
@@ -162,10 +394,12 @@ renderNameList("cousinsList", CLIENT.cousins);
     CONFIG.barat.dateText
   );
 
+
   setText(
     "baratTime",
     CONFIG.barat.timeText
   );
+
 
   setText(
     "baratVenue",
@@ -180,10 +414,12 @@ renderNameList("cousinsList", CLIENT.cousins);
     CONFIG.walima.dateText
   );
 
+
   setText(
     "walimaTime",
     CONFIG.walima.timeText
   );
+
 
   setText(
     "walimaVenue",
@@ -201,21 +437,33 @@ renderNameList("cousinsList", CLIENT.cousins);
 
   /* MAPS */
 
-  const baratMap = $("baratMap");
+  const baratMap =
+    $("baratMap");
+
 
   if(baratMap){
+
     baratMap.href =
       `https://www.google.com/maps/search/?api=1&query=` +
-      encodeURIComponent(CONFIG.barat.mapQuery);
+      encodeURIComponent(
+        CONFIG.barat.mapQuery
+      );
+
   }
 
 
-  const walimaMap = $("walimaMap");
+  const walimaMap =
+    $("walimaMap");
+
 
   if(walimaMap){
+
     walimaMap.href =
       `https://www.google.com/maps/search/?api=1&query=` +
-      encodeURIComponent(CONFIG.walima.mapQuery);
+      encodeURIComponent(
+        CONFIG.walima.mapQuery
+      );
+
   }
 
 
@@ -223,6 +471,7 @@ renderNameList("cousinsList", CLIENT.cousins);
 
   const baratCalendar =
     $("baratCalendar");
+
 
   if(baratCalendar){
 
@@ -237,6 +486,7 @@ renderNameList("cousinsList", CLIENT.cousins);
 
   const walimaCalendar =
     $("walimaCalendar");
+
 
   if(walimaCalendar){
 
@@ -256,17 +506,24 @@ renderNameList("cousinsList", CLIENT.cousins);
   const baratCard =
     $("baratCard");
 
+
   const walimaCard =
     $("walimaCard");
+
 
   const baratAttendance =
     $("baratAttendance");
 
+
   const simpleRsvp =
     $("simpleRsvp");
 
+
   const attendanceSection =
-    document.querySelector(".attendance");
+    document.querySelector(
+      ".attendance"
+    );
+
 
   const fullRsvpActions =
     $("fullRsvpActions");
@@ -274,20 +531,38 @@ renderNameList("cousinsList", CLIENT.cousins);
 
   /* WALIMA ONLY */
 
-  if(inviteType === "walima"){
+  if(
+    inviteType ===
+    "walima"
+  ){
 
     if(baratCard){
-      baratCard.classList.add("hidden");
+
+      baratCard
+        .classList
+        .add(
+          "hidden"
+        );
+
     }
 
+
     if(baratAttendance){
-      baratAttendance.classList.add("hidden");
+
+      baratAttendance
+        .classList
+        .add(
+          "hidden"
+        );
+
     }
+
 
     setText(
       "rsvpHeading",
       "ولیمہ میں شرکت"
     );
+
 
     setText(
       "rsvpIntro",
@@ -299,16 +574,27 @@ renderNameList("cousinsList", CLIENT.cousins);
 
   /* BARAT ONLY */
 
-  if(inviteType === "barat"){
+  if(
+    inviteType ===
+    "barat"
+  ){
 
     if(walimaCard){
-      walimaCard.classList.add("hidden");
+
+      walimaCard
+        .classList
+        .add(
+          "hidden"
+        );
+
     }
+
 
     setText(
       "rsvpHeading",
       "تقریبِ بارات میں شرکت"
     );
+
 
     setText(
       "rsvpIntro",
@@ -323,32 +609,75 @@ renderNameList("cousinsList", CLIENT.cousins);
      SINGLE EVENT = DIRECT WHATSAPP
   ===================================== */
 
-  if(inviteType === "both"){
+  if(
+    inviteType ===
+    "both"
+  ){
 
     if(simpleRsvp){
-      simpleRsvp.classList.add("hidden");
+
+      simpleRsvp
+        .classList
+        .add(
+          "hidden"
+        );
+
     }
+
 
     if(attendanceSection){
-      attendanceSection.classList.remove("hidden");
+
+      attendanceSection
+        .classList
+        .remove(
+          "hidden"
+        );
+
     }
 
+
     if(fullRsvpActions){
-      fullRsvpActions.classList.remove("hidden");
+
+      fullRsvpActions
+        .classList
+        .remove(
+          "hidden"
+        );
+
     }
 
   }else{
 
     if(simpleRsvp){
-      simpleRsvp.classList.remove("hidden");
+
+      simpleRsvp
+        .classList
+        .remove(
+          "hidden"
+        );
+
     }
+
 
     if(attendanceSection){
-      attendanceSection.classList.add("hidden");
+
+      attendanceSection
+        .classList
+        .add(
+          "hidden"
+        );
+
     }
 
+
     if(fullRsvpActions){
-      fullRsvpActions.classList.add("hidden");
+
+      fullRsvpActions
+        .classList
+        .add(
+          "hidden"
+        );
+
     }
 
   }
@@ -368,6 +697,7 @@ function createPetals(){
   const layer =
     $("petalLayer");
 
+
   if(!layer) return;
 
 
@@ -377,38 +707,53 @@ function createPetals(){
       : 20;
 
 
-  for(let i = 0; i < count; i++){
+  for(
+    let i = 0;
+    i < count;
+    i++
+  ){
 
     const petal =
-      document.createElement("i");
+      document.createElement(
+        "i"
+      );
+
 
     petal.className =
       "petal";
 
+
     petal.style.left =
       `${Math.random() * 100}%`;
+
 
     petal.style.setProperty(
       "--size",
       `${8 + Math.random() * 10}px`
     );
 
+
     petal.style.setProperty(
       "--opacity",
       `${.28 + Math.random() * .48}`
     );
+
 
     petal.style.setProperty(
       "--duration",
       `${10 + Math.random() * 11}s`
     );
 
+
     petal.style.setProperty(
       "--delay",
       `${-Math.random() * 18}s`
     );
 
-    layer.appendChild(petal);
+
+    layer.appendChild(
+      petal
+    );
 
   }
 
@@ -432,15 +777,20 @@ function total(){
 
 function updateCounters(){
 
-  Object.keys(counts)
-    .forEach(key => {
+  Object.keys(
+    counts
+  )
+  .forEach(
+    key => {
 
       setText(
         `${key}Count`,
         counts[key]
       );
 
-    });
+    }
+  );
+
 
   updateLinks();
 
@@ -450,61 +800,88 @@ function updateCounters(){
 /* PLUS / MINUS */
 
 document
-  .querySelectorAll(".counter button")
-  .forEach(button => {
+  .querySelectorAll(
+    ".counter button"
+  )
+  .forEach(
+    button => {
 
-    button.addEventListener(
-      "click",
-      () => {
+      button
+        .addEventListener(
+          "click",
+          () => {
 
-        const type =
-          button.dataset.type;
-
-        const action =
-          button.dataset.action;
-
-
-        if(
-          !Object.prototype
-            .hasOwnProperty
-            .call(counts, type)
-        ){
-          return;
-        }
+            const type =
+              button
+                .dataset
+                .type;
 
 
-        /* PLUS */
+            const action =
+              button
+                .dataset
+                .action;
 
-        if(action === "plus"){
 
-          if(total() < maxGuests){
+            if(
+              !Object.prototype
+                .hasOwnProperty
+                .call(
+                  counts,
+                  type
+                )
+            ){
 
-            counts[type]++;
+              return;
+
+            }
+
+
+            /* PLUS */
+
+            if(
+              action ===
+              "plus"
+            ){
+
+              if(
+                total() <
+                maxGuests
+              ){
+
+                counts[type]++;
+
+              }
+
+            }
+
+
+            /* MINUS */
+
+            if(
+              action ===
+              "minus"
+            ){
+
+              if(
+                counts[type] >
+                0
+              ){
+
+                counts[type]--;
+
+              }
+
+            }
+
+
+            updateCounters();
 
           }
+        );
 
-        }
-
-
-        /* MINUS */
-
-        if(action === "minus"){
-
-          if(counts[type] > 0){
-
-            counts[type]--;
-
-          }
-
-        }
-
-
-        updateCounters();
-
-      }
-    );
-
-  });
+    }
+  );
 
 
 /* =========================================
@@ -517,13 +894,15 @@ function updateLinks(){
     total();
 
 
-  /* =====================================
-     BOTH EVENTS
-  ===================================== */
-
   let acceptMessage;
 
-  if(inviteType === "both"){
+
+  /* BOTH */
+
+  if(
+    inviteType ===
+    "both"
+  ){
 
     acceptMessage =
 `السلام علیکم،
@@ -546,11 +925,12 @@ ${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی
   }
 
 
-  /* =====================================
-     WALIMA ONLY
-  ===================================== */
+  /* WALIMA ONLY */
 
-  else if(inviteType === "walima"){
+  else if(
+    inviteType ===
+    "walima"
+  ){
 
     acceptMessage =
 `السلام علیکم،
@@ -564,9 +944,7 @@ ${guestDisplay} ان شاء اللہ ${CONFIG.bride} اور ${CONFIG.groom} کی
   }
 
 
-  /* =====================================
-     BARAT ONLY
-  ===================================== */
+  /* BARAT ONLY */
 
   else{
 
@@ -590,10 +968,11 @@ ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں ک�
 ہماری دعائیں ${CONFIG.bride} اور ${CONFIG.groom} کے ساتھ ہیں۔`;
 
 
-  /* MAIN RSVP BUTTONS */
+  /* MAIN RSVP */
 
   const acceptBtn =
     $("acceptBtn");
+
 
   const regretBtn =
     $("regretBtn");
@@ -603,7 +982,9 @@ ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں ک�
 
     acceptBtn.href =
       `https://wa.me/${CONFIG.whatsapp}?text=` +
-      encodeURIComponent(acceptMessage);
+      encodeURIComponent(
+        acceptMessage
+      );
 
   }
 
@@ -612,17 +993,18 @@ ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں ک�
 
     regretBtn.href =
       `https://wa.me/${CONFIG.whatsapp}?text=` +
-      encodeURIComponent(regretMessage);
+      encodeURIComponent(
+        regretMessage
+      );
 
   }
 
 
-  /* =====================================
-     SIMPLE RSVP
-  ===================================== */
+  /* SIMPLE RSVP */
 
   const simpleAcceptBtn =
     $("simpleAcceptBtn");
+
 
   const simpleRegretBtn =
     $("simpleRegretBtn");
@@ -630,7 +1012,11 @@ ${guestDisplay} معذرت کے ساتھ تقریب میں شرکت نہیں ک�
 
   let eventName;
 
-  if(inviteType === "walima"){
+
+  if(
+    inviteType ===
+    "walima"
+  ){
 
     eventName =
       "دعوتِ ولیمہ";
@@ -690,7 +1076,8 @@ ${guestDisplay} معذرت کے ساتھ ${eventName} میں شرکت نہیں �
 let audioCtx;
 let master;
 let musicTimer;
-let muted = false;
+let muted =
+  false;
 
 
 function playTone(
@@ -701,48 +1088,67 @@ function playTone(
 ){
 
   const osc =
-    audioCtx.createOscillator();
+    audioCtx
+      .createOscillator();
+
 
   const gain =
-    audioCtx.createGain();
+    audioCtx
+      .createGain();
 
 
   osc.type =
     "sine";
 
+
   osc.frequency.value =
     freq;
 
 
-  gain.gain.setValueAtTime(
-    0,
-    when
-  );
+  gain.gain
+    .setValueAtTime(
+      0,
+      when
+    );
 
-  gain.gain.linearRampToValueAtTime(
-    volume,
-    when + .7
-  );
 
-  gain.gain.exponentialRampToValueAtTime(
-    .0001,
-    when + duration
-  );
+  gain.gain
+    .linearRampToValueAtTime(
+      volume,
+      when + .7
+    );
+
+
+  gain.gain
+    .exponentialRampToValueAtTime(
+      .0001,
+      when + duration
+    );
 
 
   osc
-    .connect(gain)
-    .connect(master);
+    .connect(
+      gain
+    )
+    .connect(
+      master
+    );
 
 
-  osc.start(when);
+  osc.start(
+    when
+  );
+
 
   osc.stop(
-    when + duration
+    when +
+    duration
   );
 
 }
 
+
+/* MUSIC PHRASE */
 
 function musicPhrase(){
 
@@ -750,7 +1156,8 @@ function musicPhrase(){
 
 
   const now =
-    audioCtx.currentTime;
+    audioCtx
+      .currentTime;
 
 
   [
@@ -758,12 +1165,18 @@ function musicPhrase(){
     329.63,
     392,
     493.88
-  ].forEach(
-    (freq, index) => {
+  ]
+  .forEach(
+    (
+      freq,
+      index
+    ) => {
 
       playTone(
         freq,
-        now + index * 1.8,
+        now +
+        index *
+        1.8,
         5,
         .035
       );
@@ -773,6 +1186,8 @@ function musicPhrase(){
 
 }
 
+
+/* START MUSIC */
 
 function startMusic(){
 
@@ -786,15 +1201,19 @@ function startMusic(){
 
 
     master =
-      audioCtx.createGain();
+      audioCtx
+        .createGain();
 
 
-    master.gain.value =
+    master
+      .gain
+      .value =
       .8;
 
 
     master.connect(
-      audioCtx.destination
+      audioCtx
+        .destination
     );
 
 
@@ -812,8 +1231,15 @@ function startMusic(){
     const toggle =
       $("musicToggle");
 
+
     if(toggle){
-      toggle.classList.add("hidden");
+
+      toggle
+        .classList
+        .add(
+          "hidden"
+        );
+
     }
 
   }
@@ -826,39 +1252,48 @@ function startMusic(){
 const musicToggle =
   $("musicToggle");
 
+
 if(musicToggle){
 
-  musicToggle.addEventListener(
-    "click",
-    () => {
+  musicToggle
+    .addEventListener(
+      "click",
+      () => {
 
-      if(!audioCtx) return;
-
-
-      muted =
-        !muted;
+        if(!audioCtx) return;
 
 
-      master.gain.setTargetAtTime(
-        muted ? 0 : .8,
-        audioCtx.currentTime,
-        .15
-      );
+        muted =
+          !muted;
 
 
-      musicToggle.classList.toggle(
-        "muted",
-        muted
-      );
+        master
+          .gain
+          .setTargetAtTime(
+            muted
+              ? 0
+              : .8,
+            audioCtx
+              .currentTime,
+            .15
+          );
 
 
-      musicToggle.textContent =
-        muted
-          ? "♩"
-          : "♫";
+        musicToggle
+          .classList
+          .toggle(
+            "muted",
+            muted
+          );
 
-    }
-  );
+
+        musicToggle.textContent =
+          muted
+            ? "♩"
+            : "♫";
+
+      }
+    );
 
 }
 
@@ -870,8 +1305,10 @@ if(musicToggle){
 const envelope =
   $("envelope");
 
+
 const openInvite =
   $("openInvite");
+
 
 const sparkBurst =
   $("sparkBurst");
@@ -886,12 +1323,17 @@ function createRoyalSparks(){
     "";
 
 
-  for(let i = 0; i < 32; i++){
+  for(
+    let i = 0;
+    i < 32;
+    i++
+  ){
 
     const spark =
-      document.createElement(
-        "span"
-      );
+      document
+        .createElement(
+          "span"
+        );
 
 
     spark.className =
@@ -910,31 +1352,39 @@ function createRoyalSparks(){
       180;
 
 
-    spark.style.setProperty(
-      "--spark-x",
-      `${
-        Math.cos(angle) *
-        distance
-      }px`
-    );
+    spark.style
+      .setProperty(
+        "--spark-x",
+        `${
+          Math.cos(
+            angle
+          ) *
+          distance
+        }px`
+      );
 
 
-    spark.style.setProperty(
-      "--spark-y",
-      `${
-        Math.sin(angle) *
-        distance
-      }px`
-    );
+    spark.style
+      .setProperty(
+        "--spark-y",
+        `${
+          Math.sin(
+            angle
+          ) *
+          distance
+        }px`
+      );
 
 
-    spark.style.animationDelay =
+    spark.style
+      .animationDelay =
       `${Math.random() * .12}s`;
 
 
-    sparkBurst.appendChild(
-      spark
-    );
+    sparkBurst
+      .appendChild(
+        spark
+      );
 
   }
 
@@ -954,72 +1404,84 @@ function createRoyalSparks(){
 
 /* OPEN BUTTON */
 
-if(openInvite && envelope){
+if(
+  openInvite &&
+  envelope
+){
 
-  openInvite.addEventListener(
-    "click",
-    () => {
+  openInvite
+    .addEventListener(
+      "click",
+      () => {
 
-      openInvite.disabled =
-        true;
-
-
-      envelope.classList.add(
-        "ribbon-opening"
-      );
-
-
-      createRoyalSparks();
+        openInvite.disabled =
+          true;
 
 
-      if(!audioCtx){
-
-        startMusic();
-
-      }
-
-
-      setTimeout(
-        () => {
-
-          envelope.classList.add(
-            "opened"
+        envelope
+          .classList
+          .add(
+            "ribbon-opening"
           );
 
 
-          document.body
-            .classList
-            .remove(
-              "locked"
+        createRoyalSparks();
+
+
+        if(!audioCtx){
+
+          startMusic();
+
+        }
+
+
+        setTimeout(
+          () => {
+
+            envelope
+              .classList
+              .add(
+                "opened"
+              );
+
+
+            document
+              .body
+              .classList
+              .remove(
+                "locked"
+              );
+
+
+            setTimeout(
+              () => {
+
+                const mainContent =
+                  $("mainContent");
+
+
+                if(
+                  mainContent
+                ){
+
+                  mainContent
+                    .scrollIntoView({
+                      behavior:
+                        "smooth"
+                    });
+
+                }
+
+              },
+              150
             );
 
+          },
+          1250
+        );
 
-          setTimeout(
-            () => {
-
-              const mainContent =
-                $("mainContent");
-
-              if(mainContent){
-
-                mainContent
-                  .scrollIntoView({
-                    behavior:
-                      "smooth"
-                  });
-
-              }
-
-            },
-            150
-          );
-
-        },
-        1250
-      );
-
-    }
-  );
+      }
+    );
 
 }
 
@@ -1041,10 +1503,22 @@ function tick(){
 
 
   const units = [
-    ["دن", 86400000],
-    ["گھنٹے", 3600000],
-    ["منٹ", 60000],
-    ["سیکنڈ", 1000]
+    [
+      "دن",
+      86400000
+    ],
+    [
+      "گھنٹے",
+      3600000
+    ],
+    [
+      "منٹ",
+      60000
+    ],
+    [
+      "سیکنڈ",
+      1000
+    ]
   ];
 
 
@@ -1056,19 +1530,29 @@ function tick(){
     $("countdown");
 
 
-  if(!countdown){
+  if(
+    !countdown
+  ){
+
     return;
+
   }
 
 
   countdown.innerHTML =
     units
       .map(
-        ([label, ms]) => {
+        (
+          [
+            label,
+            ms
+          ]
+        ) => {
 
           const number =
             Math.floor(
-              rest / ms
+              rest /
+              ms
             );
 
 
@@ -1078,6 +1562,7 @@ function tick(){
 
           return `
             <div class="time-box">
+
               <strong>
                 ${String(number).padStart(2,"0")}
               </strong>
@@ -1085,6 +1570,7 @@ function tick(){
               <span>
                 ${label}
               </span>
+
             </div>
           `;
 
@@ -1106,7 +1592,9 @@ const observer =
       entries.forEach(
         entry => {
 
-          if(entry.isIntersecting){
+          if(
+            entry.isIntersecting
+          ){
 
             entry.target
               .classList
@@ -1121,13 +1609,16 @@ const observer =
 
     },
     {
-      threshold: .12
+      threshold:
+        .12
     }
   );
 
 
 document
-  .querySelectorAll(".reveal")
+  .querySelectorAll(
+    ".reveal"
+  )
   .forEach(
     element => {
 
@@ -1143,15 +1634,29 @@ document
    START
 ========================================= */
 
-createPetals();
+async function startApp(){
 
-applyContent();
+  createPetals();
 
-updateCounters();
 
-tick();
+  await loadClientDataFromSheet();
 
-setInterval(
-  tick,
-  1000
-);
+
+  applyContent();
+
+
+  updateCounters();
+
+
+  tick();
+
+
+  setInterval(
+    tick,
+    1000
+  );
+
+}
+
+
+startApp();
