@@ -1088,3 +1088,70 @@
     transparent
   );
 }
+/* =========================================
+   COMPACT INVITATION COVER CARD
+========================================= */
+
+.envelope{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px 18px !important;
+}
+
+.envelope-card{
+  width:min(460px, 92vw) !important;
+  min-height:620px !important;
+  height:auto !important;
+
+  padding:32px 28px 28px !important;
+  margin:auto !important;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  border:1px solid rgba(203,168,90,.7);
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.65),
+    0 0 35px rgba(203,168,90,.06);
+}
+
+/* Names thore compact */
+.envelope-card .couple{
+  margin:20px 0 10px !important;
+}
+
+/* Guest name area */
+.envelope-card .guest-line{
+  margin:8px auto !important;
+}
+
+/* Date */
+.envelope-card .cover-date{
+  margin:12px 0 16px !important;
+}
+
+/* Ribbon / seal area */
+.envelope-card .royal-ribbon{
+  margin-top:12px !important;
+  margin-bottom:15px !important;
+}
+
+
+/* MOBILE */
+@media(max-width:600px){
+
+  .envelope{
+    padding:16px 12px !important;
+  }
+
+  .envelope-card{
+    width:94vw !important;
+    min-height:auto !important;
+    padding:28px 18px 26px !important;
+  }
+
+}
