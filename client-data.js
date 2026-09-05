@@ -6,7 +6,7 @@
 const CLIENT = {
 
   // Bride / Groom
-  bride: "فاطمہ",
+  bride: "جبران",
   groom: "علی",
 
   // Family / Closing section
