@@ -1,0 +1,1015 @@
+:root{--black:#080806;--panel:#0f0d09;--gold:#cba85a;--gold2:#f0d48a;--ivory:#f7edcf;--muted:#b6a98a;--line:rgba(203,168,90,.38)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--ivory);font-family:"Noto Nastaliq Urdu",serif;line-height:2.15;overflow-x:hidden}body.locked{overflow:hidden}.grain{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}.petal-layer{position:fixed;inset:0;z-index:60;pointer-events:none;overflow:hidden}.petal{position:absolute;top:-10vh;width:var(--size);height:calc(var(--size)*.56);border-radius:90% 8% 90% 8%;background:linear-gradient(135deg,#f5dfa1,#a87b29);box-shadow:0 0 8px rgba(220,184,95,.25);opacity:var(--opacity);animation:petal-fall var(--duration) linear var(--delay) infinite;transform-origin:center}.petal:nth-child(3n){border-radius:50% 8% 50% 8%;background:linear-gradient(135deg,#d7b762,#755018)}.petal:nth-child(4n){width:calc(var(--size)*.7)}@keyframes petal-fall{0%{transform:translate3d(0,-12vh,0) rotate(0deg)}25%{transform:translate3d(35px,25vh,0) rotate(110deg)}50%{transform:translate3d(-25px,52vh,0) rotate(220deg)}75%{transform:translate3d(45px,80vh,0) rotate(320deg)}100%{transform:translate3d(-15px,115vh,0) rotate(430deg)}}.envelope{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:radial-gradient(circle at 50% 42%,#211b0d 0,#090806 58%,#030302 100%);padding:18px;transition:opacity 1s,visibility 1s}.envelope.opened{opacity:0;visibility:hidden}.envelope-card{position:relative;text-align:center;width:min(620px,100%);min-height:min(760px,92vh);border:1px solid var(--gold);outline:1px solid var(--line);outline-offset:-12px;padding:70px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,rgba(255,255,255,.025),transparent 50%),#0b0a07;box-shadow:0 30px 80px #000}.envelope-card:before,.envelope-card:after{content:"✦";color:var(--gold);font-size:28px;position:absolute;left:50%;transform:translateX(-50%)}.envelope-card:before{top:30px}.envelope-card:after{bottom:25px}.eyebrow{font-family:Amiri,serif;color:var(--gold);letter-spacing:.16em;font-size:.86rem}.bismillah{font-family:Amiri,serif;color:var(--gold2);font-size:1.35rem}.envelope h1,.couple{font-family:"Noto Nastaliq Urdu",serif;font-size:clamp(3rem,12vw,6.2rem);line-height:1.45;margin:.1em 0;color:var(--gold2);font-weight:400;text-shadow:0 0 35px rgba(203,168,90,.16)}.envelope h1 span,.couple span{display:block}.envelope h1 i,.couple i,footer i{display:block;color:var(--gold);font-family:Amiri,serif;font-size:.48em;font-style:normal;line-height:.8}.guest-line{border-block:1px solid var(--line);padding:8px 28px;margin:10px 0}.cover-date{font-family:Amiri,serif;color:var(--muted)}.gold-button{border:1px solid var(--gold);background:var(--gold);color:#090806;padding:11px 27px;font-family:inherit;font-size:1rem;cursor:pointer;transition:.25s}.gold-button:hover{background:var(--gold2);transform:translateY(-2px)}.envelope small{color:#857b63;margin-top:12px}.section{position:relative;padding:100px max(22px,calc((100vw - 900px)/2));text-align:center;background-image:linear-gradient(rgba(8,8,6,var(--image-shade,.78)),rgba(8,8,6,var(--image-shade,.88))),var(--section-bg,none);background-size:cover;background-position:center;background-repeat:no-repeat}.frame{border:1px solid var(--line);outline:1px solid rgba(203,168,90,.17);outline-offset:-12px;padding:75px max(20px,6vw);background:radial-gradient(circle at top,rgba(203,168,90,.09),transparent 48%)}.hero{min-height:100vh;display:grid;align-items:center}.quran{font-family:Amiri,serif;font-size:clamp(1.25rem,3vw,2rem);color:var(--gold2);margin:30px auto 5px;max-width:720px}.translation,.hosts{max-width:670px;margin:10px auto;color:#d8ccb0}.hosts{margin-top:38px}.addressed{color:var(--gold);margin-bottom:4px}.guest-name{font-size:clamp(1.3rem,4vw,2.1rem);color:var(--gold2);border-bottom:1px solid var(--line);display:inline-block;padding:0 30px 7px}.countdown{direction:ltr;display:flex;justify-content:center;gap:12px;margin-top:38px;flex-wrap:wrap}.time-box{min-width:78px;border:1px solid var(--line);padding:11px 8px}.time-box strong{display:block;font-family:"Playfair Display",serif;color:var(--gold2);font-size:1.6rem;line-height:1}.time-box span{color:var(--muted);font-size:.72rem}.quote{background-color:#0c0b08}.quote blockquote{font-size:clamp(1.5rem,4vw,2.7rem);color:var(--gold2);max-width:700px;margin:30px auto}.events h2,.rsvp h2,footer h2{font-size:clamp(2rem,6vw,3.8rem);font-weight:400;margin:0 0 45px;color:var(--gold2)}.event-card{position:relative;text-align:right;border-top:1px solid var(--line);padding:45px 0;margin:0 auto;max-width:760px}.event-number{position:absolute;left:0;top:40px;font-family:"Playfair Display",serif;color:rgba(203,168,90,.25);font-size:4rem}.event-card h3{font-size:2rem;color:var(--gold2);margin:0}.event-date{color:var(--gold);font-size:1.1rem}.event-card dl{margin:28px 0}.event-card dl div{display:grid;grid-template-columns:100px 1fr;border-bottom:1px solid rgba(203,168,90,.14);padding:8px 0}.event-card dt{color:var(--gold);font-size:.82rem}.event-card dd{margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap}.actions a,.whatsapp{cursor:pointer;text-decoration:none;border:1px solid var(--line);color:var(--ivory);padding:8px 18px;transition:.25s}.actions a:hover,.whatsapp:hover{border-color:var(--gold);color:var(--gold2)}.rsvp{background-color:#0d0b08}.attendance{max-width:520px;margin:35px auto;border-block:1px solid var(--line);padding:22px}.counter-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0}.counter{direction:ltr;display:flex;align-items:center;gap:15px}.counter button{width:36px;height:36px;border:1px solid var(--gold);color:var(--gold2);background:transparent;font-size:1.2rem;cursor:pointer}.counter output{font-family:"Playfair Display",serif;width:22px}.limit{color:var(--muted);font-size:.82rem}.rsvp-actions{display:flex;flex-direction:column;gap:12px;max-width:480px;margin:auto}.whatsapp.accept{background:var(--gold);color:#080806}.whatsapp.regret{color:var(--muted)}footer{border-top:1px solid var(--line)}footer h2 span{color:var(--gold2)}.ornament{color:var(--gold);font-size:1.4rem}.music-toggle{position:fixed;z-index:80;bottom:20px;left:20px;width:46px;height:46px;border-radius:50%;border:1px solid var(--gold);background:#0b0a07;color:var(--gold2);cursor:pointer;box-shadow:0 5px 25px #000}.music-toggle.muted{opacity:.5}.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s,transform .9s}.reveal.visible{opacity:1;transform:none}.hidden{display:none!important}
+@media(max-width:600px){.section{padding:72px 18px}.frame{padding:55px 18px}.envelope-card{min-height:auto;padding:32px 18px}.event-number{font-size:2.6rem}.event-card dl div{grid-template-columns:75px 1fr}.actions{flex-direction:column}.actions a{text-align:center}.music-toggle{bottom:14px;left:14px}.countdown{gap:7px}.time-box{min-width:65px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}.petal-layer{display:none}}
+.creator-credit {
+  width: min(520px, 100%);
+  margin: 55px auto 0;
+  padding: 36px 20px 5px;
+  border-top: 1px solid rgba(203, 168, 90, 0.35);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.credit-heading {
+  color: #d4bd7b;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.brand-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  direction: ltr;
+  transition: transform 0.3s ease;
+}
+
+.brand-link strong {
+  color: #f0d48a;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.35rem, 4vw, 2rem);
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-shadow: 0 0 20px rgba(240, 212, 138, 0.2);
+}
+
+.brand-link span {
+  color: #cba85a;
+  font-family: Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  margin-top: 2px;
+}
+
+.brand-link:hover {
+  transform: translateY(-3px);
+}
+
+.brand-link:hover strong {
+  color: #ffffff;
+}
+
+.credit-love {
+  color: #f0d48a;
+  font-size: 1.15rem;
+  margin: 18px 0 2px;
+}
+
+.credit-description {
+  color: #8f846d;
+  font-size: 0.75rem;
+  margin: 0;
+}
+.closing-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(203, 168, 90, 0.12),
+      transparent 45%
+    ),
+    #090806;
+  border-top: 1px solid rgba(203, 168, 90, 0.25);
+}
+
+.closing-content {
+  width: min(850px, 100%);
+  margin: auto;
+  text-align: center;
+}
+
+.closing-section h2 {
+  max-width: 750px;
+  margin: 12px auto 20px;
+  color: #f7edcf;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.closing-section h2 span {
+  display: block;
+  color: #f0d48a;
+  text-shadow: 0 0 28px rgba(240, 212, 138, 0.18);
+}
+
+.closing-message {
+  max-width: 680px;
+  margin: 0 auto 45px;
+  color: #b6a98a;
+  font-size: 1rem;
+  line-height: 2.4;
+}
+
+.closing-card {
+  position: relative;
+  width: min(520px, 100%);
+  margin: auto;
+  padding: 42px 30px;
+  border: 1px solid rgba(203, 168, 90, 0.6);
+  outline: 1px solid rgba(203, 168, 90, 0.16);
+  outline-offset: -10px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(240, 212, 138, 0.07),
+      transparent 55%
+    ),
+    #0f0d09;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.45),
+    inset 0 0 35px rgba(203, 168, 90, 0.04);
+}
+
+.closing-label {
+  margin: 0 0 15px;
+  color: #cba85a;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+
+.closing-couple {
+  color: #f0d48a;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  line-height: 1.8;
+}
+
+.closing-couple span {
+  display: inline-block;
+}
+
+.closing-couple i {
+  margin: 0 14px;
+  color: #cba85a;
+  font-family: "Amiri", serif;
+  font-size: 0.7em;
+  font-style: normal;
+}
+
+.together-with {
+  margin: 10px 0 0;
+  color: #9e9277;
+  font-size: 0.85rem;
+}
+
+.closing-host {
+  margin: 5px 0 0;
+  color: #f7edcf;
+  font-size: 1rem;
+}
+
+.closing-ornament {
+  direction: ltr;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 55px;
+  color: #cba85a;
+}
+
+.closing-ornament span {
+  display: block;
+  width: 75px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #cba85a
+  );
+}
+
+.closing-ornament span:last-child {
+  background: linear-gradient(
+    to left,
+    transparent,
+    #cba85a
+  );
+}
+
+.closing-ornament b,
+.closing-ornament i {
+  font-size: 0.55rem;
+  font-style: normal;
+}
+/* =========================================
+   ROYAL WAX SEAL INVITATION MARK
+========================================= */
+
+.royal-invite-mark{
+  width:min(360px,82%);
+  margin:26px auto 4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  position:relative;
+}
+
+.ornament-line{
+  flex:1;
+  height:1px;
+  position:relative;
+}
+
+.ornament-left{
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(203,168,90,.35),
+    #f0d48a
+  );
+}
+
+.ornament-right{
+  background:linear-gradient(
+    to left,
+    transparent,
+    rgba(203,168,90,.35),
+    #f0d48a
+  );
+}
+
+.ornament-line::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#cba85a;
+  transform:translateY(-50%);
+  box-shadow:0 0 8px rgba(240,212,138,.45);
+}
+
+.ornament-left::after{
+  right:0;
+}
+
+.ornament-right::after{
+  left:0;
+}
+
+/* Main seal */
+
+.royal-seal{
+  position:relative;
+  width:72px;
+  height:72px;
+  flex:0 0 72px;
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      #ffe8a0 0%,
+      #d8aa3f 32%,
+      #9a6717 63%,
+      #4d3106 100%
+    );
+
+  border:2px solid #efd275;
+
+  box-shadow:
+    0 0 0 5px rgba(203,168,90,.12),
+    0 0 35px rgba(240,212,138,.18),
+    0 12px 28px rgba(0,0,0,.55),
+    inset 0 0 15px rgba(255,237,157,.3);
+
+  transition:
+    transform .8s cubic-bezier(.34,1.56,.64,1),
+    opacity .55s ease,
+    filter .55s ease;
+}
+
+.royal-seal::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border-radius:50%;
+  border:1px solid rgba(71,43,4,.7);
+}
+
+.royal-seal::after{
+  content:"";
+  position:absolute;
+  inset:-18px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(240,212,138,.18),
+      transparent 68%
+    );
+  z-index:-1;
+  animation:royalSealPulse 2.4s ease-in-out infinite;
+}
+
+.royal-seal span{
+  position:relative;
+  z-index:2;
+  font-size:25px;
+  color:#211402;
+  text-shadow:0 1px 0 rgba(255,239,166,.55);
+}
+
+@keyframes royalSealPulse{
+  0%,100%{
+    transform:scale(.85);
+    opacity:.35;
+  }
+
+  50%{
+    transform:scale(1.12);
+    opacity:.85;
+  }
+}
+
+/* Urdu heading */
+
+.royal-invite-text{
+  margin:10px auto 18px;
+  text-align:center;
+
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:22px;
+  font-weight:700;
+
+  color:#f0d48a;
+  line-height:2;
+
+  text-shadow:
+    0 0 18px rgba(240,212,138,.18);
+
+  animation:inviteTextFloat 3s ease-in-out infinite;
+}
+
+@keyframes inviteTextFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-2px);
+  }
+}
+
+/* Click animation */
+
+.envelope.ribbon-opening .ornament-left{
+  animation:lineExitLeft .85s ease forwards;
+}
+
+.envelope.ribbon-opening .ornament-right{
+  animation:lineExitRight .85s ease forwards;
+}
+
+.envelope.ribbon-opening .royal-seal{
+  transform:scale(.15) rotate(220deg);
+  opacity:0;
+  filter:blur(2px);
+}
+
+.envelope.ribbon-opening .royal-invite-text{
+  animation:textExit .45s ease forwards;
+}
+
+@keyframes lineExitLeft{
+  to{
+    transform:translateX(-100px);
+    opacity:0;
+  }
+}
+
+@keyframes lineExitRight{
+  to{
+    transform:translateX(100px);
+    opacity:0;
+  }
+}
+
+@keyframes textExit{
+  to{
+    opacity:0;
+    transform:translateY(-10px) scale(.96);
+    filter:blur(2px);
+  }
+}
+
+@media(max-width:520px){
+  .royal-invite-mark{
+    width:78%;
+  }
+
+  .royal-seal{
+    width:64px;
+    height:64px;
+    flex-basis:64px;
+  }
+
+  .royal-invite-text{
+    font-size:19px;
+  }
+}
+
+/* =========================================
+   GOLD SPARK BURST
+========================================= */
+
+.spark-burst{
+  position:absolute;
+  left:50%;
+  top:65%;
+  width:1px;
+  height:1px;
+  z-index:50;
+  pointer-events:none;
+}
+
+.spark{
+  position:absolute;
+  left:0;
+  top:0;
+
+  width:5px;
+  height:5px;
+  border-radius:50%;
+
+  background:#f7dc82;
+
+  box-shadow:
+    0 0 6px #f0d48a,
+    0 0 14px rgba(240,212,138,.8);
+
+  animation:sparkFly 1.15s ease-out forwards;
+}
+
+.spark:nth-child(3n){
+  width:3px;
+  height:3px;
+}
+
+.spark:nth-child(4n){
+  border-radius:0;
+  transform:rotate(45deg);
+}
+
+@keyframes sparkFly{
+  0%{
+    opacity:1;
+    transform:
+      translate(0,0)
+      scale(.4);
+  }
+
+  25%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      translate(
+        var(--spark-x),
+        var(--spark-y)
+      )
+      scale(1.1);
+  }
+}
+
+
+/* =========================================
+   LUXURY GOLD GRADIENT BUTTON
+========================================= */
+
+.gold-button{
+  position:relative;
+  overflow:hidden;
+
+  border:1px solid #e6c66e !important;
+
+  background:
+    linear-gradient(
+      110deg,
+      #8d641c 0%,
+      #c99b3c 20%,
+      #f8e39a 42%,
+      #c99b3c 62%,
+      #9a6b1c 82%,
+      #e2bd5c 100%
+    ) !important;
+
+  background-size:250% 100% !important;
+
+  color:#160f04 !important;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.4),
+    0 0 18px rgba(203,168,90,.12),
+    inset 0 1px 0 rgba(255,255,255,.35);
+
+  animation:goldGradientMove 4s linear infinite;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+@keyframes goldGradientMove{
+  0%{
+    background-position:200% 50%;
+  }
+
+  100%{
+    background-position:-50% 50%;
+  }
+}
+
+
+/* Light sweep across button */
+
+.gold-button::after{
+  content:"";
+  position:absolute;
+
+  top:-70%;
+  left:-55%;
+
+  width:30%;
+  height:240%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.55),
+      transparent
+    );
+
+  transform:rotate(20deg);
+
+  animation:buttonShine 3.2s ease-in-out infinite;
+}
+
+@keyframes buttonShine{
+  0%,55%{
+    left:-55%;
+  }
+
+  85%,100%{
+    left:130%;
+  }
+}
+
+.gold-button:hover{
+  transform:translateY(-2px) scale(1.02);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.5),
+    0 0 24px rgba(240,212,138,.22);
+}
+
+.gold-button:active{
+  transform:scale(.97);
+}
+
+.simple-rsvp{
+  max-width:520px;
+  margin:35px auto 0;
+  padding:28px 20px;
+
+  border-top:1px solid rgba(203,168,90,.35);
+  border-bottom:1px solid rgba(203,168,90,.35);
+
+  text-align:center;
+}
+
+.simple-rsvp h3{
+  color:#f0d48a;
+  font-size:1.25rem;
+  font-weight:400;
+  margin:0 0 22px;
+}
+/* =========================================
+   FAMILY ROSTER — CHASHM-E-RAH / AL-DAI
+========================================= */
+
+.family-roster{
+  width:min(900px,90%);
+  margin:0 auto;
+  padding:80px 20px 70px;
+  text-align:center;
+  direction:rtl;
+}
+
+.family-roster-kicker{
+  margin:0 0 16px;
+  color:#cba85a;
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:.95rem;
+}
+
+.family-roster-title{
+  margin:0 auto 28px;
+  color:#f3d77d;
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:clamp(1.5rem,3vw,2.25rem);
+  font-weight:400;
+  line-height:2;
+}
+
+
+/* GOLD DIVIDER */
+
+.family-roster-divider{
+  width:min(520px,85%);
+  margin:0 auto 45px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+
+.family-roster-divider span{
+  height:1px;
+  flex:1;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(203,168,90,.7)
+  );
+}
+
+.family-roster-divider span:last-child{
+  background:linear-gradient(
+    90deg,
+    rgba(203,168,90,.7),
+    transparent
+  );
+}
+
+.family-roster-divider i{
+  color:#dcb650;
+  font-size:10px;
+  font-style:normal;
+}
+
+
+/* TWO COLUMNS */
+
+.family-roster-columns{
+  display:grid;
+  grid-template-columns:1fr 1px 1fr;
+  gap:45px;
+
+  max-width:800px;
+  margin:0 auto;
+  align-items:start;
+}
+
+.family-center-line{
+  width:1px;
+  min-height:250px;
+
+  background:linear-gradient(
+    to bottom,
+    transparent,
+    rgba(203,168,90,.5),
+    rgba(203,168,90,.5),
+    transparent
+  );
+}
+
+
+/* HEADINGS */
+
+.family-roster-column h3{
+  display:inline-block;
+
+  margin:0 0 24px;
+  padding:5px 28px 8px;
+
+  color:#090806;
+  background:linear-gradient(
+    110deg,
+    #9a6b1c,
+    #e2b950,
+    #f7df8b,
+    #b98220
+  );
+
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:1.35rem;
+  font-weight:700;
+
+  border-radius:30px;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.3),
+    0 0 15px rgba(203,168,90,.12);
+}
+
+
+/* NAMES */
+
+.family-names{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.family-names p{
+  position:relative;
+
+  margin:0;
+  padding:8px 8px 10px;
+
+  color:#f5ecd2;
+
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:1rem;
+  line-height:1.8;
+
+  border-bottom:1px solid rgba(203,168,90,.11);
+
+  transition:
+    color .25s ease,
+    transform .25s ease;
+}
+
+.family-names p:hover{
+  color:#f0d48a;
+  transform:translateY(-2px);
+}
+
+
+/* BOTTOM MESSAGE */
+
+.family-roster-footer{
+  margin:45px auto 0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+
+  color:#cba85a;
+}
+
+.family-roster-footer p{
+  margin:0;
+
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:1rem;
+  color:#d9c99e;
+}
+
+.family-roster-footer span{
+  color:#e0b84f;
+  font-size:10px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+  .family-roster{
+    padding:60px 16px;
+  }
+
+  .family-roster-columns{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .family-center-line{
+    width:70%;
+    height:1px;
+    min-height:1px;
+    margin:auto;
+
+    background:linear-gradient(
+      90deg,
+      transparent,
+      rgba(203,168,90,.5),
+      transparent
+    );
+  }
+
+  .family-roster-column h3{
+    font-size:1.15rem;
+  }
+
+  .family-names p{
+    font-size:.92rem;
+  }
+}
+/* =========================================
+   FAMILY HEAD / FATHER NAME
+========================================= */
+
+.family-head{
+  margin:28px auto 38px;
+  text-align:center;
+}
+
+.family-head-label{
+  display:block;
+  margin-bottom:12px;
+
+  color:#b9984c;
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:.95rem;
+}
+
+.family-father-name{
+  position:relative;
+  display:inline-block;
+
+  margin:0;
+  padding:5px 35px 14px;
+
+  color:#f2d477;
+  font-family:"Noto Nastaliq Urdu",serif;
+  font-size:clamp(1.7rem,3.5vw,2.6rem);
+  font-weight:400;
+  line-height:1.8;
+}
+
+.family-father-name::after{
+  content:"";
+  position:absolute;
+
+  left:15%;
+  right:15%;
+  bottom:0;
+
+  height:1px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    #cba85a,
+    transparent
+  );
+}
+
+/* =========================================
+   FINAL CLEAN OPENING CARD
+========================================= */
+
+.envelope{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  min-height:100dvh;
+  padding:18px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 42%,#211b0d 0,#090806 58%,#030302 100%);
+  transition:opacity 1s ease,visibility 1s ease;
+}
+
+.envelope.opened{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.envelope-card{
+  position:relative;
+  width:min(620px,96vw);
+  max-height:calc(100dvh - 36px);
+  min-height:0;
+  height:auto;
+  padding:42px 28px 34px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  border:1px solid rgba(203,168,90,.72);
+  outline:1px solid rgba(203,168,90,.28);
+  outline-offset:-11px;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(203,168,90,.055),transparent 45%),
+    linear-gradient(145deg,rgba(255,255,255,.018),transparent 55%),
+    #0b0a07;
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.62),
+    0 0 30px rgba(203,168,90,.05);
+  scrollbar-width:none;
+}
+
+.envelope-card::-webkit-scrollbar{
+  display:none;
+  width:0;
+  height:0;
+}
+
+.envelope-card::before,
+.envelope-card::after{
+  content:none !important;
+  display:none !important;
+}
+
+.envelope-card h1{
+  margin:4px 0 8px !important;
+  font-size:clamp(3rem,7vw,5.2rem) !important;
+  line-height:1.32 !important;
+}
+
+.envelope-card .guest-line{
+  margin:5px auto !important;
+  padding:5px 24px !important;
+}
+
+.envelope-card .cover-date{
+  margin:8px 0 10px !important;
+}
+
+.envelope-card .royal-invite-mark{
+  margin:14px auto 2px !important;
+}
+
+.envelope-card .royal-invite-text{
+  margin:6px auto 10px !important;
+}
+
+.envelope-card .gold-button{
+  margin-top:2px;
+}
+
+@media(max-height:760px) and (min-width:601px){
+  .envelope{
+    padding:12px;
+  }
+
+  .envelope-card{
+    width:min(580px,94vw);
+    max-height:calc(100dvh - 24px);
+    padding:28px 24px 24px;
+  }
+
+  .envelope-card h1{
+    font-size:clamp(2.6rem,6vw,4.35rem) !important;
+  }
+
+  .envelope-card .royal-seal{
+    width:62px;
+    height:62px;
+    flex-basis:62px;
+  }
+}
+
+@media(max-width:600px){
+  .envelope{
+    padding:10px;
+  }
+
+  .envelope-card{
+    width:96vw;
+    max-height:calc(100dvh - 20px);
+    padding:26px 16px 22px;
+  }
+
+  .envelope-card h1{
+    font-size:clamp(2.6rem,15vw,4.2rem) !important;
+    line-height:1.28 !important;
+  }
+
+  .envelope-card .guest-line{
+    padding:4px 18px !important;
+  }
+
+  .envelope-card .royal-invite-mark{
+    width:82%;
+  }
+
+  .envelope-card .royal-seal{
+    width:58px;
+    height:58px;
+    flex-basis:58px;
+  }
+
+  .envelope-card .royal-invite-text{
+    font-size:18px;
+  }
+}
+
