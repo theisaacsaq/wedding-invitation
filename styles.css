@@ -1405,3 +1405,516 @@
       circle at 50% 72%,
       rgba(203,168,90,.025),
       transparent
+/* =========================================
+   ROYAL MEHRAB OPENING COVER
+========================================= */
+
+.envelope{
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      #1a1509 0%,
+      #090806 58%,
+      #030302 100%
+    ) !important;
+}
+
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
+.envelope-card{
+  position:relative;
+
+  width:min(720px,96vw) !important;
+  min-height:min(850px,94vh);
+  max-height:94vh;
+
+  padding:52px 42px 34px !important;
+
+  overflow:hidden !important;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+
+  text-align:center;
+
+  border:1px solid #8f6f22 !important;
+  outline:1px solid rgba(203,168,90,.22) !important;
+  outline-offset:-15px !important;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,.008),
+      rgba(255,255,255,.008)
+    ),
+    #0b0a07 !important;
+
+  box-shadow:
+    0 35px 100px rgba(0,0,0,.65),
+    inset 0 0 80px rgba(203,168,90,.025);
+}
+
+
+/* =========================================
+   GEOMETRIC BACKGROUND PATTERN
+========================================= */
+
+.cover-pattern{
+  position:absolute;
+  inset:25px;
+
+  z-index:0;
+  pointer-events:none;
+
+  opacity:.16;
+
+  background-image:
+    radial-gradient(
+      circle,
+      transparent 0 11px,
+      rgba(203,168,90,.18) 12px,
+      rgba(203,168,90,.18) 13px,
+      transparent 14px
+    );
+
+  background-size:55px 55px;
+}
+
+
+/* =========================================
+   MEHRAB / ARCH
+========================================= */
+
+.cover-arch{
+  position:absolute;
+
+  top:16px;
+  left:50%;
+
+  width:64%;
+  height:330px;
+
+  transform:translateX(-50%);
+
+  border:4px solid rgba(203,168,90,.13);
+  border-bottom:0;
+
+  border-radius:
+    50% 50% 0 0 /
+    74% 74% 0 0;
+
+  z-index:1;
+  pointer-events:none;
+}
+
+.cover-arch::before,
+.cover-arch::after{
+  content:"";
+
+  position:absolute;
+  top:164px;
+
+  width:40px;
+  height:16px;
+
+  border:2px solid rgba(203,168,90,.12);
+
+  border-radius:50%;
+}
+
+.cover-arch::before{
+  left:-18px;
+}
+
+.cover-arch::after{
+  right:-18px;
+}
+
+
+/* =========================================
+   BISMILLAH AREA
+========================================= */
+
+.cover-heading{
+  position:relative;
+  z-index:4;
+
+  margin-top:8px;
+}
+
+.cover-bismillah{
+  margin:0;
+
+  font-family:"Amiri",serif;
+  font-size:clamp(1.55rem,3.8vw,2.35rem);
+  line-height:1.6;
+
+  color:#f5df9c;
+
+  text-shadow:
+    0 0 22px rgba(240,212,138,.12);
+}
+
+.cover-kicker{
+  margin:3px 0 0;
+
+  color:#d5aa38;
+
+  font-size:1rem;
+}
+
+.cover-divider{
+  width:300px;
+  max-width:70vw;
+
+  margin:5px auto 18px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.cover-divider span{
+  height:1px;
+  flex:1;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(203,168,90,.68)
+  );
+}
+
+.cover-divider span:last-child{
+  background:linear-gradient(
+    90deg,
+    rgba(203,168,90,.68),
+    transparent
+  );
+}
+
+.cover-divider i{
+  color:#d7ae42;
+  font-style:normal;
+  font-size:10px;
+}
+
+
+/* =========================================
+   COUPLE NAMES
+========================================= */
+
+.cover-couple{
+  position:relative;
+  z-index:4;
+
+  margin:78px 0 8px !important;
+
+  font-size:clamp(4.1rem,9vw,6.9rem) !important;
+  line-height:1.12 !important;
+
+  color:#f0cc68 !important;
+
+  text-shadow:
+    0 0 24px rgba(240,212,138,.12),
+    0 6px 18px rgba(0,0,0,.5);
+}
+
+.cover-couple span{
+  display:block;
+}
+
+.cover-couple i{
+  display:block;
+
+  font-family:"Amiri",serif;
+  color:#d3a63a;
+
+  font-size:.44em;
+  line-height:.7;
+}
+
+
+/* =========================================
+   GUEST
+========================================= */
+
+.envelope-card .guest-line{
+  position:relative;
+  z-index:4;
+
+  min-width:min(420px,80%);
+
+  margin:8px auto 0 !important;
+  padding:8px 18px 10px !important;
+
+  border-top:1px solid rgba(203,168,90,.38);
+  border-bottom:1px solid rgba(203,168,90,.38);
+
+  color:#e8dcc0;
+
+  font-size:1.05rem;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(203,168,90,.035),
+      transparent
+    );
+}
+
+.envelope-card .guest-line strong{
+  color:#f7edcf;
+}
+
+
+/* =========================================
+   POETRY + DATE
+========================================= */
+
+.cover-poetry{
+  position:relative;
+  z-index:4;
+
+  margin:9px 0 2px;
+
+  color:#b99b55;
+
+  font-size:.86rem;
+}
+
+.envelope-card .cover-date{
+  position:relative;
+  z-index:4;
+
+  margin:3px 0 20px !important;
+
+  color:#d4bd7b;
+
+  font-size:.9rem;
+}
+
+
+/* =========================================
+   INVITATION LOWER AREA
+========================================= */
+
+.invite-zone{
+  position:relative;
+  z-index:5;
+
+  width:100%;
+
+  margin-top:auto;
+}
+
+.envelope-card .royal-invite-text{
+  margin:5px auto 4px !important;
+
+  font-size:clamp(1.45rem,3.8vw,2rem) !important;
+  font-weight:700;
+
+  color:#f0cf70 !important;
+}
+
+
+/* =========================================
+   SEAL
+========================================= */
+
+.envelope-card .royal-invite-mark{
+  width:min(500px,82%) !important;
+
+  margin:4px auto 20px !important;
+}
+
+.envelope-card .royal-seal{
+  width:86px !important;
+  height:86px !important;
+  flex-basis:86px !important;
+
+  border:2px solid #f0cf70 !important;
+
+  background:
+    radial-gradient(
+      circle at 36% 28%,
+      #ffe99d 0%,
+      #e1b544 28%,
+      #af791d 58%,
+      #563304 100%
+    ) !important;
+
+  box-shadow:
+    0 0 0 7px rgba(203,168,90,.11),
+    0 0 42px rgba(240,212,138,.18),
+    0 15px 32px rgba(0,0,0,.6),
+    inset 0 0 18px rgba(255,240,173,.3) !important;
+}
+
+.envelope-card .royal-seal span{
+  font-size:28px !important;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.envelope-card .gold-button{
+  position:relative;
+  z-index:5;
+
+  min-width:330px;
+
+  padding:14px 34px 15px !important;
+
+  font-size:1.06rem;
+
+  background:
+    linear-gradient(
+      110deg,
+      #9d701e,
+      #d0a139,
+      #f2d57d,
+      #c4912d,
+      #9a6918
+    ) !important;
+
+  border:1px solid #efd176 !important;
+
+  color:#140d02 !important;
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.45),
+    0 0 18px rgba(240,212,138,.12),
+    inset 0 1px 0 rgba(255,255,255,.4);
+
+  clip-path:polygon(
+    3% 0,
+    97% 0,
+    100% 14%,
+    100% 86%,
+    97% 100%,
+    3% 100%,
+    0 86%,
+    0 14%
+  );
+}
+
+
+/* =========================================
+   BOTTOM SIGNATURE
+========================================= */
+
+.cover-signature{
+  position:relative;
+  z-index:4;
+
+  margin:16px 0 0;
+
+  color:#9d8756;
+
+  font-size:.78rem;
+
+  letter-spacing:.03em;
+}
+
+
+/* =========================================
+   BOTTOM WAVE
+========================================= */
+
+.cover-bottom-wave{
+  position:absolute;
+
+  left:-5%;
+  right:-5%;
+  bottom:-45px;
+
+  height:145px;
+
+  z-index:1;
+
+  background:
+    radial-gradient(
+      ellipse at 18% 0%,
+      #171107 0 34%,
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 75% 0%,
+      #171107 0 42%,
+      transparent 43%
+    );
+
+  opacity:.8;
+  pointer-events:none;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
+  .envelope-card{
+    min-height:auto;
+    max-height:96dvh;
+
+    padding:34px 18px 24px !important;
+  }
+
+  .cover-arch{
+    width:78%;
+    height:250px;
+  }
+
+  .cover-bismillah{
+    font-size:1.35rem;
+  }
+
+  .cover-divider{
+    width:220px;
+  }
+
+  .cover-couple{
+    margin-top:55px !important;
+
+    font-size:clamp(
+      3.4rem,
+      16vw,
+      5rem
+    ) !important;
+  }
+
+  .envelope-card .guest-line{
+    min-width:86%;
+    font-size:.92rem;
+  }
+
+  .cover-poetry{
+    font-size:.75rem;
+  }
+
+  .envelope-card .royal-invite-text{
+    font-size:1.35rem !important;
+  }
+
+  .envelope-card .royal-seal{
+    width:68px !important;
+    height:68px !important;
+    flex-basis:68px !important;
+  }
+
+  .envelope-card .gold-button{
+    min-width:250px;
+    font-size:.94rem;
+  }
+
+}
