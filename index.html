@@ -1,0 +1,1536 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090806" />
+  <meta name="description" content="شادی کی پُرخلوص دعوت — بارات و ولیمہ" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="دعوتِ شادی" />
+  <meta property="og:description" content="ہماری خوشیوں میں شریک ہو کر اس محفل کو یادگار بنائیے۔" />
+  <title>دعوتِ شادی</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=family-fix-20261020" />
+<!-- MOBILE VISIBILITY / SAFE BOOT
+     The detailed invitation remains unchanged; on small screens the
+     decorative pre-envelope is skipped so it can never block the cover. -->
+<style>
+@media (max-width: 600px){
+  html, body{width:100%; min-width:0; overflow-x:hidden;}
+  body.locked{overflow:hidden;}
+  #preEnvelopeStage{display:grid !important; visibility:visible !important; pointer-events:none !important;}
+  #envelope.start-screen{
+    display:flex !important;
+    position:fixed !important; inset:0 !important; z-index:1200 !important;
+    width:100vw !important; max-width:100vw !important; height:100dvh !important;
+    min-height:100svh !important; padding:max(8px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left)) !important;
+    align-items:center !important; justify-content:center !important;
+    overflow:hidden !important;
+    pointer-events:none !important;
+  }
+  #envelope.start-screen.cover-visible{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:scale(1) !important;
+  }
+  #envelope.start-screen:not(.cover-visible){
+    opacity:0 !important;
+    visibility:hidden !important;
+  }
+  #envelope.start-screen .cover-stage-card{
+    width:100% !important; max-width:430px !important; max-height:calc(100dvh - 16px) !important;
+    min-height:0 !important; height:auto !important; margin:0 auto !important;
+    padding:24px 18px 20px !important; box-sizing:border-box !important;
+    overflow-x:hidden !important; overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+  }
+  #envelope.start-screen .cover-couple-new{font-size:clamp(2.35rem,13vw,4.4rem) !important; line-height:1.35 !important; margin:8px 0 !important;}
+  #envelope.start-screen .cover-bismillah-new{font-size:clamp(.95rem,4.2vw,1.2rem) !important;}
+  #envelope.start-screen .cover-welcome-new{font-size:clamp(1.1rem,5vw,1.5rem) !important; margin:2px 0 !important;}
+  #envelope.start-screen .cover-guest-new{font-size:.9rem !important; line-height:1.9 !important;}
+  #envelope.start-screen .cover-poetry-new{font-size:.82rem !important; margin:7px 0 !important;}
+  #envelope.start-screen .cover-date-new{font-size:.9rem !important; margin:4px 0 !important;}
+  #envelope.start-screen .cover-invite-new{font-size:1rem !important; margin:6px 0 !important;}
+  #envelope.start-screen .cover-open-new{width:100% !important; max-width:300px !important; min-height:48px !important; padding:10px 14px !important; font-size:.95rem !important; touch-action:manipulation;}
+  #envelope.start-screen .cover-signature-new{font-size:.72rem !important; margin:8px 0 0 !important;}
+  #envelope.start-screen .cover-diamond-line, #envelope.start-screen .cover-seal-line-new{width:min(260px,90%) !important;}
+  #envelope.start-screen.opened{opacity:0 !important; visibility:hidden !important; pointer-events:none !important; transform:scale(.98) !important;}
+  #mainContent{width:100%; min-width:0; overflow:hidden;}
+  .section{width:100%; max-width:100%; padding:64px 16px !important; overflow:hidden;}
+  .frame{width:100%; max-width:100%; padding:48px 16px !important; outline-offset:-7px; overflow:hidden;}
+  .quran,.translation,.hosts,.guest-name{max-width:100%; overflow-wrap:anywhere;}
+  .couple{font-size:clamp(2.3rem,13vw,4rem) !important;}
+  .countdown{gap:7px; width:100%;}
+  .time-box{min-width:68px !important; padding:10px 6px !important;}
+  .event-card{max-width:100%; padding:34px 0 !important; padding-left:0 !important;}
+  .event-number{position:static; display:block; font-size:2.4rem; margin-bottom:2px;}
+  .event-card h3{font-size:1.6rem !important;}
+  .event-card dl div{grid-template-columns:72px minmax(0,1fr) !important; column-gap:8px; overflow-wrap:anywhere;}
+  .actions{display:grid !important; grid-template-columns:1fr; width:100%;}
+  .actions a{display:block; width:100%; box-sizing:border-box;}
+  .attendance{width:100%; max-width:100%; padding:16px 8px; box-sizing:border-box;}
+  .counter-row{gap:8px;}
+  .music-toggle{bottom:max(14px,env(safe-area-inset-bottom)); left:max(14px,env(safe-area-inset-left));}
+  img,video,iframe{max-width:100%;}
+}
+@media (max-width:600px) and (max-height:700px){
+  #envelope.start-screen .cover-stage-card{padding-top:12px !important; padding-bottom:12px !important;}
+  #envelope.start-screen .cover-couple-new{font-size:clamp(2rem,11vw,3.3rem) !important;}
+  .section{padding-top:50px !important; padding-bottom:50px !important;}
+}
+
+/* =========================================================
+   CARD CLICK OPENING ANIMATION
+   Uses the existing app.js .ribbon-opening state.
+   Nothing in app.js/client-data.js is changed.
+========================================================= */
+.start-screen.ribbon-opening .cover-stage-card{
+  animation: weddingCardOpen 1.25s cubic-bezier(.22,.72,.18,1) forwards;
+  transform-origin:50% 50%;
+  will-change:transform,opacity,filter;
+}
+
+.start-screen.ribbon-opening .cover-seal-new{
+  animation: weddingSealOpen .75s cubic-bezier(.34,1.56,.64,1) .05s forwards;
+}
+
+.start-screen.ribbon-opening .cover-seal-line-new span:first-child{
+  animation: weddingLineLeft .8s ease forwards;
+}
+
+.start-screen.ribbon-opening .cover-seal-line-new span:last-child{
+  animation: weddingLineRight .8s ease forwards;
+}
+
+.start-screen.ribbon-opening .cover-open-new{
+  animation: weddingButtonOpen .55s ease forwards;
+}
+
+@keyframes weddingCardOpen{
+  0%{
+    opacity:1;
+    transform:scale(1) rotateX(0deg);
+    filter:blur(0);
+  }
+  45%{
+    opacity:1;
+    transform:scale(1.018) rotateX(0deg);
+    filter:blur(0);
+  }
+  100%{
+    opacity:0;
+    transform:scale(1.06) rotateX(7deg) translateY(-8px);
+    filter:blur(2px);
+  }
+}
+
+@keyframes weddingSealOpen{
+  0%{
+    opacity:1;
+    transform:scale(1) rotate(0deg);
+  }
+  100%{
+    opacity:0;
+    transform:scale(.15) rotate(220deg);
+  }
+}
+
+@keyframes weddingLineLeft{
+  to{
+    transform:translateX(-70px);
+    opacity:0;
+  }
+}
+
+@keyframes weddingLineRight{
+  to{
+    transform:translateX(70px);
+    opacity:0;
+  }
+}
+
+@keyframes weddingButtonOpen{
+  0%{
+    opacity:1;
+    transform:scale(1);
+  }
+  100%{
+    opacity:0;
+    transform:scale(.94) translateY(4px);
+  }
+}
+
+@media(max-width:600px){
+  .start-screen.ribbon-opening .cover-stage-card{
+    animation-duration:1.25s;
+  }
+
+  .start-screen.ribbon-opening .cover-seal-line-new span:first-child{
+    animation-name:weddingLineLeftMobile;
+  }
+
+  .start-screen.ribbon-opening .cover-seal-line-new span:last-child{
+    animation-name:weddingLineRightMobile;
+  }
+}
+
+@keyframes weddingLineLeftMobile{
+  to{
+    transform:translateX(-45px);
+    opacity:0;
+  }
+}
+
+@keyframes weddingLineRightMobile{
+  to{
+    transform:translateX(45px);
+    opacity:0;
+  }
+}
+
+
+/* =========================================================
+   ROBUST CARD OPENING FALLBACK
+   Handles the button directly from index.html so the opening
+   animation still works if app.js is cached/missing on hosting.
+========================================================= */
+.start-screen.card-opening .cover-stage-card{
+  animation: cardOpenMain 1.2s cubic-bezier(.2,.8,.18,1) forwards !important;
+  transform-origin:50% 50%;
+  will-change:transform,opacity,filter;
+}
+.start-screen.card-opening .cover-stage-card::before{
+  animation: cardOpenBorderLeft 1.05s ease-in forwards;
+}
+.start-screen.card-opening .cover-stage-card::after{
+  animation: cardOpenBorderRight 1.05s ease-in forwards;
+}
+.start-screen.card-opening .cover-bismillah-new,
+.start-screen.card-opening .cover-welcome-new,
+.start-screen.card-opening .cover-diamond-line,
+.start-screen.card-opening .cover-couple-new,
+.start-screen.card-opening .cover-guest-new,
+.start-screen.card-opening .cover-poetry-new,
+.start-screen.card-opening .cover-date-new,
+.start-screen.card-opening .cover-invite-new,
+.start-screen.card-opening .cover-seal-line-new,
+.start-screen.card-opening .cover-open-new,
+.start-screen.card-opening .cover-signature-new{
+  animation: cardOpenContent .9s cubic-bezier(.2,.8,.18,1) forwards;
+}
+@keyframes cardOpenMain{
+  0%{opacity:1;transform:perspective(1200px) scale(1) rotateX(0deg);filter:blur(0);}
+  38%{opacity:1;transform:perspective(1200px) scale(1.025) rotateX(0deg);filter:blur(0);}
+  100%{opacity:0;transform:perspective(1200px) scale(1.12) rotateX(9deg) translateY(-14px);filter:blur(3px);}
+}
+@keyframes cardOpenContent{
+  0%{opacity:1;transform:translateY(0) scale(1);}
+  35%{opacity:1;transform:translateY(-2px) scale(1.01);}
+  100%{opacity:0;transform:translateY(-18px) scale(.96);}
+}
+@keyframes cardOpenBorderLeft{
+  0%{opacity:1;transform:translateX(0);}
+  100%{opacity:0;transform:translateX(-55px);}
+}
+@keyframes cardOpenBorderRight{
+  0%{opacity:1;transform:translateX(0);}
+  100%{opacity:0;transform:translateX(55px);}
+}
+
+</style>
+
+
+  <style>
+  /* =========================================================
+     INTRO FLOW
+     1) blurred envelope -> sharp
+     2) envelope opens automatically
+     3) Urdu cover card appears
+     4) cover click -> existing detailed invitation
+  ========================================================= */
+
+  .pre-envelope-stage{
+    position:fixed;
+    inset:0;
+    z-index:1300;
+    display:grid;
+    place-items:center;
+    min-height:100dvh;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(203,168,90,.13), transparent 28%),
+      radial-gradient(circle at 50% 48%, #211a0f 0%, #0d0b08 48%, #030302 100%);
+    opacity:1;
+    visibility:visible;
+    pointer-events:none;
+    transition:opacity .9s ease, visibility .9s ease, transform .9s ease;
+  }
+
+  .pre-envelope-stage::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.09;
+    background-image:
+      radial-gradient(circle at 20% 20%, #f0d48a 0 1px, transparent 1.5px),
+      radial-gradient(circle at 78% 32%, #cba85a 0 1px, transparent 1.5px),
+      radial-gradient(circle at 37% 82%, #f0d48a 0 1px, transparent 1.5px);
+    background-size:180px 180px,230px 230px,270px 270px;
+    animation:introDust 18s linear infinite;
+  }
+
+  @keyframes introDust{
+    to{background-position:180px 180px,-230px 230px,270px -270px}
+  }
+
+  .pre-envelope-stage.is-leaving{
+    opacity:0;
+    visibility:hidden;
+    transform:scale(1.045);
+    pointer-events:none;
+  }
+
+  .pre-envelope-wrap{
+    position:relative;
+    z-index:2;
+    width:min(700px,94vw);
+    text-align:center;
+    direction:ltr;
+  }
+
+  .pre-envelope-kicker{
+    margin:0 0 24px;
+    color:#aa9872;
+    font-family:"Playfair Display",serif;
+    font-size:10px;
+    letter-spacing:.52em;
+    text-transform:uppercase;
+    opacity:0;
+    transform:translateY(8px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+
+  .pre-envelope-stage.is-sharp .pre-envelope-kicker{
+    opacity:.9;
+    transform:none;
+  }
+
+  .pre-envelope{
+    position:relative;
+    width:min(570px,90vw);
+    aspect-ratio:1.58/1;
+    margin:auto;
+    perspective:1500px;
+    filter:blur(18px) brightness(.65);
+    transform:scale(.955);
+    opacity:.78;
+    transition:
+      filter 1.45s cubic-bezier(.2,.7,.2,1),
+      transform 1.45s cubic-bezier(.2,.7,.2,1),
+      opacity 1.2s ease;
+  }
+
+  .pre-envelope-stage.is-sharp .pre-envelope{
+    filter:blur(0) brightness(1);
+    transform:scale(1);
+    opacity:1;
+  }
+
+  .pre-envelope-back{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    border:1px solid rgba(240,212,138,.33);
+    background:
+      radial-gradient(circle at 50% 10%, rgba(240,212,138,.09), transparent 32%),
+      linear-gradient(145deg,#302819,#17130d 66%);
+    box-shadow:0 35px 65px rgba(0,0,0,.58);
+  }
+
+  .pre-letter{
+    position:absolute;
+    left:7%;
+    top:6%;
+    width:86%;
+    height:86%;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    text-align:center;
+    border:1px solid rgba(240,212,138,.52);
+    background:
+      radial-gradient(circle at 50% 35%,rgba(203,168,90,.10),transparent 43%),
+      #0d0c08;
+    box-shadow:0 24px 50px rgba(0,0,0,.44);
+    transform:translateY(68px) scale(.93);
+    transition:transform 1.35s cubic-bezier(.18,.86,.18,1);
+  }
+
+  .pre-letter-bismillah{
+    margin:0 0 12px;
+    color:#d7ba75;
+    font-family:"Amiri",serif;
+    font-size:clamp(.95rem,2.1vw,1.25rem);
+  }
+
+  .pre-letter-copy{
+    margin:14px 0 0;
+    color:#9e8c68;
+    font-family:"Noto Nastaliq Urdu",serif;
+  }
+
+  .pre-pocket-left,
+  .pre-pocket-right,
+  .pre-pocket-bottom{
+    position:absolute;
+    inset:0;
+    z-index:4;
+    pointer-events:none;
+  }
+
+  .pre-pocket-left{
+    clip-path:polygon(0 0,53% 57%,0 100%);
+    background:linear-gradient(135deg,#292116,#100d08);
+  }
+
+  .pre-pocket-right{
+    clip-path:polygon(100% 0,47% 57%,100% 100%);
+    background:linear-gradient(225deg,#302719,#110e09);
+  }
+
+  .pre-pocket-bottom{
+    clip-path:polygon(0 100%,50% 48%,100% 100%);
+    background:linear-gradient(to top,#17120c,#2d2518);
+  }
+
+  .pre-flap{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:59%;
+    z-index:7;
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    background:linear-gradient(180deg,#382f1f,#1a150e);
+    transform-origin:center top;
+    transform:rotateX(0deg);
+    backface-visibility:hidden;
+    transition:transform 1.08s cubic-bezier(.65,.05,.25,1);
+  }
+
+  .pre-wax{
+    position:absolute;
+    left:50%;
+    top:49%;
+    z-index:10;
+    width:104px;
+    height:104px;
+    transform:translate(-50%,-50%);
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    border:2px solid #edcf70;
+    background:
+      radial-gradient(circle at 34% 27%,#ffe9a0 0%,#d9aa3d 31%,#936315 64%,#472c04 100%);
+    color:#201301;
+    box-shadow:
+      0 0 0 8px rgba(203,168,90,.12),
+      0 0 45px rgba(240,212,138,.25),
+      0 17px 35px rgba(0,0,0,.58),
+      inset 0 0 16px rgba(255,239,166,.30);
+    transition:transform .55s ease, opacity .45s ease, filter .45s ease;
+  }
+
+  .pre-wax::before{
+    content:"";
+    position:absolute;
+    inset:11px;
+    border-radius:50%;
+    border:1px solid rgba(64,39,4,.76);
+  }
+
+  .pre-wax-inner{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    line-height:1.02;
+    font-family:"Playfair Display",serif;
+    text-transform:uppercase;
+    text-shadow:0 1px 0 rgba(255,239,166,.5);
+  }
+
+  .pre-wax-inner strong{
+    font-size:22px;
+    letter-spacing:.04em;
+  }
+
+  .pre-wax-inner small{
+    margin:4px 0 3px;
+    font-size:8px;
+    letter-spacing:.18em;
+    font-weight:700;
+  }
+
+  .pre-envelope-hint{
+    margin:29px 0 0;
+    color:#a59776;
+    font-family:"Noto Nastaliq Urdu",serif;
+    font-size:.88rem;
+    opacity:0;
+    transform:translateY(8px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+
+  .pre-envelope-stage.is-sharp .pre-envelope-hint{
+    opacity:.82;
+    transform:none;
+  }
+
+  .pre-envelope-stage.is-opening .pre-flap{
+    transform:rotateX(180deg);
+    z-index:0;
+  }
+
+  .pre-envelope-stage.is-opening .pre-wax{
+    opacity:0;
+    filter:blur(4px);
+    transform:translate(-50%,-50%) scale(.15) rotate(180deg);
+  }
+
+  .pre-envelope-stage.is-opening .pre-letter{
+    transform:translateY(-120px) scale(1);
+  }
+
+  .pre-envelope-stage.is-opening .pre-envelope-hint,
+  .pre-envelope-stage.is-opening .pre-envelope-kicker{
+    opacity:0;
+  }
+
+  .pre-particles{
+    position:absolute;
+    left:50%;
+    top:50%;
+    z-index:30;
+    width:1px;
+    height:1px;
+    pointer-events:none;
+  }
+
+  .pre-particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#f4d77d;
+    box-shadow:0 0 7px #ddb45a;
+    animation:introParticle 1.3s ease-out forwards;
+  }
+
+  @keyframes introParticle{
+    from{opacity:1;transform:translate(0,0) scale(1)}
+    to{opacity:0;transform:translate(var(--x),var(--y)) scale(.1)}
+  }
+
+
+  /* =========================================================
+     SECOND STAGE — URDU COVER CARD
+  ========================================================= */
+
+  .start-screen{
+    position:fixed !important;
+    inset:0 !important;
+    z-index:1200 !important;
+    display:grid !important;
+    place-items:center !important;
+    min-height:100dvh !important;
+    padding:16px !important;
+    overflow:auto !important;
+    background:
+      radial-gradient(circle at 50% 30%,rgba(203,168,90,.08),transparent 30%),
+      #080806 !important;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:scale(1.045);
+    transition:
+      opacity 1s ease,
+      transform 1.15s cubic-bezier(.16,.8,.2,1),
+      visibility .8s;
+  }
+
+  .start-screen.cover-visible{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:scale(1) !important;
+  }
+
+  .start-screen.opened{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+  }
+
+  .cover-stage-card{
+    position:relative;
+    width:min(725px,94vw);
+    min-height:min(880px,94dvh);
+    padding:38px 34px 34px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    border:1px solid rgba(203,168,90,.82);
+    outline:1px solid rgba(203,168,90,.24);
+    outline-offset:-12px;
+    background:
+      radial-gradient(circle at 50% 42%,rgba(203,168,90,.07),transparent 42%),
+      linear-gradient(145deg,rgba(255,255,255,.014),transparent 60%),
+      #0b0a07;
+    box-shadow:
+      0 35px 90px rgba(0,0,0,.68),
+      0 0 40px rgba(203,168,90,.04);
+  }
+
+  .cover-stage-card::before,
+  .cover-stage-card::after{
+    content:"";
+    position:absolute;
+    inset:11px;
+    pointer-events:none;
+    border:1px solid rgba(203,168,90,.18);
+  }
+
+  .cover-bismillah-new{
+    margin:0 0 8px;
+    color:#f0d48a;
+    font-family:"Amiri",serif;
+    font-size:clamp(1.2rem,2.5vw,1.7rem);
+  }
+
+  .cover-welcome-new{
+    margin:0;
+    color:#cba85a;
+    font-size:.86rem;
+  }
+
+  .cover-diamond-line{
+    width:min(145px,40%);
+    margin:10px auto 24px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#cba85a;
+  }
+
+  .cover-diamond-line span{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right,transparent,#cba85a);
+  }
+
+  .cover-diamond-line span:last-child{
+    background:linear-gradient(to left,transparent,#cba85a);
+  }
+
+  .cover-diamond-line i{
+    font-size:8px;
+    font-style:normal;
+  }
+
+  .cover-couple-new{
+    margin:.05em 0 .12em;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    color:#f0d48a;
+    font-family:"Noto Nastaliq Urdu",serif;
+    font-size:clamp(3.8rem,10vw,6.6rem);
+    font-weight:400;
+    line-height:1.08;
+    text-shadow:0 0 34px rgba(203,168,90,.13);
+  }
+
+  .cover-couple-new i{
+    color:#cba85a;
+    font-family:"Amiri",serif;
+    font-size:.42em;
+    font-style:normal;
+    line-height:1;
+    margin:.05em 0;
+  }
+
+  .cover-guest-new{
+    width:min(360px,78%);
+    margin:14px auto 18px;
+    padding:8px 16px 11px;
+    border-block:1px solid rgba(203,168,90,.32);
+    color:#f7edcf;
+    font-family:"Noto Nastaliq Urdu",serif;
+    font-size:1rem;
+  }
+
+  .cover-poetry-new{
+    margin:8px auto 18px;
+    max-width:530px;
+    color:#e5d8b7;
+    font-family:"Noto Nastaliq Urdu",serif;
+    font-size:clamp(1rem,2.4vw,1.35rem);
+  }
+
+  .cover-date-new{
+    margin:0 0 8px;
+    color:#a59673;
+    font-family:"Amiri",serif;
+  }
+
+  .cover-invite-new{
+    margin:8px 0 14px;
+    color:#f0d48a;
+    font-family:"Noto Nastaliq Urdu",serif;
+    font-size:clamp(1.5rem,3.5vw,2.15rem);
+    font-weight:700;
+  }
+
+  .cover-seal-line-new{
+    width:min(290px,70%);
+    margin:6px auto 12px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+
+  .cover-seal-line-new span{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right,transparent,rgba(203,168,90,.75));
+  }
+
+  .cover-seal-line-new span:last-child{
+    background:linear-gradient(to left,transparent,rgba(203,168,90,.75));
+  }
+
+  .cover-seal-new{
+    width:72px;
+    height:72px;
+    flex:0 0 72px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    border:2px solid #efd275;
+    color:#211402;
+    background:
+      radial-gradient(circle at 35% 28%,#ffe8a0 0%,#d8aa3f 32%,#9a6717 63%,#4d3106 100%);
+    box-shadow:
+      0 0 0 5px rgba(203,168,90,.12),
+      0 0 30px rgba(240,212,138,.16),
+      0 12px 28px rgba(0,0,0,.55),
+      inset 0 0 15px rgba(255,237,157,.3);
+  }
+
+  .cover-open-new{
+    margin-top:2px;
+    min-width:270px;
+    padding:12px 26px;
+    border:1px solid #e6c66e;
+    background:
+      linear-gradient(110deg,#8d641c 0%,#c99b3c 20%,#f2d77c 52%,#c99b3c 82%,#8d641c 100%);
+    color:#090806;
+    font-family:"Noto Nastaliq Urdu",serif;
+    font-size:1rem;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,0,0,.34);
+    transition:transform .25s ease, filter .25s ease;
+  }
+
+  .cover-open-new:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.06);
+  }
+
+  .cover-signature-new{
+    margin:18px 0 0;
+    color:#8f846d;
+    font-family:"Noto Nastaliq Urdu",serif;
+    font-size:.82rem;
+  }
+
+  @media(max-width:600px){
+    /* Keep the first envelope completely inside short/narrow phone screens */
+    .pre-envelope-stage{
+      padding:12px;
+      min-height:100dvh;
+    }
+    .pre-envelope-wrap{
+      width:100%;
+      max-width:94vw;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+    .pre-envelope-kicker{
+      margin-bottom:14px;
+      font-size:7px;
+      letter-spacing:.26em;
+      line-height:1.4;
+    }
+    .pre-envelope{
+      width:min(92vw, calc((100dvh - 128px) * 1.58));
+      max-width:100%;
+      max-height:calc(100dvh - 128px);
+      box-sizing:border-box;
+    }
+    .pre-wax{width:74px;height:74px}
+    .pre-wax-inner strong{font-size:16px}
+    .pre-wax-inner small{font-size:7px}
+    .pre-envelope-hint{
+      margin-top:16px;
+      font-size:.78rem;
+      line-height:1.8;
+    }
+    .pre-letter{
+      padding:16px 12px;
+    }
+    .pre-envelope-stage.is-opening .pre-letter{
+      transform:translateY(-22vw) scale(1);
+    }
+
+    /* Second cover card: never crop it on mobile; scroll inside the card if needed */
+    .start-screen{
+      padding:12px !important;
+      overflow:hidden !important;
+    }
+    .cover-stage-card{
+      width:100%;
+      max-width:calc(100vw - 24px);
+      min-height:0;
+      max-height:calc(100dvh - 24px);
+      padding:24px 16px 20px;
+      justify-content:flex-start;
+      overflow-x:hidden;
+      overflow-y:auto;
+      overscroll-behavior:contain;
+      -webkit-overflow-scrolling:touch;
+    }
+    .cover-bismillah-new{
+      font-size:1.05rem;
+      line-height:1.7;
+    }
+    .cover-diamond-line{
+      margin:6px auto 12px;
+    }
+    .cover-couple-new{
+      margin:0 0 .08em;
+      font-size:clamp(2.6rem,13vw,4.2rem);
+      line-height:1.18;
+    }
+    .cover-guest-new{
+      width:92%;
+      margin:8px auto 10px;
+      padding:5px 10px 8px;
+      font-size:.9rem;
+      line-height:2;
+    }
+    .cover-poetry-new{
+      margin:4px auto 9px;
+      font-size:.92rem;
+      line-height:2;
+    }
+    .cover-date-new{margin:0 0 4px}
+    .cover-invite-new{
+      margin:4px 0 8px;
+      font-size:1.3rem;
+      line-height:1.9;
+    }
+    .cover-seal-line-new{
+      width:min(245px,76%);
+      margin:3px auto 8px;
+      gap:10px;
+    }
+    .cover-seal-new{
+      width:58px;
+      height:58px;
+      flex-basis:58px;
+    }
+    .cover-open-new{
+      width:min(100%,290px);
+      min-width:0;
+      padding:10px 14px;
+      font-size:.92rem;
+    }
+    .cover-signature-new{
+      margin:10px 0 0;
+      font-size:.72rem;
+      line-height:1.8;
+    }
+  }
+
+  /* Extra protection for very short phones / landscape mode */
+  @media(max-width:600px) and (max-height:700px){
+    .pre-envelope-kicker{margin-bottom:8px}
+    .pre-envelope-hint{margin-top:8px}
+    .pre-envelope{
+      width:min(88vw, calc((100dvh - 98px) * 1.58));
+      max-width:100%;
+      max-height:calc(100dvh - 98px);
+    }
+    .cover-stage-card{padding:16px 14px 14px}
+    .cover-couple-new{font-size:clamp(2.25rem,11.5vw,3.45rem)}
+    .cover-seal-new{width:48px;height:48px;flex-basis:48px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .pre-envelope-stage *,
+    .start-screen *{
+      animation:none !important;
+    }
+  }
+  </style>
+
+
+<style id="royal-content-refinement">
+/* Content-only refinement: original Black & Gold design and opening remain intact. */
+#envelope .cover-stage-card{gap:0;justify-content:flex-start;padding:clamp(25px,4vh,42px) clamp(18px,4vw,38px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#8d6b32 transparent;max-height:calc(100dvh - 24px);min-height:0}
+#envelope .cover-bismillah-new{font-size:clamp(1.15rem,2.6vw,1.65rem);line-height:1.75;margin:0 0 2px}
+#envelope .cover-welcome-new{font-size:clamp(1.08rem,2.8vw,1.4rem);color:#f0d48a;line-height:1.9;font-weight:600}
+#envelope .cover-diamond-line{margin:4px auto 9px}
+#envelope .cover-couple-new{font-size:clamp(2.85rem,8vw,5.1rem);line-height:1.48;margin:0 0 5px;font-weight:600}
+#envelope .cover-couple-new i{font-size:.37em;line-height:.9;margin:0}
+#envelope .cover-host-block{width:min(540px,100%);padding:5px 0 7px;text-align:center}
+#envelope .cover-host-name{font-size:clamp(.96rem,2.7vw,1.28rem);font-weight:700;color:#e7ca80;line-height:2;margin:0}
+#envelope .cover-host-message{font-size:clamp(.78rem,2vw,1rem);color:#d9c9a5;line-height:2.15;margin:0}
+#envelope .cover-guest-new{display:flex;flex-direction:column;align-items:center;gap:0;width:min(480px,100%);margin:8px auto;padding:9px 14px 11px;border:1px solid rgba(203,168,90,.47);background:linear-gradient(130deg,rgba(203,168,90,.075),rgba(203,168,90,.015));line-height:2.05}
+#envelope .cover-guest-caption{font-size:clamp(.72rem,1.8vw,.88rem);color:#cba85a}
+#envelope .cover-guest-person{font-size:clamp(1.03rem,3.1vw,1.55rem);font-weight:700;color:#f0d48a;overflow-wrap:anywhere}
+#envelope .cover-guest-family{font-size:clamp(.88rem,2.2vw,1.08rem);color:#f7edcf}
+#envelope .cover-poetry-new{font-size:clamp(.8rem,2vw,1rem);line-height:2.05;margin:2px auto 5px}
+#envelope .cover-date-new{font-size:clamp(.95rem,2.3vw,1.15rem);line-height:1.7;color:#e4c77b;margin:0 0 2px}
+#envelope .cover-invite-new{font-size:clamp(1.15rem,3vw,1.7rem);line-height:1.9;margin:0}
+#envelope .cover-signature-new{font-size:clamp(.73rem,1.9vw,.9rem);line-height:2;margin:0 auto 5px;color:#c9b995}
+#envelope .cover-seal-line-new{margin:4px auto 8px}
+#envelope .cover-seal-new{width:48px;height:48px;flex-basis:48px}
+#envelope .cover-open-new{min-height:45px;margin:0 auto 6px}
+@media(max-width:600px){
+ #envelope.start-screen .cover-stage-card{padding:20px 17px 17px !important;max-height:calc(100dvh - 16px) !important;justify-content:flex-start !important}
+ #envelope.start-screen .cover-couple-new{font-size:clamp(2.5rem,11vw,3.55rem) !important;line-height:1.42 !important;margin:0 !important}
+ #envelope.start-screen .cover-guest-new{width:100% !important;margin:5px auto !important;padding:5px 9px 7px !important;font-size:inherit !important;line-height:1.9 !important}
+ #envelope.start-screen .cover-welcome-new{font-size:1.12rem !important}
+ #envelope.start-screen .cover-poetry-new{font-size:.82rem !important;margin:0 !important}
+ #envelope.start-screen .cover-date-new{font-size:.96rem !important;margin:0 !important}
+ #envelope.start-screen .cover-invite-new{font-size:1.18rem !important;margin:0 !important}
+ #envelope.start-screen .cover-signature-new{font-size:.72rem !important;margin:0 auto 3px !important}
+ #envelope.start-screen .cover-seal-line-new{margin:3px auto 7px !important}
+ #envelope.start-screen .cover-open-new{margin:0 auto !important}
+}
+@media(max-width:380px), (max-height:700px){
+ #envelope.start-screen .cover-stage-card{padding:14px 13px !important}
+ #envelope.start-screen .cover-couple-new{font-size:clamp(2.2rem,9vw,3rem) !important}
+ #envelope .cover-host-message{font-size:.77rem}
+ #envelope .cover-guest-person{font-size:1.04rem}
+ #envelope .cover-seal-new{width:40px;height:40px;flex-basis:40px}
+}
+</style>
+</head>
+
+<body class="locked">
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
+
+  <!-- =====================================================
+       STEP 1 — BLUR -> CLEAR -> AUTO OPEN ENVELOPE
+  ====================================================== -->
+  <section class="pre-envelope-stage" id="preEnvelopeStage" aria-label="دعوت نامہ">
+    <div class="pre-envelope-wrap">
+      <p class="pre-envelope-kicker">A SPECIAL WEDDING INVITATION</p>
+
+      <div class="pre-envelope" id="preEnvelope">
+        <div class="pre-envelope-back"></div>
+
+        <div class="pre-letter">
+          <p class="pre-letter-bismillah">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+          <p class="pre-letter-copy">دعوتِ محبت</p>
+        </div>
+
+        <div class="pre-pocket-left"></div>
+        <div class="pre-pocket-right"></div>
+        <div class="pre-pocket-bottom"></div>
+        <div class="pre-flap"></div>
+
+        <div class="pre-wax" aria-hidden="true">
+          <div class="pre-wax-inner">
+            <strong>I</strong>
+            <small>WEDS</small>
+            <strong>K</strong>
+          </div>
+        </div>
+      </div>
+
+      <p class="pre-envelope-hint">ایک خاص دعوت آپ کے لیے</p>
+    </div>
+
+    <div class="pre-particles" id="preParticles" aria-hidden="true"></div>
+  </section>
+
+  <!-- =====================================================
+       STEP 2 — URDU COVER CARD
+       Click this card/button to open the detailed invitation.
+  ====================================================== -->
+  <section class="envelope start-screen" id="envelope" aria-label="دعوت نامہ کھولیں">
+    <div class="cover-stage-card">
+
+      <p class="cover-bismillah-new" lang="ar">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+      <p class="cover-welcome-new">دعوتِ شادی</p>
+      <div class="cover-diamond-line" aria-hidden="true"><span></span><i>◆</i><span></span></div>
+
+      <h1 class="cover-couple-new" aria-label="عائشہ و حمزہ">
+        <span id="coverBride">عائشہ</span><i>و</i><span id="coverGroom">حمزہ</span>
+      </h1>
+
+      <div class="cover-host-block">
+        <p class="cover-host-name" id="coverHostParents">جناب [والدِ حمزہ کا نام] صاحب و اہلیہ</p>
+        <p class="cover-host-message">اپنے عزیز فرزند حمزہ کی شادی کی پُرمسرت تقریب میں</p>
+      </div>
+
+      <div class="cover-guest-new" aria-label="مدعو مہمان">
+        <span class="cover-guest-caption">بصد احترام، خصوصی دعوت برائے</span>
+        <strong class="cover-guest-person" id="coverGuest">محترم جناب معزز مہمان صاحب</strong>
+        <span class="cover-guest-family" id="coverGuestFamily" hidden>مع اہلِ خانہ</span>
+      </div>
+
+      <p class="cover-poetry-new">کو شرکت کی پُرخلوص دعوت دیتے ہیں۔</p>
+      <p class="cover-date-new" id="coverDate">۲۵ دسمبر ۲۰۲۶</p>
+      <p class="cover-invite-new">دعوتِ محبت قبول کیجیے</p>
+      <p class="cover-signature-new">آپ کی تشریف آوری ہمارے لیے باعثِ عزت و مسرت ہوگی۔</p>
+
+      <div class="cover-seal-line-new" aria-hidden="true"><span></span><div class="cover-seal-new">◆</div><span></span></div>
+      <button class="cover-open-new" id="openInvite" type="button">دعوت نامہ ملاحظہ کیجیے</button>
+
+      <div class="spark-burst" id="sparkBurst" aria-hidden="true"></div>
+    </div>
+  </section>
+
+<!-- Music control remains functional, only the explanatory text was removed -->
+  <button
+    class="music-toggle"
+    id="musicToggle"
+    aria-label="موسیقی بند کریں"
+    title="موسیقی"
+    type="button"
+  >♫</button>
+
+
+  <main id="mainContent">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+    <section class="hero section">
+      <div class="frame">
+
+        <p class="eyebrow">بصد مسرت و احترام</p>
+
+        <p class="quran">
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا
+        </p>
+
+        <p class="translation">
+          اور اُس کی نشانیوں میں سے ہے کہ اُس نے تمہارے لیے تم ہی میں سے جوڑے بنائے تاکہ تم اُن سے سکون پاؤ۔
+        </p>
+
+        <p class="hosts">
+          محترم
+          <span id="invitedGuest">معزز مہمان</span>
+          آپ کو اپنے عزیزان کے ہمراہ تقریبِ شادی میں شرکت کی پُرخلوص دعوت دی جاتی ہے۔
+        </p>
+
+        <h2 class="couple">
+          <span id="brideName">عائشہ</span>
+          <i>و</i>
+          <span id="groomName">حمزہ</span>
+        </h2>
+
+        <p class="addressed">خصوصی دعوت برائے</p>
+
+        <div class="guest-name" id="guestName">
+          معزز مہمان و اہلِ خانہ
+        </div>
+
+        <p>آپ کی شرکت ہماری خوشیوں کو دوبالا کرے گی</p>
+
+        <div
+          class="countdown"
+          id="countdown"
+          aria-label="تقریب تک باقی وقت"
+        ></div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         QUOTE
+    ========================== -->
+    <section class="quote section reveal">
+      <p class="eyebrow">دعا و محبت کے ساتھ</p>
+      <blockquote>
+        ”دو دل، دو خاندان، اور ایک خوبصورت سفر کا آغاز“
+      </blockquote>
+    </section>
+
+    <!-- =========================
+         WEDDING MOMENTS
+    ========================== -->
+    <section class="moments section reveal" aria-label="شادی کی تصاویر">
+      <p class="eyebrow">یادگار لمحات</p>
+      <h2>محبت، روایت اور خوشیوں کے رنگ</h2>
+      <div class="moments-grid">
+        <figure class="moment-card moment-tall">
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1100&q=82" alt="Wedding rings and celebration details" loading="lazy" />
+          <figcaption>ایک نئے سفر کا آغاز</figcaption>
+        </figure>
+        <figure class="moment-card">
+          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1100&q=82" alt="Elegant wedding table setting" loading="lazy" />
+          <figcaption>روایت کی خوبصورتی</figcaption>
+        </figure>
+        <figure class="moment-card">
+          <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1100&q=82" alt="Wedding celebration decor" loading="lazy" />
+          <figcaption>خوشیوں کی شام</figcaption>
+        </figure>
+      </div>
+      <p class="moments-note">ان تصاویر کو اپنی اصل شادی کی تصاویر سے بعد میں آسانی سے تبدیل کیا جا سکتا ہے۔</p>
+    </section>
+
+
+    <!-- =========================
+         EVENTS
+    ========================== -->
+    <section class="events section reveal" id="events">
+
+      <p class="eyebrow">تقریبات</p>
+      <h2>آپ کی آمد کے منتظر</h2>
+
+      <article class="event-card" id="baratCard">
+
+        <span class="event-number">۰۱</span>
+
+        <h3>تقریبِ بارات</h3>
+
+        <p class="event-date" id="baratDate">
+          بروز ہفتہ، ۱۲ دسمبر ۲۰۲۶
+        </p>
+
+        <dl>
+          <div>
+            <dt>وقت</dt>
+            <dd id="baratTime">شام ۷:۰۰ بجے</dd>
+          </div>
+
+          <div>
+            <dt>مقام</dt>
+            <dd id="baratVenue">باراتی ہال، کراچی</dd>
+          </div>
+        </dl>
+
+        <div class="actions">
+          <a id="baratMap" target="_blank" rel="noopener">گوگل نقشہ</a>
+          <a id="baratCalendar" target="_blank" rel="noopener">کیلنڈر میں شامل کریں</a>
+        </div>
+
+      </article>
+
+
+      <article class="event-card" id="walimaCard">
+
+        <span class="event-number">۰۲</span>
+
+        <h3>دعوتِ ولیمہ</h3>
+
+        <p class="event-date" id="walimaDate">
+          بروز اتوار، ۱۳ دسمبر ۲۰۲۶
+        </p>
+
+        <dl>
+          <div>
+            <dt>وقت</dt>
+            <dd id="walimaTime">رات ۸:۰۰ بجے</dd>
+          </div>
+
+          <div>
+            <dt>مقام</dt>
+            <dd id="walimaVenue">پرل بینکوئٹ، کراچی</dd>
+          </div>
+        </dl>
+
+        <div class="actions">
+          <a id="walimaMap" target="_blank" rel="noopener">گوگل نقشہ</a>
+          <a id="walimaCalendar" target="_blank" rel="noopener">کیلنڈر میں شامل کریں</a>
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- =========================
+         RSVP
+    ========================== -->
+    <section class="rsvp section reveal" id="rsvp">
+
+      <p class="eyebrow">تصدیقِ شرکت</p>
+
+      <h2 id="rsvpHeading">بارات میں شرکت</h2>
+
+      <p id="rsvpIntro">
+        براہِ کرم افراد کی تعداد منتخب کرکے واٹس ایپ پر اپنی شرکت کی تصدیق فرمائیں۔
+      </p>
+
+
+      <!-- Single-event RSVP -->
+      <div class="simple-rsvp hidden" id="simpleRsvp">
+
+        <h3>اپنی شرکت کی تصدیق کیجیے</h3>
+
+        <div class="rsvp-actions">
+
+          <a
+            href="#"
+            class="whatsapp accept"
+            id="simpleAcceptBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            ✓ شرکت کی تصدیق کریں
+          </a>
+
+          <a
+            href="#"
+            class="whatsapp regret"
+            id="simpleRegretBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            معذرت
+          </a>
+
+        </div>
+      </div>
+
+
+      <!-- Barat + Walima counter -->
+      <div class="attendance" id="baratAttendance">
+
+        <div class="counter-row">
+          <span>خواتین</span>
+
+          <div class="counter">
+            <button type="button" data-action="minus" data-type="ladies">−</button>
+            <output id="ladiesCount">0</output>
+            <button type="button" data-action="plus" data-type="ladies">+</button>
+          </div>
+        </div>
+
+        <div class="counter-row">
+          <span>حضرات</span>
+
+          <div class="counter">
+            <button type="button" data-action="minus" data-type="gents">−</button>
+            <output id="gentsCount">0</output>
+            <button type="button" data-action="plus" data-type="gents">+</button>
+          </div>
+        </div>
+
+        <div class="counter-row">
+          <span>بچے</span>
+
+          <div class="counter">
+            <button type="button" data-action="minus" data-type="children">−</button>
+            <output id="childrenCount">0</output>
+            <button type="button" data-action="plus" data-type="children">+</button>
+          </div>
+        </div>
+
+        <p class="limit" id="guestLimit">
+          زیادہ سے زیادہ ۴ افراد
+        </p>
+
+      </div>
+
+
+      <div id="fullRsvpActions">
+        <div class="rsvp-actions">
+
+          <a
+            class="whatsapp accept"
+            id="acceptBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            واٹس ایپ پر شرکت کی تصدیق
+          </a>
+
+          <a
+            class="whatsapp regret"
+            id="regretBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            معذرت کا پیغام بھیجیں
+          </a>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CLOSING
+    ========================== -->
+    <section class="closing-section section">
+
+      <div class="closing-content">
+
+        <p class="eyebrow">تشکر و دعاؤں کے ساتھ</p>
+
+        <h2>
+          آپ کی شرکت ہماری خوشیوں کو
+          <span>یادگار بنائے گی</span>
+        </h2>
+
+        <p class="closing-message">
+          ہماری خوشیوں میں شریک ہونے اور اپنی دعاؤں میں یاد رکھنے
+          کے لیے ہم دل کی گہرائیوں سے آپ کے شکر گزار ہیں۔
+        </p>
+
+        <div class="closing-card">
+
+          <p class="closing-label">دعاؤں کے طلبگار</p>
+
+          <p class="closing-relation">والدِ محترم</p>
+
+          <div class="closing-couple">
+            <span id="closingFather">چوہدری علی</span>
+          </div>
+
+          <p class="together-with">بمع اہلِ خانہ</p>
+
+          <p class="closing-host" id="closingHost">
+            جناب و محترمہ __________
+          </p>
+
+        </div>
+
+        <div class="closing-ornament">
+          <span></span>
+          <b>◆</b>
+          <i>◇</i>
+          <b>◆</b>
+          <span></span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAMILY ROSTER
+    ========================== -->
+    <section class="family-roster reveal">
+
+      <p class="family-roster-kicker">
+        دعاؤں کے طلبگار
+      </p>
+
+      <div class="family-head">
+
+        <span class="family-head-label">
+          والدِ محترم
+        </span>
+
+        <h2 class="family-father-name">
+          جناب __________ صاحب
+        </h2>
+
+      </div>
+
+      <div class="family-roster-divider">
+        <span></span>
+        <i>◆</i>
+        <span></span>
+      </div>
+
+
+      <div class="family-roster-columns">
+
+        <div class="family-roster-column">
+
+          <h3>بزرگانِ خاندان</h3>
+
+          <div class="family-names" id="eldersList"></div>
+
+        </div>
+
+
+        <div class="family-center-line"></div>
+
+
+        <div class="family-roster-column">
+
+          <h3>عزیزانِ خاندان</h3>
+
+          <div class="family-names" id="cousinsList"></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="family-roster-footer">
+        <span>✦</span>
+        <p>آپ کی آمد ہماری خوشیوں کو دوبالا کرے گی</p>
+        <span>✦</span>
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="section reveal">
+
+      <p class="eyebrow">دعا کے طلب گار</p>
+
+      <h2>
+        <span id="footerBride">عائشہ</span>
+        <i>و</i>
+        <span id="footerGroom">حمزہ</span>
+      </h2>
+
+      <p>ہماری خوشیوں میں شریک ہونے کا شکریہ</p>
+
+      <div class="ornament">◆</div>
+
+      <div class="creator-credit">
+
+        <span class="credit-heading">
+          تخلیق و پیشکش
+        </span>
+
+        <a
+          class="brand-link"
+          href="https://wa.me/923116170174"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Bin Shakoor"
+        >
+          <strong>BIN SHAKOOR</strong>
+          <span>GROUP OF COMPANIES</span>
+        </a>
+
+        <p class="credit-love">
+          محبت و خلوص کے ساتھ
+        </p>
+
+        <p class="credit-description">
+          بن شکور گروپ آف کمپنیز کی جانب سے آپ کے لیے خصوصی طور پر پیش خدمت۔
+        </p>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+  <script src="client-data.js"></script>
+<script src="app.js?v=family-fix-20261020"></script>
+<script>
+/* Prevent intro errors from blocking the invitation if a non-critical
+   element is unavailable on a very small/mobile layout. */
+window.addEventListener("error", function(event){
+  if(event && event.message && /ResizeObserver loop/i.test(event.message)){
+    event.preventDefault();
+  }
+});
+
+/* =========================================================
+   INTRO CONTROLLER
+   blur -> clear -> auto-open -> Urdu cover
+   Existing app.js controls Urdu cover click -> main details.
+========================================================= */
+(function(){
+  const stage = document.getElementById("preEnvelopeStage");
+  const cover = document.getElementById("envelope");
+  const particles = document.getElementById("preParticles");
+
+  if(!stage || !cover) return;
+
+  function burst(){
+    if(!particles) return;
+    particles.innerHTML = "";
+
+    for(let i = 0; i < 36; i++){
+      const p = document.createElement("span");
+      p.className = "pre-particle";
+
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 80 + Math.random() * 210;
+
+      p.style.setProperty("--x", `${Math.cos(angle) * distance}px`);
+      p.style.setProperty("--y", `${Math.sin(angle) * distance}px`);
+      p.style.animationDelay = `${Math.random() * .12}s`;
+
+      particles.appendChild(p);
+    }
+
+    setTimeout(() => particles.innerHTML = "", 1500);
+  }
+
+  /* 1) blurred envelope becomes clear */
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      stage.classList.add("is-sharp");
+    }, 350);
+  });
+
+  /* 2) automatically open after user has seen the clear envelope */
+  setTimeout(() => {
+    stage.classList.add("is-opening");
+    burst();
+  }, 2400);
+
+  /* 3) show the Urdu cover card */
+  setTimeout(() => {
+    cover.classList.add("cover-visible");
+  }, 3650);
+
+  /* 4) fade envelope away */
+  setTimeout(() => {
+    stage.classList.add("is-leaving");
+  }, 3850);
+
+  setTimeout(() => {
+    stage.style.display = "none";
+  }, 4800);
+})();
+</script>
+
+</body>
+</html>
