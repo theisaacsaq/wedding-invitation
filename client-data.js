@@ -4,7 +4,7 @@
    Har naya order aaye to SIRF is file ko edit karein.
 ========================================= */
 
-const CLIENT = {
+window.CLIENT = {
 
   // Bride / Groom
   bride: "خدیجہ ظفر",
