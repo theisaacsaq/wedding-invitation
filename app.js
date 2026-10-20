@@ -256,6 +256,7 @@ function applyContent() {
   setText("startDate", CONFIG.barat.dateText);
   setText("startTime", CONFIG.barat.timeText);
   setText("startVenue", CONFIG.barat.venue);
+  setText("invitationGroomName", CONFIG.groom);
 
 
   /* FAMILY / HOST */
